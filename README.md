@@ -1,2 +1,2 @@
-# Global_Phantom_Community
-Global Phantom Community Project
+# Global Fandom Community 
+Global Fandom Community Project
