@@ -2,16 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gfc.dao.UsersMapper">
-	<resultMap type="gfc.dto.User"
-		id="user_resultMap">
-		<result column="pw" property="password" />
+	<resultMap type="gfc.dto.User" id="user_resultMap">
+		<!-- <result column="pw" property="password" /> -->
 	</resultMap>
 	<select id="getUser" parameterType="java.lang.String"
 		resultMap="user_resultMap">
-		select id, name, pw, role from users where
-		id = #{id}
+		select ucode, userid, userpw, uname, acode from users where
+		userid = #{userid}
 	</select>
-	<insert id="addUser" parameterType="gfc.dto.User" >
-		insert into users values(#{id}, #{name}, #{password}, #{role})
+	<insert id="addUser" parameterType="gfc.dto.User">
+		insert into
+		users (userid, userpw, uname, acode) values(#{userid}, #{userpw},
+		#{uname}, #{acode})
 	</insert>
 </mapper>

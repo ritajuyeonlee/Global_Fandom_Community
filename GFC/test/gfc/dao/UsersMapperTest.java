@@ -21,23 +21,23 @@ public class UsersMapperTest {
 	
 	@Test
 	public void getUser() throws Exception {
-		User user = usersMapper.getUser("num1");
+		User user = usersMapper.getUser("hihi");
 		System.out.println(user);
 		assertNotNull(user);
-		assertEquals("1num1", user.getName());
+		assertEquals("아이유짱", user.getUname());
 	}
 	
 	@Test
 	public void addUser() throws Exception {
 		User user = new User();
-		user.setId("5addid");
-		user.setName("5addname");
-		user.setPassword("5addpw");
-		user.setRole("user");
+		user.setUserid("hihi");
+		user.setUname("아이유짱");
+		user.setUserpw("pwpw");
+		user.setAcode(1);
 		System.out.println(user);
 		int ret = usersMapper.addUser(user);
 		assertEquals(1, ret);
-		assertNotNull(usersMapper.getUser(user.getId()));
+		assertNotNull(usersMapper.getUser(user.getUserid()));
 	}
 	
 }
