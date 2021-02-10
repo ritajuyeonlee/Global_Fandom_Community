@@ -1,39 +1,58 @@
 package gfc.dto;
 
 public class User {
-
-	private String id;
-	private String name;
-	private String password;
-	private String role = "user";
+	private int ucode;
+	private String userid;
+	private String userpw;
+	private String uname;
+	private int acode;
 	
-	public String getId() {
-		return id;
+	public User() {
+		
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public User(int ucode, String userid, String userpw, String uname, int acode) {
+		this.ucode = ucode;
+		this.userid = userid;
+		this.userpw = userpw;
+		this.uname = uname;
+		this.acode = acode;
 	}
-	public String getName() {
-		return name;
+	
+	public int getUcode() {
+		return ucode;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUcode(int ucode) {
+		this.ucode = ucode;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserid() {
+		return userid;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public String getRole() {
-		return role;
+	public String getUserpw() {
+		return userpw;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setUserpw(String userpw) {
+		this.userpw = userpw;
+	}
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public int getAcode() {
+		return acode;
+	}
+	public void setAcode(int acode) {
+		this.acode = acode;
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password + ", role=" + role + "]";
+		return "User [ucode=" + ucode + ", userid=" + userid + ", userpw=" + userpw + ", uname=" + uname + ", acode="
+				+ acode + "]";
 	}
 	
 	

@@ -6,7 +6,7 @@ import gfc.dto.User;
 
 @Mapper
 public interface UsersMapper {
-	public User getUser(String id);
+	public User getUser(String userid);
 	public int addUser(User user);
 }
 
