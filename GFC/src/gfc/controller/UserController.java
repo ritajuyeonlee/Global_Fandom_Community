@@ -19,13 +19,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	// @RequestMapping인데 메소드는 Get임을 함축해서 보여주는 어노테이션
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "user/loginForm";
 	}
 
-	// @RequestMapping인데 메소드는 Get임을 함축해서 보여주는 어노테이션
 	@PostMapping("/login")
 	public String login(String userid, String userpw) {
 		// login 가능한지 안한지 서비스에서
@@ -36,14 +34,13 @@ public class UserController {
 			return "redirect:/user/loginForm";
 	}
 
-	// @RequestMapping인데 메소드는 Get임을 함축해서 보여주는 어노테이션
 	@GetMapping("/addUserForm")
-	public String JoinForm() {
+	public String adduserForm() {
 		return "user/addUserForm";
 	}
 
 	@PostMapping("/add")
-	public String Add(User user) {
+	public String add(User user) {
 		// 보통은 sysout으로 console에 하지 않고 log 파일을 만든다던가 다른 방법으로 함
 		System.out.println(user);
 		int result = userService.addUser(user);

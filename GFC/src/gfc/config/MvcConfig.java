@@ -27,6 +27,6 @@ public class MvcConfig implements WebMvcConfigurer {
 	// run on server 시 실행되는 첫 화면 지정
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addRedirectViewController("/", "/login");
+		registry.addRedirectViewController("/", "/user/loginForm");
 	}
 }
