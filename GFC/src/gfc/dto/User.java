@@ -6,19 +6,29 @@ public class User {
 	private String userpw;
 	private String uname;
 	private int acode;
+	private String ukeyword;
 	
 	public User() {
 		
 	}
 
-	public User(int ucode, String userid, String userpw, String uname, int acode) {
+	public User(int ucode, String userid, String userpw, String uname, int acode, String ukeyword) {
 		this.ucode = ucode;
 		this.userid = userid;
 		this.userpw = userpw;
 		this.uname = uname;
 		this.acode = acode;
+		this.ukeyword = ukeyword;
 	}
 	
+	public String getUkeyword() {
+		return ukeyword;
+	}
+
+	public void setUkeyword(String ukeyword) {
+		this.ukeyword = ukeyword;
+	}
+
 	public int getUcode() {
 		return ucode;
 	}
@@ -49,11 +59,13 @@ public class User {
 	public void setAcode(int acode) {
 		this.acode = acode;
 	}
+
 	@Override
 	public String toString() {
 		return "User [ucode=" + ucode + ", userid=" + userid + ", userpw=" + userpw + ", uname=" + uname + ", acode="
-				+ acode + "]";
+				+ acode + ", ukeyword=" + ukeyword + "]";
 	}
+
 	
 	
 }

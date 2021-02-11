@@ -5,14 +5,19 @@
 	<resultMap type="gfc.dto.User" id="user_resultMap">
 		<!-- <result column="pw" property="password" /> -->
 	</resultMap>
+		
+	<select id="getUserList" resultMap="user_resultMap">
+		select ucode, userid, userpw, uname, acode, ukeyword from users
+	</select>
+	
 	<select id="getUser" parameterType="java.lang.String"
 		resultMap="user_resultMap">
-		select ucode, userid, userpw, uname, acode from users where
+		select ucode, userid, userpw, uname, acode, ukeyword from users where
 		userid = #{userid}
 	</select>
 	<insert id="addUser" parameterType="gfc.dto.User">
 		insert into
-		users (userid, userpw, uname, acode) values(#{userid}, #{userpw},
-		#{uname}, #{acode})
+		users (userid, userpw, uname, acode, ukeyword) values(#{userid}, #{userpw},
+		#{uname}, #{acode}, #{ukeyword})
 	</insert>
 </mapper>
