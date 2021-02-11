@@ -7,10 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User List</title>
 </head>
 <body>
-	<h1>회원목록보기1</h1>
+	<h1>회원목록보기</h1>
 
 	<table>
 		<tr>

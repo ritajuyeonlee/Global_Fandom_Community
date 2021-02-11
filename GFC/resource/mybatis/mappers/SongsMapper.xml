@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gfc.dao.SongsMapper">
+	<resultMap type="gfc.dto.Song" id="song_resultMap">
+	</resultMap>
+
+	<select id="getSongList" resultMap="song_resultMap">
+		select
+		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric from songs
+	</select>
+
+	<select id="getSong" parameterType="java.lang.String"
+		resultMap="song_resultMap">
+		select
+		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric from songs
+		where
+		scode = #{scode}
+	</select>
+	<insert id="addSong" parameterType="gfc.dto.Song">
+		insert into
+		songs(stitle,acode,swriter,slyricist,sdate,salbum,klyric)
+		values(#{stitle}, #{acode},
+		#{swriter}, #{slyricist}, #{sdate}, #{salbum}, #{klyric} )
+	</insert>
+</mapper>
