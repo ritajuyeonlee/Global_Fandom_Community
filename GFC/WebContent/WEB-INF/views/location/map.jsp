@@ -25,41 +25,47 @@ Dev dev = new Dev();
 </style>
 <script type="text/javascript">
 		navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
-		
+		var de;
 		function initmap(position) {		
 					$.ajax({ // ajax 통신 {}
-						url:'./json/mapData.jsp',	// GFC/map으로 들어갈 땐 ./ 으로 시작해야 함. location/은 ../으로
+						url:'mapData',	// GFC/map으로 들어갈 땐 ./ 으로 시작해야 함. location/은 ../으로
 						type:'GET',		// get
-						dataType:'json',
+						//dataType:json,
 						success:function(data) {
+							de = data;
 							display(data, position);
 						},
 						error:function(error) {
-							alert(error);
+							alert("error" + error);
 						}
 					});
 		}
 		
 		function display(data, position) {
-			data[0] = {lat:position.coords.latitude, lng:position.coords.longitude, name:'내 위치', url:'http://www.naver.com'};
-			
 			let map = new google.maps.Map(document.getElementById('map'), {
 				zoom : 14,
-				center : {lat:data[0].lat, lng:data[0].lng}
+				center : {lat:position.coords.latitude, lng:position.coords.longitude}
 			});
 			
+			let marker = new google.maps.Marker({
+				position : {lat:position.coords.latitude, lng:position.coords.longitude},
+				map : map,
+				label : '내 위치'
+				})
+				
 			for (let d of data) {
 				let marker = new google.maps.Marker({
-					position : {lat:parseFloat(d.lat), lng:parseFloat(d.lng)},
+					position : {lat:parseFloat(d.llat), lng:parseFloat(d.llong)},
 					map : map,
-					label : d.name,
-					url : d.url
+					label : d.lname,
+					desc : d.ldesc
+					//url : d.url
 				});
 				
-				google.maps.event.addListener(marker,'click',function(){
+				/* google.maps.event.addListener(marker,'click',function(){
 					//window.location.href = this.url;
 					window.open(this.url, '_blank'); // 새 창에서 열기
-				});
+				}); */
 			}
 		}
 	</script>
