@@ -13,14 +13,14 @@ import gfc.dto.User;
 import gfc.service.UserService;
 
 @Controller
-@RequestMapping(path = "/user")
+@RequestMapping(path = {"/", "/user"})
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
 	@GetMapping("/loginForm")
-	public String loginForm() {
+	public String loginform() {
 		return "user/loginForm";
 	}
 
@@ -35,12 +35,12 @@ public class UserController {
 	}
 
 	@GetMapping("/addUserForm")
-	public String adduserForm() {
+	public String adduserform() {
 		return "user/addUserForm";
 	}
 
-	@PostMapping("/add")
-	public String add(User user) {
+	@PostMapping("/addUser")
+	public String adduser(User user) {
 		// 보통은 sysout으로 console에 하지 않고 log 파일을 만든다던가 다른 방법으로 함
 		System.out.println(user);
 		int result = userService.addUser(user);
@@ -51,7 +51,7 @@ public class UserController {
 	}
 
 	@GetMapping("/userList")
-	public String list(Model model) {
+	public String userlist(Model model) {
 		List<User> users = userService.getUserList();
 		model.addAttribute("userList", users);
 		return "user/userList";

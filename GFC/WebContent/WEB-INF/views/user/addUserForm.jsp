@@ -7,7 +7,7 @@
 <title>add User Form</title>
 </head>
 <body>
-	<form action="add" method="post">
+	<form action="addUser" method="post">
 		<table>
 			<tr>
 				<td>아이디 :</td>

@@ -13,7 +13,7 @@ import gfc.dto.Song;
 import gfc.service.SongService;
 
 @Controller
-@RequestMapping(path = "/song")
+@RequestMapping(path = {"/", "/song"})
 public class SongController {
 	@Autowired
 	private SongService songService;
@@ -24,7 +24,7 @@ public class SongController {
 	}
 
 	@PostMapping("/addSong")
-	public String AddSong(Song song) {
+	public String addsong(Song song) {
 		System.out.println(song);
 		int result = songService.addSong(song);
 		if (result == 1)
@@ -34,7 +34,7 @@ public class SongController {
 	}
 	
 	@GetMapping("/songList")
-	public String list(Model model) {
+	public String songlist(Model model) {
 		List<Song> songs = songService.getSongList();
 		model.addAttribute("songList", songs);
 		return "song/songList";

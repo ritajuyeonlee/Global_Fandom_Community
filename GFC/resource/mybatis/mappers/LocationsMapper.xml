@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gfc.dao.LocationsMapper">
+	<resultMap type="gfc.dto.Location" id="location_resultMap">
+	</resultMap>
+
+	<select id="getLocationList" resultMap="location_resultMap">
+		select
+		lcode,acode,lname,laddress,llat,llong,ldesc,ucode from location
+	</select>
+
+	<select id="getLocation" parameterType="java.lang.Integer"
+		resultMap="location_resultMap">
+		select
+		lcode,acode,lname,laddress,llat,llong,ldesc,ucode from location
+		where
+		lcode = #{lcode}
+	</select>
+	<insert id="addLocation" parameterType="gfc.dto.Location">
+		insert into
+		location(acode,lname,laddress,llat,llong,ldesc,ucode)
+		values(#{acode}, #{lname},
+		#{laddress}, #{llat}, #{llong}, #{ldesc}, #{ucode} )
+	</insert>
+</mapper>
+
