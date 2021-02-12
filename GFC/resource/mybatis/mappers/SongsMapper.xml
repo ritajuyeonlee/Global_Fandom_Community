@@ -10,7 +10,7 @@
 		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric from songs
 	</select>
 
-	<select id="getSong" parameterType="java.lang.String"
+	<select id="getSong" parameterType="java.lang.Integer"
 		resultMap="song_resultMap">
 		select
 		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric from songs

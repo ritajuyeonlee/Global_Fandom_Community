@@ -13,13 +13,13 @@ import gfc.dto.Song;
 @Transactional
 public class SongService {
 	@Autowired
-	private SongsMapper songmapper;
+	private SongsMapper songMapper;
 	
 	public int addSong(Song song) {
 		// 회원가입을 하기 위한 비지니스 로직이 있다면 처리
 
 		try {
-			return songmapper.addSong(song);
+			return songMapper.addSong(song);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -27,11 +27,11 @@ public class SongService {
 	}
 
 	public Song getSong(int scode) {
-		return songmapper.getSong(scode);
+		return songMapper.getSong(scode);
 	}
 
 	public List<Song> getSongList() {
-		return songmapper.getSongList();
+		return songMapper.getSongList();
 	}
 	
 }
