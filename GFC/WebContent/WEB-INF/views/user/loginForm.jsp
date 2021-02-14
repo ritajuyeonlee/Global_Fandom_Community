@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ include file="/WEB-INF/views/common/jsp/header.jsp"%>
+
 <title>MyWeb Home</title>
 <style type="text/css">
 </style>
@@ -16,7 +18,7 @@
 	<div id="output">
 		<section>
 			<h3>login form</h3>
-			<form action="login" method="post">
+			<form action="loginUser" method="post">
 				<table border="1">
 					<tr>
 						<td><label for="userid">ID</label></td>
@@ -37,6 +39,7 @@
 			</form>
 		</section>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/jsp/footer.jsp"></jsp:include>
 
 </body>
 </html>

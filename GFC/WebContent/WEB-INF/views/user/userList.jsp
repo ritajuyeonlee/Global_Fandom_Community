@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file="/WEB-INF/views/common/jsp/header.jsp"%>
+
 <title>User List</title>
 </head>
 <body>
@@ -30,6 +32,7 @@
 		</tr>
 		</c:forEach>
 	</table>
+	<jsp:include page="/WEB-INF/views/common/jsp/footer.jsp"></jsp:include>
 
 </body>
 </html>
