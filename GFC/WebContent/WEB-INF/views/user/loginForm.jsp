@@ -6,15 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@ include file="/WEB-INF/views/common/jsp/header.jsp"%>
+<link rel="stylesheet" type="text/css" href="css/loginForm.css">
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <title>MyWeb Home</title>
-<style type="text/css">
-</style>
-
 </head>
 <body>
-
+ 
 	<div id="output">
 		<section>
 			<h3>login form</h3>
@@ -32,14 +30,15 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="로그인"> <input
-							type="reset" value="취소"> <a href="addUserForm"> 회원가입
-						</a></td>
+							type="reset" value="취소"> 
+							<a href="addUserForm"> 회원가입</a></td>
 					</tr>
 				</table>
 			</form>
 		</section>
 	</div>
-	<jsp:include page="/WEB-INF/views/common/jsp/footer.jsp"></jsp:include>
+	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>

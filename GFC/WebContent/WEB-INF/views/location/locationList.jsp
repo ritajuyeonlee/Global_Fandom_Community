@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Location List</title>
-<%@ include file="/WEB-INF/views/common/jsp/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 </head>
 <body>
@@ -36,7 +36,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<jsp:include page="/WEB-INF/views/common/jsp/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>

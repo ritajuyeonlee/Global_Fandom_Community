@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/WEB-INF/views/common/jsp/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <title>add Song Form</title>
 </head>
@@ -65,7 +65,7 @@
 		<input type="submit" value="Submit">
 	</form>
 
-	<jsp:include page="/WEB-INF/views/common/jsp/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>
