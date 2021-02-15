@@ -6,8 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 <%
 Dev dev = new Dev();
 %>
@@ -76,6 +79,7 @@ Dev dev = new Dev();
 	<div id="map"></div>
 
 	<a href="addLocationForm"> 장소 추가 </a>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>
