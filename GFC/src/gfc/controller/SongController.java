@@ -14,7 +14,8 @@ import gfc.dto.Song;
 import gfc.service.SongService;
 
 @Controller
-@RequestMapping(path = {"/song"})
+
+@RequestMapping(path = {"/","/song"})
 public class SongController {
 	@Autowired
 	private SongService songService;
