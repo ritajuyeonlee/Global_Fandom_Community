@@ -17,6 +17,17 @@
 	</properties>
 
 	<dependencies>
+
+
+		<!-- 자바 코드에서 JSON -> String or String -> JSON 형 변환하기 위한 라이브러리 -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- 주소로 위도,경도를 추출하기 위한 라이브러리 -->
+
 		<!-- location 정보를 json으로 가져오기 위한 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<!-- <dependency>
@@ -25,6 +36,7 @@
 			<version>2.10.1</version>
 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>

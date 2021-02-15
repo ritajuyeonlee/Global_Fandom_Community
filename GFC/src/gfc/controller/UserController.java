@@ -2,12 +2,17 @@ package gfc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import gfc.dto.User;
 import gfc.service.UserService;
@@ -23,15 +28,26 @@ public class UserController {
 	public String loginform() {
 		return "user/loginForm";
 	}
-
-	@PostMapping("/login")
-	public String login(String userid, String userpw) {
-		// login 가능한지 안한지 서비스에서
-		int result = userService.loginUser(userid, userpw);
-		if (result == 1)
-			return "redirect:/user/userList";
-		else
+	
+	@PostMapping("/loginUser")
+	public String loginUser(String userid, String userpw, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+		System.out.println("post login");
+		HttpSession session=req.getSession();
+		User login=userService.loginUser(userid, userpw);
+		if(login==null) {
+			session.setAttribute("user", null);
+			rttr.addFlashAttribute("msg",false);
 			return "redirect:/user/loginForm";
+		}else {
+			session.setAttribute("user", login);
+			return "redirect:/";
+		}
+			
+	}
+	@GetMapping("/logoutUser")
+	public String logoutUser(HttpSession session) throws Exception{
+		session.invalidate();
+		return "redirect:/";
 	}
 
 	@GetMapping("/addUserForm")

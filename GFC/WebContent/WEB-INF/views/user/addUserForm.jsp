@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>add User Form</title>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 </head>
 <body>
 	<form action="addUser" method="post">
@@ -43,6 +45,7 @@
 		<input type="submit" value="Submit">
 	</form>
 
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>
