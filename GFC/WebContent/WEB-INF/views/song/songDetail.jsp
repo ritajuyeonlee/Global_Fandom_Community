@@ -16,10 +16,23 @@
 	$(function() {
 		
 		let scode1 = "${song.scode}";
+<<<<<<< HEAD
 		let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	
+=======
+		let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	// ********* 수정 해야함 (로그인안해도 가능하게) *********
+>>>>>>> branch 'joongjae' of https://github.com/Jiyooung/Global_Fandom_Community
 		
 		console.log(ucode1);
 		getCommentList(scode1);
+		
+		$('.translate').click(function(){
+			alert("주연최고");
+			let ccom = $(this).parent().parent().find('#ccom').val();
+			console.log(ccom);
+			
+			commentTranslate(ccom);
+			alert("주연짱짱");
+		});
 		
 		$('#clear').click(function(){
 			$("#Comment").val("");		// 작성한 댓글 지우기.
@@ -35,6 +48,10 @@
 				alert("내용을 입력해 주세요 ");
 		});
 	});
+	
+	function list(scode1) {
+		
+	}
 
 	function addComment(scode1,ucode1,comment1) {
 		$.ajax({
@@ -83,14 +100,15 @@
 	            
 	            if(data.length > 0){
 	                for(i=0; i<data.length; i++){
-	                    html += "<div>";
-	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
-	                    html += "<tr><td>"+ data[i].ccom +"</td></tr>";
-	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
-	                    //html += '<td><input type="button" id="translate" value="번역"></td>';
-	                    //html += '<td><span id="tcomment">번역된거</span></td></tr>';	//여기부터
-	                    html += "</table></div>";
-	                    html += "</div>";
+	                		html += "<div>";
+		                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
+		                    html += "<tr><td id='ccom'>"+ data[i].ccom +"</td>";
+		                    html += "<td><input type='button' class='translate' value='번역'></td>";
+		                    html += "<td><span id='tcomment'>번역된거</span></td></tr>";	//여기부터
+		                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
+		                    html += "</table></div>";
+		                    html += "</div>";
+
 	                }
 	            } else {
 	                html += "<div>";
@@ -100,6 +118,22 @@
 	            }
 	            $("#cCnt").html(cCnt);
 	            $("#commentList").html(html);
+	        },
+	        error:function(request,status,error){
+	       }
+	    });
+	}
+	
+	function commentTranslate(ccom1){
+		$.ajax({
+	        type:'GET',
+	        url : "${pageContext.request.contextPath}/song/songDetail/commentTranslate",
+	        data:{
+	        	ccom : ccom1
+	        },
+	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+	        success : function(data){
+	        	$('tcomment').html(data);
 	        },
 	        error:function(request,status,error){
 	       }
@@ -127,7 +161,6 @@
 		<tr>
 			<td>한글가사</td>
 			<td>영어가사</td>
-
 			<td>키워드</td>
 		</tr>
 		<tr>
@@ -140,7 +173,7 @@
 		<tr>
 			<td>${song.sdate}</td>
 			<td>${song.salbum}</td>
-			<td>${song.simage}</td>
+			<td><img alt="" src="${song.simage}"> </td>
 		</tr>
 		<tr>
 			<td>${song.klyric}</td>
@@ -170,10 +203,12 @@
 	<%-- <p><%=uname%></p> --%>	<!-- 이 부분 로그인 정보에서 이름 가져오기 -->
 	<textarea id = "Comment" name= "Comment" ></textarea>
 	<input type="button" id="clear" value="취소" />
-	<input type="button" id="addComment" value="댓글" />
+	<input type="button" id="addComment" value="댓글" /> <br>
 	
 	<!-- 댓글 바로 추가? -->
-	<div id = "commentList"></div>
+	<div id = "commentList">
+		
+	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>

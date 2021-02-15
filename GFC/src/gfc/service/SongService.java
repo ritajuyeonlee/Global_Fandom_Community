@@ -32,8 +32,6 @@ public class SongService {
 	private SongsMapper songmapper;
 	
 	public int addSong(Song song) {
-		// 회원가입을 하기 위한 비지니스 로직이 있다면 처리
-
 		try {
 			return songmapper.addSong(song);
 		} catch (Exception e) {
@@ -95,9 +93,9 @@ public class SongService {
         return responseBody;
     }
 
-    private String post(String apiUrl, Map<String, String> requestHeaders, String text){
+    private String post(String apiUrl, Map<String, String> requestHeaders, String text){	
         HttpURLConnection con = connect(apiUrl);
-        String postParams = "source=ko&target=en&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
+        String postParams = "source=ko&target=en&text=" + text; // slang : 원본언어, tlang : 목적언어
         try {
             con.setRequestMethod("POST");
             for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
@@ -123,6 +121,8 @@ public class SongService {
         }
     }
 
+    
+//    같음
     private HttpURLConnection connect(String apiUrl){
         try {
             URL url = new URL(apiUrl);
