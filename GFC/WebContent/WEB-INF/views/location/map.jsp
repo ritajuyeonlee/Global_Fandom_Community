@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="gfc.config.Dev"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,33 +28,47 @@ Dev dev = new Dev();
 }
 </style>
 <script type="text/javascript">
-		navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
-		var de;
-		function initmap(position) {		
-					$.ajax({ // ajax 통신 {}
-						url:'mapData',	// GFC/map으로 들어갈 땐 ./ 으로 시작해야 함. location/은 ../으로
-						type:'GET',		// get
-						//dataType:json,
-						success:function(data) {
-							de = data;
-							display(data, position);
-						},
-						error:function(error) {
-							alert("error" + error);
-						}
-					});
+		$(function() {
+			//navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
+			
+			let user_acode = '<%=session.getAttribute("ucode") %>';
+			if (user_acode != "null") {
+				filterAcode(${user.acode});
+			}else {
+				filterAcode(0);
+			}
+			
+			$('#filter').click(function(){
+				filterAcode($('#acode').val());
+			});
+		});
+	
+		function filterAcode(acode) {		
+			$.ajax({ // ajax 통신 {}
+				url:'mapData',
+				type:'GET',
+				data :{
+					acode : acode
+				},
+				success:function(data) {
+					de = data;
+					display(data);
+				},
+				error:function(error) {
+					alert("error" + error);
+				}
+			});
 		}
-		
-		function display(data, position) {
+		function display(data) {
 			let map = new google.maps.Map(document.getElementById('map'), {
 				zoom : 14,
-				center : {lat:position.coords.latitude, lng:position.coords.longitude}
+				center : {lat: 37.56154517066801 , lng: 126.9930503906448 }
 			});
 			
 			let marker = new google.maps.Marker({
-				position : {lat:position.coords.latitude, lng:position.coords.longitude},
+				position : {lat: 37.56154517066801 , lng: 126.9930503906448 },
 				map : map,
-				label : '내 위치'
+				label : '서울 시청'
 				})
 				
 			for (let d of data) {
@@ -77,8 +92,20 @@ Dev dev = new Dev();
 
 	<h3>Map</h3>
 	<div id="map"></div>
+	<c:choose>
+		<c:when test="${not empty user.userid}">
+			<a href="addLocationForm"> 장소 추가 </a>
+		</c:when>
+	</c:choose>
+	<select id="acode" name="acode">
+		<option value="0">전체보기</option>
+		<option value="1">아이유</option>
+		<option value="2">블랙핑크</option>
+		<option value="3">방탄소년단</option>
+	</select>
+	<button id="filter">적용</button>
 
-	<a href="addLocationForm"> 장소 추가 </a>
+
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>

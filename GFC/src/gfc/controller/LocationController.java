@@ -35,10 +35,9 @@ public class LocationController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/mapData")
-	public List<Location> mapdata() throws Exception {
-		List<Location> locations = locationService.getLocationList();
+	public List<Location> mapdata(int acode) throws Exception {
+		List<Location> locations = locationService.getLocationAcode(acode);
 		//System.out.println(locations);
-//		JsonArray jsonarr = new JsonArray();
 
 		return locations;
 	}

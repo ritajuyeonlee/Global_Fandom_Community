@@ -13,6 +13,8 @@ Dev dev = new Dev();
 <script
 	src="https://maps.google.com/maps/api/js?key=<%=dev.getMapAPIKey()%>"
 	async defer></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <script type="text/javascript">
@@ -53,12 +55,12 @@ Dev dev = new Dev();
 		<table border="1px solid black">
 			<tr>
 				<td>회원닉네임 :</td>
-				<td><input type="text" name="uname" value="hihi" required
+				<td><input type="text" name="uname" value="${user.uname}" required
 					readonly></td>
 			</tr>
 			<tr>
 				<td>회원코드 :</td>
-				<td><input type="text" name="ucode" value="1" required readonly></td>
+				<td><input type="hidden" name="ucode" value="${user.ucode}" required readonly></td>
 			</tr>
 			<tr>
 				<td>가수 :</td>
