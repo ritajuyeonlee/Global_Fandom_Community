@@ -31,7 +31,7 @@ Dev dev = new Dev();
 		$(function() {
 			//navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
 			
-			let user_acode = '<%=session.getAttribute("ucode") %>';
+			let user_acode = '<%=session.getAttribute("ucode")%>';
 			if (user_acode != "null") {
 				filterAcode(${user.acode});
 			}else {
@@ -72,14 +72,15 @@ Dev dev = new Dev();
 				})
 				
 			for (let d of data) {
-				let marker = new google.maps.Marker({
-					position : {lat:parseFloat(d.llat), lng:parseFloat(d.llong)},
-					map : map,
-					label : d.lname,
-					desc : d.ldesc
-					//url : d.url
-				});
-				
+				if (d.lconfirm == 1){
+					let marker = new google.maps.Marker({
+						position : {lat:parseFloat(d.llat), lng:parseFloat(d.llong)},
+						map : map,
+						label : d.lname,
+						desc : d.ldesc
+						//url : d.url
+					});
+				}
 				/* google.maps.event.addListener(marker,'click',function(){
 					//window.location.href = this.url;
 					window.open(this.url, '_blank'); // 새 창에서 열기
