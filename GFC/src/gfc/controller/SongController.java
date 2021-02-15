@@ -49,6 +49,7 @@ public class SongController {
 	@GetMapping("/songDetail")
 	public String songDetail(Model model,int scode) {
 //		System.out.println(scode);
+		
 		Song song = songService.getSong(scode);
 		model.addAttribute("song",song);
 //		System.out.println(song);

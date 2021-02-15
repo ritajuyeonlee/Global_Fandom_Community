@@ -11,51 +11,46 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>Pluto</title>
+<style type="text/css">
+
+
+
+</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
-<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-<a class="navbar-brand" href="main">Pluto</a>
-<!-- 나중에 이미지 넣을 때 a태그안에-->
-<!-- <img alt="Logo" src="" style="width:40px"> -->
-
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="#">암거나</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="addSongForm">노래추가</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="addLocationForm">장소추가</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="map">지도보기</a>
-    </li>
-    <li class="nav-item dropdown">
-    	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">로케</a>
-    	<div class="dropdown-menu">
-    		<a class="dropdown-item" href="addLocationForm">장소추가</a>
-    		<a class="dropdown-item" href="map">지도보기</a>
-    	</div>
-    </li>
-    <li>
-  <form class="form-inline navbar-form" action="#">
-  	<input class="from-control mr-sm-2" type="text" placeholder="Search"/>
-  	<button class="btn btn-success" type="submit">검색</button>
-  </form>
-  </li>
-  </ul>
-  
-  </div>
- 
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
+<!-- <span class="sr-only">(current)</span> -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="main">Pluto</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="songList">노래리스트</a>
+        </li>
+        <c:choose>
+    	<c:when test="${user.userid eq 'admin'}">
+		    <li class="nav-item active">
+		      <a class="nav-link" href="addSongForm">노래추가</a>
+		    </li>
+		    <li class="nav-item active">
+		    	<a class="nav-link" href="adminConfirmLocation">장소컨펌</a>
+		    </li>
+    	</c:when>
+    	</c:choose>
+        <li class="nav-item">
+          <a class="nav-link" href="map">지도보기</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="addLocationForm">장소추가</a>
+        </li>
+        
         <c:choose>
         	<c:when test="${not empty user.userid}">
         	<li class="nav-item active">
-        	${user.uname} 님 방가방가
+        	<a class="nav-link">${user.uname} 님 방가방가</a>
         	</li>
         	<li class="nav-item active">
       			<a class="nav-link" href="logoutUser">로그아웃</a>
@@ -65,16 +60,18 @@
 		    <li class="nav-item active">
       			<a class="nav-link" href="loginForm">로그인</a>
 		    </li>
-		    <li class="nav-item active">
-		    	<a class="nav-link" href="#">다른거</a>
-		    </li>
+		    
 		    </c:otherwise>
         </c:choose>
-            
-        </ul>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      
     </div>
- 
-</nav>
+  </nav>
+
 <!-- 공통네비바아래 마진 -->
 <div style="margin-bottom:80px"></div>
 
