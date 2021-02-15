@@ -41,6 +41,7 @@ public class AdminController {
 			adminService.confirmLocation(Integer.parseInt(ajaxMsg[i]));
 		}
 		return "redirect:/adminConfirmLocation";
+		//return "admin/adminConfirmLocation";
 	}
 
 }

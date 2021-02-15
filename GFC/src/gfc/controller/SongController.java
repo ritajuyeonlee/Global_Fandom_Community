@@ -32,9 +32,11 @@ public class SongController {
 		int result = songService.addSong(song);
 
 		if (result == 1)
-			return "redirect:/song/songList";
+			return "redirect:/songList";
+		//return "redirect:/song/songList";
 		else
-			return "redirect:/song/addSongForm";
+			return "redirect:/addSongForm";
+		//return "redirect:/song/addSongForm";
 	}
 
 	@GetMapping("/songList")
