@@ -14,7 +14,8 @@ import gfc.dto.Song;
 import gfc.service.SongService;
 
 @Controller
-@RequestMapping(path = {"/song"})
+
+@RequestMapping(path = {"/","/song"})
 public class SongController {
 	@Autowired
 	private SongService songService;
@@ -48,6 +49,7 @@ public class SongController {
 	@GetMapping("/songDetail")
 	public String songDetail(Model model,int scode) {
 //		System.out.println(scode);
+		
 		Song song = songService.getSong(scode);
 		model.addAttribute("song",song);
 //		System.out.println(song);

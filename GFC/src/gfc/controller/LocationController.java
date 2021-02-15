@@ -59,4 +59,7 @@ public class LocationController {
 		model.addAttribute("locationList", locations);
 		return "location/locationList";
 	}
+	
+	
+	
 }

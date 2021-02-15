@@ -9,11 +9,12 @@ public class Location {
 	private double llong;
 	private String ldesc;
 	private int ucode;
+	private char lconfirm;
 	
 	public Location() {
 	}
 	
-	public Location(int lcode, int acode, String lname, String laddress, double llat, double llong, String ldesc,
+	public Location(int lcode, int acode, String lname, String laddress, double llat, double llong, String ldesc, char lconfirm,
 			int ucode) {
 		this.lcode = lcode;
 		this.acode = acode;
@@ -23,8 +24,18 @@ public class Location {
 		this.llong = llong;
 		this.ldesc = ldesc;
 		this.ucode = ucode;
+		this.lconfirm=lconfirm;
 	}
 	
+	
+	public char getLconfirm() {
+		return lconfirm;
+	}
+
+	public void setLconfirm(char lconfirm) {
+		this.lconfirm = lconfirm;
+	}
+
 	public int getLcode() {
 		return lcode;
 	}
@@ -73,11 +84,13 @@ public class Location {
 	public void setUcode(int ucode) {
 		this.ucode = ucode;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Location [lcode=" + lcode + ", acode=" + acode + ", lname=" + lname + ", laddress=" + laddress
-				+ ", llat=" + llat + ", llong=" + llong + ", ldesc=" + ldesc + ", ucode=" + ucode + "]";
+				+ ", llat=" + llat + ", llong=" + llong + ", ldesc=" + ldesc + ", ucode=" + ucode + ", lconfirm="
+				+ lconfirm + "]";
 	}
+	
 	
 }
