@@ -38,14 +38,14 @@ public class SongsMapperTest {
 		song.setSlyricist("iu lyricist");
 		song.setSdate(Date.valueOf("2020-02-01"));
 		song.setSalbum("iu album");
-		song.setSimage("1");
+//		song.setSimage("1");
 		song.setKlyric("iu 한국가사");
 		song.setYoutubelink("iu link");
 		song.setSkeyword("1");
 		System.out.println(song);
-		int ret = songsMapper.addSong(song);
-		assertEquals(1, ret);
-		assertNotNull(songsMapper.getSong(song.getScode()));
+//		int ret = songsMapper.addSong(song);
+//		assertEquals(1, ret);
+//		assertNotNull(songsMapper.getSong(song.getScode()));
 	}
 	
 }

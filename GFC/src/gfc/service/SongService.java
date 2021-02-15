@@ -1,6 +1,8 @@
 package gfc.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,14 @@ public class SongService {
 	private SongsMapper songMapper;
 	
 	public int addSong(Song song) {
-		// 회원가입을 하기 위한 비지니스 로직이 있다면 처리
-
 		try {
-			return songMapper.addSong(song);
+			Map<String, Object> imap = new HashMap<String, Object>();
+			Map<String, Object> smap = new HashMap<String, Object>();
+			
+			imap.put("img", song.getSimage().getBytes());
+			smap.put("song", song);
+			
+			return songMapper.addSong(smap, imap);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -31,7 +37,15 @@ public class SongService {
 	}
 
 	public List<Song> getSongList() {
-		return songMapper.getSongList();
+		List<Song> song = songMapper.getSongList();
+//		for (int i=0;i<song.size(); i++) {
+//			System.out.println(song.get(i).getSimage());
+//			MultipartFile imageContent = (MultipartFile) song.get(i).getSimage();
+//			byte[] imageContent = (byte[]) map.get("img");
+//		       final HttpHeaders headers = new HttpHeaders();
+//		       headers.setContentType(MediaType.IMAGE_PNG);
+//		}
+		return song;
 	}
 	
 }

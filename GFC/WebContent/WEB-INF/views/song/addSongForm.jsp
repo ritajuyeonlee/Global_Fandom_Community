@@ -7,7 +7,7 @@
 <title>add Song Form</title>
 </head>
 <body>
-	<form action="addSong" method="post">
+	<form action="addSong" method="post" enctype="multipart/form-data">
 		<table border="1px solid black">
 			<tr>
 				<td>제목 :</td>
@@ -42,7 +42,7 @@
 			</tr>
 			<tr>
 				<td>앨범이미지 :</td>
-				<td><input type="text" name="simage"></td>
+				<td><input type="file" name="simage"></td>
 			</tr>
 			<tr>
 				<td>한글가사 :</td>
@@ -62,7 +62,5 @@
 		</table>
 		<input type="submit" value="Submit">
 	</form>
-
-
 </body>
 </html>

@@ -2,6 +2,8 @@ package gfc.dto;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Song {
 	private int scode;
 	private String stitle;
@@ -10,7 +12,7 @@ public class Song {
 	private String slyricist;
 	private Date sdate;
 	private String salbum;
-	private String simage;
+	private MultipartFile simage;
 	private String klyric;
 	private String flyric;
 	private String youtubelink;
@@ -20,7 +22,7 @@ public class Song {
 	}
 
 	public Song(int scode, String stitle, int acode, String swriter, String slyricist, Date sdate, String salbum,
-			String simage, String klyric, String flyric, String youtubelink, String skeyword) {
+			MultipartFile simage, String klyric, String flyric, String youtubelink, String skeyword) {
 		this.scode = scode;
 		this.stitle = stitle;
 		this.acode = acode;
@@ -91,11 +93,11 @@ public class Song {
 		this.salbum = salbum;
 	}
 
-	public String getSimage() {
+	public MultipartFile getSimage() {
 		return simage;
 	}
 
-	public void setSimage(String simage) {
+	public void setSimage(MultipartFile simage) {
 		this.simage = simage;
 	}
 
@@ -114,7 +116,6 @@ public class Song {
 	public void setFlyric(String flyric) {
 		this.flyric = flyric;
 	}
-
 
 	public String getYoutubelink() {
 		return youtubelink;
@@ -139,6 +140,5 @@ public class Song {
 				+ ", klyric=" + klyric + ", flyric=" + flyric + ", youtubelink=" + youtubelink + ", skeyword="
 				+ skeyword + "]";
 	}
-	
 
 }

@@ -13,11 +13,11 @@ import gfc.dto.Song;
 import gfc.service.SongService;
 
 @Controller
-@RequestMapping(path = {"/", "/song"})
+@RequestMapping(path = { "/", "/song" })
 public class SongController {
 	@Autowired
 	private SongService songService;
-	
+
 	@GetMapping("/addSongForm")
 	public String addsongForm() {
 		return "song/addSongForm";
@@ -26,13 +26,20 @@ public class SongController {
 	@PostMapping("/addSong")
 	public String addsong(Song song) {
 		System.out.println(song);
-		int result = songService.addSong(song);
+		int result = 0;
+		try {
+			result = songService.addSong(song);
+			System.out.println(song);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		if (result == 1)
 			return "redirect:/song/songList";
 		else
 			return "redirect:/song/addSongForm";
 	}
-	
+
 	@GetMapping("/songList")
 	public String songlist(Model model) {
 		List<Song> songs = songService.getSongList();
