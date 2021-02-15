@@ -9,6 +9,7 @@
 	<resultMap type="gfc.dto.Comment" id="comment_resultMap">
 		<result column="ccom" property="ccom" />
 		<result column="cdate" property="cdate" />
+		<result column="ccode" property="ccode" />
 		<collection property="user" resultMap="user_resultMap"></collection>
 	</resultMap>
 	
@@ -19,7 +20,7 @@
 	</insert>
 	
 	<select id="getCommentList" parameterType="java.lang.Integer" resultMap="comment_resultMap">
-		select u.uname, c.ccom , c.cdate
+		select u.uname, c.ccom , c.cdate, c.ccode
 		from comments c
 		left join users u
 		on c.ucode = u.ucode 
