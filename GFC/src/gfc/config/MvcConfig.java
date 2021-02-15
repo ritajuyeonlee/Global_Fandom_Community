@@ -37,8 +37,8 @@ public class MvcConfig implements WebMvcConfigurer {
 	// 이미지 처리를 위한 리졸버
 	@Bean
 	public MultipartResolver multipartResolver() {
+
 		StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
 		return multipartResolver;
 	}
-
 }

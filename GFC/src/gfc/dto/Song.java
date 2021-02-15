@@ -17,6 +17,7 @@ public class Song {
 	private String flyric;
 	private String youtubelink;
 	private String skeyword;
+	
 
 	public Song() {
 	}

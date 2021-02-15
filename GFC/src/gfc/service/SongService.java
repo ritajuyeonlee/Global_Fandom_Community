@@ -39,7 +39,7 @@ public class SongService {
 			imap.put("img", song.getSimage().getBytes());
 			smap.put("song", song);
 			
-			return songMapper.addSong(smap, imap);
+			return songmapper.addSong(smap, imap);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -51,7 +51,7 @@ public class SongService {
 	}
 
 	public List<Song> getSongList() {
-		List<Song> song = songMapper.getSongList();
+		List<Song> song = songmapper.getSongList();
 //		for (int i=0;i<song.size(); i++) {
 //			System.out.println(song.get(i).getSimage());
 //			MultipartFile imageContent = (MultipartFile) song.get(i).getSimage();

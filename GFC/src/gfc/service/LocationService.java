@@ -31,5 +31,7 @@ public class LocationService {
 	public List<Location> getLocationList() {
 		return locationMapper.getLocationList();
 	}
+	
+	
 
 }
