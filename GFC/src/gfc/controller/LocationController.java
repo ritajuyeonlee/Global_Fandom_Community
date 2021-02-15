@@ -44,7 +44,7 @@ public class LocationController {
 	}
 
 	@PostMapping("/addLocation")
-	public String addlocation(Location location,HttpSession httpSession) {
+	public String addlocation(Location location) {
 		System.out.println(location);
 		int result = locationService.addLocation(location);
 		if (result == 1)
