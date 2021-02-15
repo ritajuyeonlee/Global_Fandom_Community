@@ -16,7 +16,7 @@
 	$(function() {
 		
 		let scode1 = "${song.scode}";
-		let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	// ********* 수정 해야함 (실제 로그인 데이터로) *********
+		let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	
 		
 		console.log(ucode1);
 		getCommentList(scode1);
@@ -86,9 +86,9 @@
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
 	                    html += "<tr><td>"+ data[i].ccom +"</td></tr>";
-	                    html += "<tr><td>"+ data[i].cdate +"</td>";
-	                    //html += "<td><input type="button" id="translate" value="번역"></td>";
-	                    //html += "<td><span id="tcomment">번역된거</span></td></tr>";	//여기부터
+	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
+	                    //html += '<td><input type="button" id="translate" value="번역"></td>';
+	                    //html += '<td><span id="tcomment">번역된거</span></td></tr>';	//여기부터
 	                    html += "</table></div>";
 	                    html += "</div>";
 	                }
