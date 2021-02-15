@@ -26,17 +26,10 @@ public class SongController {
 
 	@PostMapping("/addSong")
 	public String AddSong(Song song) throws ParseException {
-//		System.out.println(song);
 		String temp = songService.translate(song.getKlyric());
 		song.setFlyric(songService.convertToData(temp));
 		System.out.println(song);
-		int result = 0;
-		try {
-			result = songService.addSong(song);
-			System.out.println(song);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		int result = songService.addSong(song);
 
 		if (result == 1)
 			return "redirect:/song/songList";

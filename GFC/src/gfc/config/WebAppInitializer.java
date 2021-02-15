@@ -8,14 +8,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-	private static int MAX_FILE_ZIZE = 10 * 1024 * 1024;
-
-	// 이미지 임시 저장을 위한 설정
-	@Override
-	protected void customizeRegistration(Dynamic registration) {
-		MultipartConfigElement multipartConfig = new MultipartConfigElement("/", MAX_FILE_ZIZE, MAX_FILE_ZIZE, 0);
-		registration.setMultipartConfig(multipartConfig);
-	}
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {

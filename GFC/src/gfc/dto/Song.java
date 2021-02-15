@@ -12,7 +12,7 @@ public class Song {
 	private String slyricist;
 	private Date sdate;
 	private String salbum;
-	private MultipartFile simage;
+	private String simage;
 	private String klyric;
 	private String flyric;
 	private String youtubelink;
@@ -23,7 +23,7 @@ public class Song {
 	}
 
 	public Song(int scode, String stitle, int acode, String swriter, String slyricist, Date sdate, String salbum,
-			MultipartFile simage, String klyric, String flyric, String youtubelink, String skeyword) {
+			String simage, String klyric, String flyric, String youtubelink, String skeyword) {
 		this.scode = scode;
 		this.stitle = stitle;
 		this.acode = acode;
@@ -94,11 +94,11 @@ public class Song {
 		this.salbum = salbum;
 	}
 
-	public MultipartFile getSimage() {
+	public String getSimage() {
 		return simage;
 	}
 
-	public void setSimage(MultipartFile simage) {
+	public void setSimage(String simage) {
 		this.simage = simage;
 	}
 

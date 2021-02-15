@@ -19,13 +19,11 @@
 		where
 		scode = #{scode}
 	</select>
-	
-	<insert id="addSong" parameterType="map">
+
+	<insert id="addSong" parameterType="gfc.dto.Song">
 		insert into
 		songs(stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric)
-		values(#{s.song.stitle}, #{s.song.acode},
-		#{s.song.swriter},
-		#{s.song.slyricist}, #{s.song.sdate}, #{s.song.salbum}, #{i.img},
-		#{s.song.klyric} )
+		values(#{stitle}, #{acode}, #{swriter}, #{slyricist}, #{sdate},
+		#{salbum}, #{simage}, #{klyric} )
 	</insert>
 </mapper>

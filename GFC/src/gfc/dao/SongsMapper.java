@@ -11,6 +11,6 @@ import gfc.dto.Song;
 @Mapper
 public interface SongsMapper {
 	public Song getSong(int scode);
-	public int addSong(@Param("s") Map<String, Object> smap, @Param("i") Map<String, Object> imap);
+	public int addSong(Song song);
 	public List<Song> getSongList();
 }

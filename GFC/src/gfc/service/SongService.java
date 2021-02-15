@@ -33,13 +33,7 @@ public class SongService {
 	
 	public int addSong(Song song) {
 		try {
-			Map<String, Object> imap = new HashMap<String, Object>();
-			Map<String, Object> smap = new HashMap<String, Object>();
-			
-			imap.put("img", song.getSimage().getBytes());
-			smap.put("song", song);
-			
-			return songmapper.addSong(smap, imap);
+			return songmapper.addSong(song);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -51,15 +45,7 @@ public class SongService {
 	}
 
 	public List<Song> getSongList() {
-		List<Song> song = songmapper.getSongList();
-//		for (int i=0;i<song.size(); i++) {
-//			System.out.println(song.get(i).getSimage());
-//			MultipartFile imageContent = (MultipartFile) song.get(i).getSimage();
-//			byte[] imageContent = (byte[]) map.get("img");
-//		       final HttpHeaders headers = new HttpHeaders();
-//		       headers.setContentType(MediaType.IMAGE_PNG);
-//		}
-		return song;
+		return songmapper.getSongList();
 	}
 	
 	public String convertToData(String text) throws ParseException {
