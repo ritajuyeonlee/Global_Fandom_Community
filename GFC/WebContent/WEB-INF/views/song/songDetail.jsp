@@ -1,3 +1,4 @@
+<%@page import="gfc.dto.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
@@ -13,28 +14,22 @@
 
 <script type="text/javascript">
 	$(function() {
+		
 		let scode1 = "${song.scode}";
-		let ucode1 = "1";	// ********* 수정 해야함 (실제 로그인 데이터로) *********
+		let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	// ********* 수정 해야함 (실제 로그인 데이터로) *********
 		
-		//getCommentList();
-		
-		console.log(scode1);
+		console.log(ucode1);
+		getCommentList(scode1);
 		
 		$('#clear').click(function(){
 			$("#Comment").val("");		// 작성한 댓글 지우기.
-			alert(scode1);
 		});
 		
 		$("#addComment").click(function() {
 			let comment1 = $('#Comment').val();
-			//alert(comment);
 			
 			if (comment1.length > 0){
-				alert(scode1);
-				alert(comment1);
-				alert(ucode1);
 				addComment(scode1,ucode1,comment1);
-				alert('3');
 			}
 			else
 				alert("내용을 입력해 주세요 ");
@@ -57,7 +52,7 @@
 				if(args == "success"){
 					$("#Comment").val("");	// 작성한 댓글 지우기.
 					alert('댓글 등록 성공!');
-					//getCommentList();		// 댓글 리스트 출력
+					getCommentList(scode1);		// 댓글 리스트 출력
 				}
 				//let data = JSON.parse(args);	// String -> JSON
 				else{
@@ -71,49 +66,43 @@
 		console.log($.ajax.url);
 	}
 	
-	/*아직 수정 안함*/
-	function getCommentList(){
+	/*날짜 수정 필요*/
+	function getCommentList(scode1){
 		$.ajax({
 	        type:'GET',
-	        url : "comment",
+	        url : "${pageContext.request.contextPath}/song/songDetail/commentList",
 	        dataType : "json",
 	        data:{
-	        	"scode" : scode,
-				"ucode" : ucode
+	        	scode : scode1
 	        },
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 	        success : function(data){
-	            
-	            var html = "";
-	            var cCnt = data.length;
+	        	
+	        	let html = "";
+	            let cCnt = data.length;
 	            
 	            if(data.length > 0){
-	                
 	                for(i=0; i<data.length; i++){
 	                    html += "<div>";
-	                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
-	                    html += data[i].comment + "<tr><td></td></tr>";
+	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
+	                    html += "<tr><td>"+ data[i].ccom +"</td></tr>";
+	                    html += "<tr><td>"+ data[i].cdate +"</td>";
+	                    //html += "<td><input type="button" id="translate" value="번역"></td>";
+	                    //html += "<td><span id="tcomment">번역된거</span></td></tr>";	//여기부터
 	                    html += "</table></div>";
 	                    html += "</div>";
 	                }
-	                
 	            } else {
-	                
 	                html += "<div>";
 	                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
 	                html += "</table></div>";
 	                html += "</div>";
-	                
 	            }
-	            
 	            $("#cCnt").html(cCnt);
 	            $("#commentList").html(html);
-	            
 	        },
 	        error:function(request,status,error){
-	            
 	       }
-	        
 	    });
 	}
 </script>
@@ -160,14 +149,32 @@
 			<td>${song.skeyword}</td>
 		</tr>
 	</table>
+	<c:choose>
+        	<c:when test="${not empty user.userid}">
+        	<li>
+        	${user.uname} 님
+        	</li>
+		    </c:when>
+		    <c:otherwise>
+		    <li>
+      			로그인하세요.
+		    </li>
+		    </c:otherwise>
+        </c:choose>
+        
+        <div>
+                <span><strong>댓글 수</strong></span> <span id="cCnt"></span>
+            </div>
+	
 	<!-- 로그인 상태일때만 댓글 기능 사용가능하게 하기 => 나중에 세션 객체 활용해서 로그인 정보 알아내기-->
-	<p>김중재</p>	<!-- 이 부분 로그인 정보에서 이름 가져오기 -->
+	<%-- <p><%=uname%></p> --%>	<!-- 이 부분 로그인 정보에서 이름 가져오기 -->
 	<textarea id = "Comment" name= "Comment" ></textarea>
 	<input type="button" id="clear" value="취소" />
 	<input type="button" id="addComment" value="댓글" />
 	
 	<!-- 댓글 바로 추가? -->
-	<p id="msg" class="error"></p>
+	<div id = "commentList"></div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>

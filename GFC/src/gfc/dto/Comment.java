@@ -9,6 +9,16 @@ public class Comment {
 	private int ucode;
 	private Date cdate;
 	
+	private User user;	// 추가됨
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Comment() {
 	}
 	
@@ -50,11 +60,12 @@ public class Comment {
 	public void setCdate(Date cdate) {
 		this.cdate = cdate;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Comment [ccode=" + ccode + ", scode=" + scode + ", ccom=" + ccom + ", ucode=" + ucode + ", cdate="
-				+ cdate + "]";
+				+ cdate + ", user=" + user + "]";
 	}
+	
 	
 }

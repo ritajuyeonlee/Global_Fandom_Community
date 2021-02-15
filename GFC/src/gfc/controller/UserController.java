@@ -34,12 +34,16 @@ public class UserController {
 		System.out.println("post login");
 		HttpSession session=req.getSession();
 		User login=userService.loginUser(userid, userpw);
+		int ucode = login.getUcode();
+		
 		if(login==null) {
 			session.setAttribute("user", null);
+			session.setAttribute("ucode", null);
 			rttr.addFlashAttribute("msg",false);
 			return "redirect:/user/loginForm";
 		}else {
 			session.setAttribute("user", login);
+			session.setAttribute("ucode", ucode);
 			return "redirect:/";
 		}
 			
