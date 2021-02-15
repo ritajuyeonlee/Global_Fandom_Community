@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>add Location Form</title>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%
 Dev dev = new Dev();
 %>
@@ -90,5 +91,7 @@ Dev dev = new Dev();
 		</table>
 	</form>
 	<button class="searchButton" onclick="goPopup()">주소 검색</button>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
 </body>
 </html>

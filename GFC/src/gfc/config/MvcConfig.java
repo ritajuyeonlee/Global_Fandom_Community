@@ -25,6 +25,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/");
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 	}
 
 	// run on server 시 실행되는 첫 화면 지정

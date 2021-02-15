@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 <title>Song List</title>
 </head>
 <body>
@@ -27,8 +30,8 @@
 		</tr>
 		<c:forEach var="song" items="${songList}">
 			<tr>
-				<td>${song.scode}</td>
-				<td>${song.stitle}</td>
+				<td><a href="/GFC/song/songDetail?scode=${song.scode}">${song.scode}</a></td>
+				<td><a href="${song.stitle}">${song.stitle}</a></td>
 				<td>${song.acode}</td>
 				<td>${song.swriter}</td>
 				<td>${song.slyricist}</td>
@@ -42,6 +45,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>
