@@ -7,20 +7,21 @@
 
 	<select id="getSongList" resultMap="song_resultMap">
 		select
-		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric from songs
+		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric,flyric,youtubelink,skeyword from songs
 	</select>
 
 	<select id="getSong" parameterType="java.lang.Integer"
 		resultMap="song_resultMap">
 		select
-		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric from songs
+		scode,stitle,acode,swriter,slyricist,sdate,salbum,klyric,flyric,youtubelink,skeyword from songs
 		where
 		scode = #{scode}
 	</select>
 	<insert id="addSong" parameterType="gfc.dto.Song">
 		insert into
-		songs(stitle,acode,swriter,slyricist,sdate,salbum,klyric)
+		songs(stitle,acode,swriter,slyricist,sdate,salbum,klyric,flyric,youtubelink,skeyword)
 		values(#{stitle}, #{acode},
-		#{swriter}, #{slyricist}, #{sdate}, #{salbum}, #{klyric} )
+		#{swriter}, #{slyricist}, #{sdate}, #{salbum}, #{klyric} , #{flyric},
+		#{youtubelink}, #{skeyword})
 	</insert>
 </mapper>
