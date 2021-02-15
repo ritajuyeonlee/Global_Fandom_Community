@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gfc.dao.CommentMapper">
+	<resultMap type="gfc.dto.Comment" id="comment_resultMap">
+	</resultMap>
+	
+	<insert id="addComment" parameterType="gfc.dto.Comment">
+		insert into
+		comments(scode,ucode,ccom,cdate)
+		values(#{scode}, #{ucode},#{ccom},sysdate)
+	</insert>
+</mapper>

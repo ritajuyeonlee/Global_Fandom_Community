@@ -18,7 +18,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	}
 
 	@Override
-	protected String[] getServletMappings() {
+	protected String[] getServletMappings() {	// 디스패처 설정
 		return new String[] {"/"};
 	}
 	
