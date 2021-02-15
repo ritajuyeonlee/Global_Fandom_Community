@@ -33,11 +33,4 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addRedirectViewController("/", "/main");
 	}
-
-	@Bean
-	public MultipartResolver multipartResolver() {
-
-		StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
-		return multipartResolver;
-	}
 }

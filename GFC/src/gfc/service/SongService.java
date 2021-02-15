@@ -32,8 +32,6 @@ public class SongService {
 	private SongsMapper songmapper;
 	
 	public int addSong(Song song) {
-		// 회원가입을 하기 위한 비지니스 로직이 있다면 처리
-
 		try {
 			return songmapper.addSong(song);
 		} catch (Exception e) {
