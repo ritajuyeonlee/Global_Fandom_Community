@@ -2,6 +2,8 @@ package gfc.dto;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Song {
 	private int scode;
 	private String stitle;
@@ -15,6 +17,7 @@ public class Song {
 	private String flyric;
 	private String youtubelink;
 	private String skeyword;
+	
 
 	public Song() {
 	}
@@ -115,7 +118,6 @@ public class Song {
 		this.flyric = flyric;
 	}
 
-
 	public String getYoutubelink() {
 		return youtubelink;
 	}
@@ -139,6 +141,5 @@ public class Song {
 				+ ", klyric=" + klyric + ", flyric=" + flyric + ", youtubelink=" + youtubelink + ", skeyword="
 				+ skeyword + "]";
 	}
-	
 
 }

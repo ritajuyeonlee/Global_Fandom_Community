@@ -99,7 +99,7 @@
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
 	                    html += "<tr><td id='ccom'>"+ data[i].ccom +"</td>";
-	                    //html += "<td><input type='button' class='translate' value='번역'></td>";
+	                    html += "<td><input type='button' class='translate' value='번역'></td>";
 	                    html += "<td><span id='tcomment'>번역된거</span></td></tr>";	//여기부터
 	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
 	                    html += "</table></div>";
@@ -168,7 +168,7 @@
 		<tr>
 			<td>${song.sdate}</td>
 			<td>${song.salbum}</td>
-			<td>${song.simage}</td>
+			<td><img alt="" src="${song.simage}"> </td>
 		</tr>
 		<tr>
 			<td>${song.klyric}</td>
