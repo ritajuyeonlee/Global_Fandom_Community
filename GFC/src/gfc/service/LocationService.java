@@ -31,6 +31,13 @@ public class LocationService {
 	public List<Location> getLocationList() {
 		return locationMapper.getLocationList();
 	}
+
+	public List<Location> getLocationAcode(int acode) {
+		if (acode == 0) {
+			return locationMapper.getLocationList();
+		}
+		return locationMapper.getLocationAcode(acode);
+	}
 	
 	
 

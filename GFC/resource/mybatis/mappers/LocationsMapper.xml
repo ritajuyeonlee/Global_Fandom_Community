@@ -7,13 +7,22 @@
 
 	<select id="getLocationList" resultMap="location_resultMap">
 		select
-		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from location
+		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from
+		location
+	</select>
+
+	<select id="getLocationAcode" parameterType="java.lang.Integer"
+		resultMap="location_resultMap">
+		select
+		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from
+		location where acode=${acode}
 	</select>
 
 	<select id="getLocation" parameterType="java.lang.Integer"
 		resultMap="location_resultMap">
 		select
-		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from location
+		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from
+		location
 		where
 		lcode = #{lcode}
 	</select>
@@ -21,7 +30,8 @@
 		insert into
 		location(acode,lname,laddress,llat,llong,ldesc,ucode, lconfirm)
 		values(#{acode}, #{lname},
-		#{laddress}, #{llat}, #{llong}, #{ldesc}, #{ucode}, 0 )
+		#{laddress}, #{llat}, #{llong}, #{ldesc},
+		#{ucode}, 0 )
 	</insert>
 </mapper>
 
