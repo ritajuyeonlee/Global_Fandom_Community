@@ -21,6 +21,6 @@
 		#{uname}, #{acode}, #{ukeyword})
 	</insert>
 	<select id="loginUser" resultType="gfc.dto.User">
-		select userid, userpw, uname from users where userid=#{userid} and userpw = #{userpw}
+		select ucode, userid, userpw, uname from users where userid=#{userid} and userpw = #{userpw}
 	</select>
 </mapper>

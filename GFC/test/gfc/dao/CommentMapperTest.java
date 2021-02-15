@@ -1,5 +1,8 @@
 package gfc.dao;
 
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,17 @@ public class CommentMapperTest {
 		comment.setCcom("hihihi");
 		
 		commentMapper.addComment(comment);
+	}
+	
+	@Test
+	public void getCommentList() throws Exception{
+		int scode = 1;
+		
+		List<Comment> commentlist =  commentMapper.getCommentList(scode);
+		
+		System.out.println(commentlist);
+		
+		Assert.assertEquals(2, commentlist.size());
 	}
 	
 }
