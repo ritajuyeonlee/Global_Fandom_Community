@@ -30,7 +30,13 @@ Dev dev = new Dev();
 <script type="text/javascript">
 		$(function() {
 			//navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
-			filterAcode(${user.acode});
+			
+			let user_acode = '<%=session.getAttribute("ucode") %>';
+			if (user_acode != "null") {
+				filterAcode(${user.acode});
+			}else {
+				filterAcode(0);
+			}
 			
 			$('#filter').click(function(){
 				filterAcode($('#acode').val());
