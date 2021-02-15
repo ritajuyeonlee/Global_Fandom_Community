@@ -2,7 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gfc.dao.CommentMapper">
+	<resultMap type="gfc.dto.User" id="user_resultMap">
+		<result column="uname" property="uname" />
+	</resultMap>
+	
 	<resultMap type="gfc.dto.Comment" id="comment_resultMap">
+		<result column="ccom" property="ccom" />
+		<result column="cdate" property="cdate" />
+		<collection property="user" resultMap="user_resultMap"></collection>
 	</resultMap>
 	
 	<insert id="addComment" parameterType="gfc.dto.Comment">
@@ -10,4 +17,12 @@
 		comments(scode,ucode,ccom,cdate)
 		values(#{scode}, #{ucode},#{ccom},sysdate)
 	</insert>
+	
+	<select id="getCommentList" parameterType="java.lang.Integer" resultMap="comment_resultMap">
+		select u.uname, c.ccom , c.cdate
+		from comments c
+		left join users u
+		on c.ucode = u.ucode 
+		where c.scode = #{scode}
+	</select>
 </mapper>

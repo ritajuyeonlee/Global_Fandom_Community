@@ -1,5 +1,7 @@
 package gfc.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import gfc.dto.Comment;
@@ -8,4 +10,6 @@ import gfc.dto.Comment;
 public interface CommentMapper {
 
 	public int addComment(Comment comment);
+//	public String getComment(int ccode);
+	public List<Comment> getCommentList(int scode);
 }
