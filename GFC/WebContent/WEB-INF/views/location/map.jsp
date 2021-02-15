@@ -41,8 +41,16 @@ Dev dev = new Dev();
 			$('#filter').click(function(){
 				filterAcode($('#acode').val());
 			});
+			
+
 		});
-	
+				
+		function popInfoWindow(t, map){
+					
+					infowindow.setContent(contentString);
+					infowindow.open(map, marker);
+		}
+		
 		function filterAcode(acode) {		
 			$.ajax({ // ajax 통신 {}
 				url:'mapData',
@@ -59,6 +67,7 @@ Dev dev = new Dev();
 				}
 			});
 		}
+
 		function display(data) {
 			let map = new google.maps.Map(document.getElementById('map'), {
 				zoom : 14,
@@ -68,23 +77,53 @@ Dev dev = new Dev();
 			let marker = new google.maps.Marker({
 				position : {lat: 37.56154517066801 , lng: 126.9930503906448 },
 				map : map,
-				label : '서울 시청'
+				label : '서울 시청',
+				desc : '서울의 중심'
 				})
-				
+			google.maps.event.addListener(marker,'click',function(){
+				var contentString =
+					'<div id="content">'+
+					'<table><tr><td>장소이름 :</td><td><b>'+this.label+
+					'</b></td></tr><tr><td>설명 :</td><td><b>'+this.desc+
+					'</b></td></tr></table></div>';
+      	infowindow.setContent(contentString);
+          
+      	//인포윈도우가 표시될 위치
+      	infowindow.open(map, marker);
+			});
+			//마커 이미지
+      var customicon = 'http://drive.google.com/uc?export=view&id=1tZgPtboj4mwBYT6cZlcY36kYaQDR2bRM'
+ 
+			// infoWindow 출력
+			var infowindow = new google.maps.InfoWindow({
+				  content:"Hello World!"
+		  });
+			
 			for (let d of data) {
 				if (d.lconfirm == 1){
 					let marker = new google.maps.Marker({
 						position : {lat:parseFloat(d.llat), lng:parseFloat(d.llong)},
-						map : map,
-						label : d.lname,
-						desc : d.ldesc
+	          //icon: customicon, //마커 아이콘
+						map : map, //마커를 표시할 지도
+						label : d.lname
 						//url : d.url
 					});
+
+					google.maps.event.addListener(marker,'click',function(){
+						var contentString =
+							'<div id="content">'+
+							'<table><tr><td>장소이름 :</td><td><b>'+d.lname+
+							'</b></td></tr><tr><td>회원코드 :</td><td><b>'+d.ucode+
+							'</b></td></tr><tr><td>가수 :</td><td><b>'+d.acode+
+							'</b></td></tr><tr><td>주소 :</td><td><b>'+d.laddress+
+							'</b></td></tr><tr><td>설명 :</td><td><b>'+d.ldesc+
+							'</b></td></tr></table></div>';
+	          infowindow.setContent(contentString);
+	              
+	          //인포윈도우가 표시될 위치
+	          infowindow.open(map, marker);
+					});
 				}
-				/* google.maps.event.addListener(marker,'click',function(){
-					//window.location.href = this.url;
-					window.open(this.url, '_blank'); // 새 창에서 열기
-				}); */
 			}
 		}
 	</script>
@@ -105,7 +144,6 @@ Dev dev = new Dev();
 		<option value="3">방탄소년단</option>
 	</select>
 	<button id="filter">적용</button>
-
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
