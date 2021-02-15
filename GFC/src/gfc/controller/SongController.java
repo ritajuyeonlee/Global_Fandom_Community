@@ -55,4 +55,10 @@ public class SongController {
 //		System.out.println(song);
 		return "song/songDetail";
 	}
+	
+	@GetMapping("/songMain")
+	public String songMain(Model model) {
+		
+		return "song/songMain";
+	}
 }

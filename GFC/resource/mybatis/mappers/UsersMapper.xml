@@ -7,20 +7,20 @@
 	</resultMap>
 		
 	<select id="getUserList" resultMap="user_resultMap">
-		select ucode, userid, userpw, uname, acode, ukeyword from users
+		select ucode, userid, userpw, uname, acode, kcode from users
 	</select>
 	
 	<select id="getUser" parameterType="java.lang.String"
 		resultMap="user_resultMap">
-		select ucode, userid, userpw, uname, acode, ukeyword from users where
+		select ucode, userid, userpw, uname, acode, kcode from users where
 		userid = #{userid}
 	</select>
 	<insert id="addUser" parameterType="gfc.dto.User">
 		insert into
-		users (userid, userpw, uname, acode, ukeyword) values(#{userid}, #{userpw},
-		#{uname}, #{acode}, #{ukeyword})
+		users (userid, userpw, uname, acode, kcode) values(#{userid}, #{userpw},
+		#{uname}, #{acode}, #{kcode})
 	</insert>
 	<select id="loginUser" resultType="gfc.dto.User">
-		select ucode, userid, userpw, uname, acode, ukeyword from users where userid=#{userid} and userpw = #{userpw}
+		select ucode, userid, userpw, uname, acode, kcode from users where userid=#{userid} and userpw = #{userpw}
 	</select>
 </mapper>

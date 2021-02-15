@@ -16,14 +16,14 @@ public class Song {
 	private String klyric;
 	private String flyric;
 	private String youtubelink;
-	private String skeyword;
+	private int kcode;
 	
 
 	public Song() {
 	}
 
 	public Song(int scode, String stitle, int acode, String swriter, String slyricist, Date sdate, String salbum,
-			String simage, String klyric, String flyric, String youtubelink, String skeyword) {
+			String simage, String klyric, String flyric, String youtubelink, int kcode) {
 		this.scode = scode;
 		this.stitle = stitle;
 		this.acode = acode;
@@ -35,7 +35,7 @@ public class Song {
 		this.klyric = klyric;
 		this.flyric = flyric;
 		this.youtubelink = youtubelink;
-		this.skeyword = skeyword;
+		this.kcode=kcode;
 	}
 
 	public int getScode() {
@@ -126,20 +126,24 @@ public class Song {
 		this.youtubelink = youtubelink;
 	}
 
-	public String getSkeyword() {
-		return skeyword;
+
+	
+
+	public int getKcode() {
+		return kcode;
 	}
 
-	public void setSkeyword(String skeyword) {
-		this.skeyword = skeyword;
+	public void setKcode(int kcode) {
+		this.kcode = kcode;
 	}
 
 	@Override
 	public String toString() {
 		return "Song [scode=" + scode + ", stitle=" + stitle + ", acode=" + acode + ", swriter=" + swriter
 				+ ", slyricist=" + slyricist + ", sdate=" + sdate + ", salbum=" + salbum + ", simage=" + simage
-				+ ", klyric=" + klyric + ", flyric=" + flyric + ", youtubelink=" + youtubelink + ", skeyword="
-				+ skeyword + "]";
+				+ ", klyric=" + klyric + ", flyric=" + flyric + ", youtubelink=" + youtubelink + ", kcode=" + kcode
+				+ "]";
 	}
+	
 
 }

@@ -30,6 +30,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="songList">노래리스트</a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="songMain">노래최종</a>
+        </li>
         <c:choose>
     	<c:when test="${user.userid eq 'admin'}">
 		    <li class="nav-item active">
