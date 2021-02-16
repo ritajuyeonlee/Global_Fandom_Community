@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import gfc.dto.User;
 import gfc.service.UserService;
@@ -60,6 +60,16 @@ public class UserController {
 		return "user/addUserForm";
 	}
 
+	@ResponseBody
+	@PostMapping(value = "/dupCheck")
+	public String dupcheck(int check, String id) throws Exception {
+		int result = userService.checkUser(check, id);
+		if (result == 0) {
+			return "success";
+		}
+		return "error";
+	}
+	
 	@PostMapping("/addUser")
 	public String adduser(User user) {
 		// 보통은 sysout으로 console에 하지 않고 log 파일을 만든다던가 다른 방법으로 함
