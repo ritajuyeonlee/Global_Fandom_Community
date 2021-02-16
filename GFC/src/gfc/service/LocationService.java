@@ -38,6 +38,9 @@ public class LocationService {
 		}
 		return locationMapper.getLocationAcode(acode);
 	}
+	public List<Location> getLocationConfirmList(){
+		return locationMapper.getLocationConfirmList();
+	}
 	
 	
 
