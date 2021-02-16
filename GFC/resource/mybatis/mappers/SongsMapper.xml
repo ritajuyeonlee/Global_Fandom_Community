@@ -8,14 +8,14 @@
 	<select id="getSongList" resultMap="song_resultMap">
 		select
 		scode,stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric from
-		songs
+		songs, kcode
 	</select>
 
 	<select id="getSong" parameterType="java.lang.Integer"
 		resultMap="song_resultMap">
 		select
 		scode,stitle,acode,swriter,slyricist,sdate,salbum,
-		simage, klyric from songs
+		simage, klyric, kcode from songs
 		where
 		scode = #{scode}
 	</select>
@@ -26,4 +26,21 @@
 		values(#{stitle}, #{acode}, #{swriter}, #{slyricist}, #{sdate},
 		#{salbum}, #{simage}, #{klyric} )
 	</insert>
+	
+	<select id="searchSong" parameterType="hashmap" resultMap="song_resultMap">
+		select s.scode,s.stitle,s.acode,s.swriter,a.aname,
+		s.slyricist,s.sdate,s.salbum,s.simage, s.klyric,s.kcode 
+		from artists a
+		left join songs s
+		on a.acode=s.acode
+		<!-- <if test="condition == aname">
+			where s.acode=a.acode and 
+			${condition}=#{keyword}
+			
+		</if>
+		<if test="condition == stitle">
+		where s.acode=a.acode and  -->
+			where ${condition}=#{keyword}
+		<!-- </if> -->
+	</select> 
 </mapper>

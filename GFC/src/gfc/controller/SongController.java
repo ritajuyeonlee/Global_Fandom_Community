@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import gfc.dto.Song;
 import gfc.service.SongService;
@@ -32,9 +33,11 @@ public class SongController {
 		int result = songService.addSong(song);
 
 		if (result == 1)
-			return "redirect:/song/songList";
+			return "redirect:/songList";
+		// return "redirect:/song/songList";
 		else
-			return "redirect:/song/addSongForm";
+			return "redirect:/addSongForm";
+		// return "redirect:/song/addSongForm";
 	}
 
 	@GetMapping("/songList")
@@ -43,14 +46,32 @@ public class SongController {
 		model.addAttribute("songList", songs);
 		return "song/songList";
 	}
-	
+
 	@GetMapping("/songDetail")
-	public String songDetail(Model model,int scode) {
+	public String songDetail(Model model, int scode) {
 //		System.out.println(scode);
-		
+
 		Song song = songService.getSong(scode);
-		model.addAttribute("song",song);
+		model.addAttribute("song", song);
 //		System.out.println(song);
 		return "song/songDetail";
 	}
+
+	@GetMapping("/songMain")
+	public String songMain(Model model) {
+
+		return "song/songMain";
+	}
+
+	@PostMapping("/searchSong")
+	public String searchSong(Model model, 
+			@RequestParam(value = "keyword") String keyword,
+			@RequestParam(value = "condition") String condition) {
+		List<Song> songs = songService.searchSong(keyword,condition);
+		System.out.println(songs);
+		model.addAttribute("songList", songs);
+
+		return "song/songList";
+	}
+
 }

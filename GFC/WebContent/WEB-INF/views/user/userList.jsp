@@ -28,7 +28,7 @@
 			<td>${user.userpw}</td>
 			<td>${user.uname}</td>
 			<td>${user.acode}</td>
-			<td>${user.ukeyword}</td>
+			<td>${user.kcode}</td>
 		</tr>
 		</c:forEach>
 	</table>

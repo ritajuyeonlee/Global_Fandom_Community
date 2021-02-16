@@ -9,45 +9,45 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <meta charset="UTF-8">
 <title>Song Detail</title>
 
 <script type="text/javascript">
 	$(function() {
-		let scode1 = "${song.scode}";
-		getCommentList(scode1);
 		
-		console.log(${user.ucode});
-		<%-- <% if(session != null){%> --%>
-			let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	// ********* 수정 해야함 (로그인안해도 가능하게) *********
-			//console.log(ucode1);
+		let scode1 = "${song.scode}";
+		let ucode1 = '<%=session.getAttribute("ucode")%>';
 
-			/* $(document).on("click",".translate",function(){
-				alert("주연최고");
-				//let ccom = $(this).parent().parent().find('#ccom').val();
-				let ccom = $(this).parent().parent().tagName;
-				alert(ccom);
-				//console.log(ccom);
-				
-				commentTranslate(ccom);
-				alert("주연짱짱");
-			}); */
+		console.log(ucode1);
+		getCommentList(scode1);
+		$(document).on("click","#translate",function(){
+			let ccom = $(this).parent().parent().find('#ccom').value;
+			console.log(ccom);
 			
-			$('#clear').click(function(){
-				$("#Comment").val("");		// 작성한 댓글 지우기.
-			});
+			//commentTranslate(ccom);
+		});
+		
+		$('#clear').click(function(){
+			$("#Comment").val("");		// 작성한 댓글 지우기.
+		});
+		
+		$("#addComment").click(function() {
+			let comment1 = $('#Comment').val();
 			
-			$("#addComment").click(function() {
-				let comment1 = $('#Comment').val();
-				
+			if (ucode1 != "null") {
 				if (comment1.length > 0){
 					addComment(scode1,ucode1,comment1);
 				}
 				else
 					alert("내용을 입력해 주세요 ");
-			});
-		<%-- <%}%> --%>
+			}else {
+				alert("로그인 후 댓글 달기 가능");
+			}
+			
+		});
 	});
+
 	
 	function addComment(scode1,ucode1,comment1) {
 		$.ajax({
@@ -101,15 +101,9 @@
 	                	
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
-<<<<<<< HEAD
 	                    html += "<tr><td id='ccom"+ ccode +"'>"+ data[i].ccom +"</td>";
 	                    html += "<td><input type='button' id='translate"+ ccode +"' value='번역' onclick='commentTranslate1("+ ccode +")'></td>";
 	                    html += "<td><span id='tcomment" + ccode + "'>번역된거</span></td></tr>";	//여기부터
-=======
-	                    html += "<tr><td id='ccom'>"+ data[i].ccom +"</td>";
-	                    html += "<td><input type='button' class='translate' value='번역'></td>";
-	                    html += "<td><span id='tcomment'>번역된거</span></td></tr>";	//여기부터
->>>>>>> 6f27c1315aa00f4607f2a3b2501b8ba32bfca763
 	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
 	                    html += "</table></div>";
 	                    html += "</div>";
@@ -206,7 +200,7 @@
 			<td>${song.klyric}</td>
 			<td>${song.flyric}</td>
 
-			<td>${song.skeyword}</td>
+			<td>${song.kcode}</td>
 		</tr>
 	</table>
 	<c:choose>

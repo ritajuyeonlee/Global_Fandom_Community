@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="gfc.config.Dev"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,48 +28,88 @@ Dev dev = new Dev();
 }
 </style>
 <script type="text/javascript">
-		navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
-		var de;
-		function initmap(position) {		
-					$.ajax({ // ajax 통신 {}
-						url:'mapData',	// GFC/map으로 들어갈 땐 ./ 으로 시작해야 함. location/은 ../으로
-						type:'GET',		// get
-						//dataType:json,
-						success:function(data) {
-							de = data;
-							display(data, position);
-						},
-						error:function(error) {
-							alert("error" + error);
-						}
-					});
-		}
+		$(function() {
+			//navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
+			
+			let user_acode = '<%=session.getAttribute("ucode")%>';
+			if (user_acode != "null") {
+				filterAcode(${user.acode});
+			}else {
+				filterAcode(0);
+			}
+			
+			$('#filter').click(function(){
+				filterAcode($('#acode').val());
+			});
+		});
 		
-		function display(data, position) {
+		function filterAcode(acode) {		
+			$.ajax({ // ajax 통신 {}
+				url:'mapData',
+				type:'GET',
+		    //dataType : "json",
+				data :{
+					acode : acode
+				},
+				success:function(data) {
+					de = data;
+					display(data);
+				},
+				error:function(error) {
+					alert("error" + error);
+				}
+			});
+		}
+
+		function display(data) {
+			//마커 이미지
+      //var customicon = 'http://drive.google.com/uc?export=view&id=1tZgPtboj4mwBYT6cZlcY36kYaQDR2bRM'
+			var infowindow = new google.maps.InfoWindow();
+			let center = {lat: 37.56154517066801 , lng: 126.9930503906448 }
 			let map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 14,
-				center : {lat:position.coords.latitude, lng:position.coords.longitude}
+				zoom : 8,
+				center : center
 			});
 			
 			let marker = new google.maps.Marker({
-				position : {lat:position.coords.latitude, lng:position.coords.longitude},
+				position : center,
 				map : map,
-				label : '내 위치'
+		    //icon: customicon, //마커 아이콘
+				label : '서울 시청',
+				desc : '서울의 중심'
 				})
-				
+			google.maps.event.addListener(marker,'click',function(){
+				var contentString =
+					'<div id="content">'+
+					'<table><tr><td>장소이름 :</td><td><b>'+this.label+
+					'</b></td></tr><tr><td>설명 :</td><td><b>'+this.desc+
+					'</b></td></tr></table></div>';
+      	infowindow.setContent(contentString);
+      	infowindow.open(map, marker); //인포윈도우가 표시될 위치
+			});
+			
 			for (let d of data) {
-				let marker = new google.maps.Marker({
-					position : {lat:parseFloat(d.llat), lng:parseFloat(d.llong)},
-					map : map,
-					label : d.lname,
-					desc : d.ldesc
-					//url : d.url
-				});
-				
-				/* google.maps.event.addListener(marker,'click',function(){
-					//window.location.href = this.url;
-					window.open(this.url, '_blank'); // 새 창에서 열기
-				}); */
+				if (d.lconfirm == 1){
+					let marker = new google.maps.Marker({
+						position : {lat:parseFloat(d.llat), lng:parseFloat(d.llong)},
+	          //icon: customicon, //마커 아이콘
+						map : map, //마커를 표시할 지도
+						label : d.lname
+					});
+
+					google.maps.event.addListener(marker,'click',function(){
+						var contentString =
+							'<div id="content">'+
+							'<table><tr><td>장소명 :</td><td><b>'+d.lname+
+							'</b></td></tr><tr><td>회원닉네임 :</td><td><b>'+d.user.uname+
+							'</b></td></tr><tr><td>가수 :</td><td><b>'+d.artist.aname+
+							'</b></td></tr><tr><td>주소 :</td><td><b>'+d.laddress+
+							'</b></td></tr><tr><td>설명 :</td><td><b>'+d.ldesc+
+							'</b></td></tr></table></div>';
+	          infowindow.setContent(contentString);
+	          infowindow.open(map, marker);
+					});
+				}
 			}
 		}
 	</script>
@@ -76,9 +117,20 @@ Dev dev = new Dev();
 <body>
 
 	<h3>Map</h3>
-	<div id="map"></div>
+	<c:choose>
+		<c:when test="${not empty user.userid}">
+			<a href="addLocationForm"> 장소 추가 </a>
+		</c:when>
+	</c:choose>
+	<select id="acode" name="acode">
+		<option value="0">전체보기</option>
+		<option value="1">아이유</option>
+		<option value="2">블랙핑크</option>
+		<option value="3">방탄소년단</option>
+	</select>
+	<button id="filter">적용</button>
 
-	<a href="addLocationForm"> 장소 추가 </a>
+	<div id="map" style:width="500px"></div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>

@@ -33,18 +33,19 @@ public class UserController {
 	public String loginUser(String userid, String userpw, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
 		System.out.println("post login");
 		HttpSession session=req.getSession();
+		session.setMaxInactiveInterval(30*60);
 		User login=userService.loginUser(userid, userpw);
-		int ucode = login.getUcode();
 		
 		if(login==null) {
 			session.setAttribute("user", null);
 			session.setAttribute("ucode", null);
 			rttr.addFlashAttribute("msg",false);
-			return "redirect:/user/loginForm";
+			return "redirect:/loginForm";
 		}else {
+			int ucode=login.getUcode();
 			session.setAttribute("user", login);
 			session.setAttribute("ucode", ucode);
-			return "redirect:/";
+			return "redirect:/main";
 		}
 			
 	}
@@ -65,9 +66,9 @@ public class UserController {
 		System.out.println(user);
 		int result = userService.addUser(user);
 		if (result == 1)
-			return "redirect:/user/userList";
+			return "redirect:/userList";
 		else
-			return "redirect:/user/addUserForm";
+			return "redirect:/addUserForm";
 	}
 
 	@GetMapping("/userList")

@@ -2,7 +2,9 @@ package gfc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import gfc.dto.Location;
@@ -34,21 +35,20 @@ public class LocationController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/mapData")
-	public List<Location> mapdata() throws Exception {
-		List<Location> locations = locationService.getLocationList();
+	public List<Location> mapdata(int acode) throws Exception {
+		List<Location> locations = locationService.getLocationAcode(acode);
 		//System.out.println(locations);
-//		JsonArray jsonarr = new JsonArray();
 
 		return locations;
 	}
 
 	@PostMapping("/addLocation")
 	public String addlocation(Location location) {
-		System.out.println(location);
+		//System.out.println(location);
 		int result = locationService.addLocation(location);
 		if (result == 1)
-			// return "redirect:/locationList";
 			return "redirect:/map";
+			
 		else
 			return "redirect:/addLocationForm";
 	}

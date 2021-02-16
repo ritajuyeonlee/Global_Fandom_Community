@@ -11,4 +11,5 @@ public interface LocationsMapper {
 	public Location getLocation(int lcode);
 	public int addLocation(Location location);
 	public List<Location> getLocationList();
+	public List<Location> getLocationAcode(int acode);
 }
