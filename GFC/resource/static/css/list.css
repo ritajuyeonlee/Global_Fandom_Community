@@ -1,19 +1,22 @@
 @charset "UTF-8";
 
-
-
 a{
 	text-decoration: none;
 	color : olive;
-	
 }
-
 a:hover{
 	text-decoration: underline;
 	color : orange;
 }
-image{
+img{
 	width : 100px;
 	height : 100px;
+	
+}
+td{
+	text-align: center;
+}
+.writer{
+	width : 300px;
 	
 }
