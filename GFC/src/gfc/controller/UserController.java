@@ -40,7 +40,7 @@ public class UserController {
 			session.setAttribute("user", null);
 			session.setAttribute("ucode", null);
 			rttr.addFlashAttribute("msg",false);
-			return "redirect:/user/loginForm";
+			return "redirect:/loginForm";
 		}else {
 			int ucode=login.getUcode();
 			session.setAttribute("user", login);
@@ -66,9 +66,9 @@ public class UserController {
 		System.out.println(user);
 		int result = userService.addUser(user);
 		if (result == 1)
-			return "redirect:/user/userList";
+			return "redirect:/userList";
 		else
-			return "redirect:/user/addUserForm";
+			return "redirect:/addUserForm";
 	}
 
 	@GetMapping("/userList")

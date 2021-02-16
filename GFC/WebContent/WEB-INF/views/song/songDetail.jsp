@@ -9,6 +9,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <meta charset="UTF-8">
 <title>Song Detail</title>
 
@@ -16,18 +17,15 @@
 	$(function() {
 		
 		let scode1 = "${song.scode}";
-		let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	// ********* 수정 해야함 (로그인안해도 가능하게) *********
-		
+		let ucode1 = '<%=session.getAttribute("ucode")%>';
+
 		console.log(ucode1);
 		getCommentList(scode1);
-		
-		$('.translate').click(function(){
-			alert("주연최고");
-			let ccom = $(this).parent().parent().find('#ccom').val();
+		$(document).on("click","#translate",function(){
+			let ccom = $(this).parent().parent().find('#ccom').value;
 			console.log(ccom);
 			
-			commentTranslate(ccom);
-			alert("주연짱짱");
+			//commentTranslate(ccom);
 		});
 		
 		$('#clear').click(function(){
@@ -37,11 +35,16 @@
 		$("#addComment").click(function() {
 			let comment1 = $('#Comment').val();
 			
-			if (comment1.length > 0){
-				addComment(scode1,ucode1,comment1);
+			if (ucode1 != "null") {
+				if (comment1.length > 0){
+					addComment(scode1,ucode1,comment1);
+				}
+				else
+					alert("내용을 입력해 주세요 ");
+			}else {
+				alert("로그인 후 댓글 달기 가능");
 			}
-			else
-				alert("내용을 입력해 주세요 ");
+			
 		});
 	});
 	
@@ -98,9 +101,9 @@
 	                for(i=0; i<data.length; i++){
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
-	                    html += "<tr><td id='ccom'>"+ data[i].ccom +"</td>";
-	                    html += "<td><input type='button' class='translate' value='번역'></td>";
-	                    html += "<td><span id='tcomment'>번역된거</span></td></tr>";	//여기부터
+	                    html += "<tr><td id='ccom"+data[i].ccode+"'>"+ data[i].ccom +"</td>";
+	                    html += "<td><input type='button' id='translate' value='번역'></td>";
+	                    html += "<td><span id='tcomment"+data[i].ccode+"'>번역된거</span></td></tr>";	//여기부터
 	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
 	                    html += "</table></div>";
 	                    html += "</div>";
@@ -174,7 +177,7 @@
 			<td>${song.klyric}</td>
 			<td>${song.flyric}</td>
 
-			<td>${song.skeyword}</td>
+			<td>${song.kcode}</td>
 		</tr>
 	</table>
 	<c:choose>

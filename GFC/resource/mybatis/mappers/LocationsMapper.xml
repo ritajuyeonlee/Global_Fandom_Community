@@ -5,17 +5,46 @@
 	<resultMap type="gfc.dto.Location" id="location_resultMap">
 	</resultMap>
 
-	<select id="getLocationList" resultMap="location_resultMap">
+	<resultMap type="gfc.dto.User" id="user_resultMap">
+		<result column="uname" property="uname" />
+	</resultMap>
+		<resultMap type="gfc.dto.Artist" id="artist_resultMap">
+		<result column="aname" property="aname" />
+	</resultMap>
+	
+	<resultMap type="gfc.dto.Location" id="location_ua_resultMap">
+		<result column="lname" property="lname" />
+		<result column="laddress" property="laddress" />
+		<result column="llat" property="llat" />
+		<result column="llong" property="llong" />
+		<result column="ldesc" property="ldesc" />
+		<result column="lconfirm" property="lconfirm" />
+		<collection property="user" resultMap="user_resultMap"></collection>
+		<collection property="artist" resultMap="artist_resultMap"></collection>
+	</resultMap>
+
+	<select id="getLocationList" resultMap="location_ua_resultMap">
 		select
-		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from
-		location
+		l.lname,l.laddress,l.llat,l.llong,l.ldesc,l.lconfirm,
+		u.uname, a.aname
+		from location l
+		left join users u
+		on l.ucode = u.ucode
+		left join artists a
+		on l.acode = a.acode
 	</select>
 
 	<select id="getLocationAcode" parameterType="java.lang.Integer"
-		resultMap="location_resultMap">
-		select
-		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from
-		location where acode=${acode}
+		resultMap="location_ua_resultMap">
+				select
+		l.lname,l.laddress,l.llat,l.llong,l.ldesc,l.lconfirm,
+		u.uname, a.aname
+		from location l
+		left join users u
+		on l.ucode = u.ucode
+		left join artists a
+		on l.acode = a.acode
+		where l.acode=${acode}
 	</select>
 
 	<select id="getLocation" parameterType="java.lang.Integer"

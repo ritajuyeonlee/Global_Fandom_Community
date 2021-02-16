@@ -30,7 +30,7 @@
 		</tr>
 		<c:forEach var="song" items="${songList}">
 			<tr>
-				<td><a href="/GFC/song/songDetail?scode=${song.scode}">${song.scode}</a></td>
+				<td><a href="/GFC/songDetail?scode=${song.scode}">${song.scode}</a></td>
 				<td><a href="${song.stitle}">${song.stitle}</a></td>
 				<td>${song.acode}</td>
 				<td>${song.swriter}</td>
@@ -41,7 +41,7 @@
 				<td>${song.klyric}</td>
 				<td>${song.flyric}</td>
 				<td>${song.youtubelink}</td>
-				<td>${song.skeyword}</td>
+				<td>${song.kcode}</td>
 			</tr>
 		</c:forEach>
 	</table>
