@@ -101,9 +101,15 @@
 	                	
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
+<<<<<<< HEAD
 	                    html += "<tr><td id='ccom"+ ccode +"'>"+ data[i].ccom +"</td>";
 	                    html += "<td><input type='button' id='translate"+ ccode +"' value='번역' onclick='commentTranslate1("+ ccode +")'></td>";
 	                    html += "<td><span id='tcomment" + ccode + "'>번역된거</span></td></tr>";	//여기부터
+=======
+	                    html += "<tr><td id='ccom'>"+ data[i].ccom +"</td>";
+	                    html += "<td><input type='button' class='translate' value='번역'></td>";
+	                    html += "<td><span id='tcomment'>번역된거</span></td></tr>";	//여기부터
+>>>>>>> 6f27c1315aa00f4607f2a3b2501b8ba32bfca763
 	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
 	                    html += "</table></div>";
 	                    html += "</div>";
@@ -194,7 +200,7 @@
 		<tr>
 			<td>${song.sdate}</td>
 			<td>${song.salbum}</td>
-			<td>${song.simage}</td>
+			<td><img alt="" src="${song.simage}"> </td>
 		</tr>
 		<tr>
 			<td>${song.klyric}</td>

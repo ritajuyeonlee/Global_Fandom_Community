@@ -14,11 +14,11 @@ import gfc.dto.Song;
 import gfc.service.SongService;
 
 @Controller
-@RequestMapping(path = {"/song"})
+@RequestMapping(path = { "/", "/song" })
 public class SongController {
 	@Autowired
 	private SongService songService;
-	
+
 	@GetMapping("/addSongForm")
 	public String addsongForm() {
 		return "song/addSongForm";
@@ -26,18 +26,17 @@ public class SongController {
 
 	@PostMapping("/addSong")
 	public String AddSong(Song song) throws ParseException {
-//		System.out.println(song);
 		String temp = songService.translate(song.getKlyric());
 		song.setFlyric(songService.convertToData(temp));
 		System.out.println(song);
-		
 		int result = songService.addSong(song);
+
 		if (result == 1)
 			return "redirect:/song/songList";
 		else
 			return "redirect:/song/addSongForm";
 	}
-	
+
 	@GetMapping("/songList")
 	public String list(Model model) {
 		List<Song> songs = songService.getSongList();
@@ -48,6 +47,7 @@ public class SongController {
 	@GetMapping("/songDetail")
 	public String songDetail(Model model,int scode) {
 //		System.out.println(scode);
+		
 		Song song = songService.getSong(scode);
 		model.addAttribute("song",song);
 //		System.out.println(song);
