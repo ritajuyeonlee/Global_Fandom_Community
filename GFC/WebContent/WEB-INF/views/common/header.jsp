@@ -13,7 +13,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Pluto</title>
 <style type="text/css">
-
+body{
+	padding-top:70px;
+}
 
 
 </style>
@@ -31,7 +33,7 @@
           <a class="nav-link" href="songList">노래리스트</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="songMain">노래최종</a>
+          <a class="nav-link" href="songMain">노래메인</a>
         </li>
         <c:choose>
     	<c:when test="${user.userid eq 'admin'}">
@@ -75,8 +77,7 @@
     </div>
   </nav>
 
-<!-- 공통네비바아래 마진 -->
-<div style="margin-bottom:80px"></div>
+
 
 
 </body>

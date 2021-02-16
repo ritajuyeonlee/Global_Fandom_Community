@@ -18,6 +18,7 @@
 			<td>노래코드</td>
 			<td>제목</td>
 			<td>가수</td>
+			<td>가수명</td>
 			<td>작곡가</td>
 			<td>작사가</td>
 			<td>발매일</td>
@@ -33,6 +34,7 @@
 				<td><a href="/GFC/songDetail?scode=${song.scode}">${song.scode}</a></td>
 				<td><a href="${song.stitle}">${song.stitle}</a></td>
 				<td>${song.acode}</td>
+				<td>${song.artist.aname}</td>
 				<td>${song.swriter}</td>
 				<td>${song.slyricist}</td>
 				<td>${song.sdate}</td>

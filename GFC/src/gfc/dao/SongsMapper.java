@@ -13,4 +13,5 @@ public interface SongsMapper {
 	public Song getSong(int scode);
 	public int addSong(Song song);
 	public List<Song> getSongList();
+	public List<Song> searchSong(Map<String,String> map);
 }
