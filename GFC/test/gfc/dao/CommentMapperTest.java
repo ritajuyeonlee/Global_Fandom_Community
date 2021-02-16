@@ -1,5 +1,7 @@
 package gfc.dao;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -39,6 +41,17 @@ public class CommentMapperTest {
 		System.out.println(commentlist);
 		
 //		Assert.assertEquals(2, commentlist.size());
+	}
+	
+	@Test
+	public void getComment() throws Exception{
+		int ccode = 3;
+		
+		String ccom = commentMapper.getComment(ccode);
+		
+		System.out.println(ccom);
+		
+		assertNotNull(ccom);
 	}
 	
 }

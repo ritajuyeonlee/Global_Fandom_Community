@@ -38,8 +38,12 @@ public class CommentService {
 		return commentMapper.getCommentList(scode);
 	}
 	
+	public String getComment(int ccode) {
+		return commentMapper.getComment(ccode);
+	}
+	
 //	****************** 번역 ************************** //
-	public String convertToData2(String text) throws ParseException {
+	public String convertToData2(String text) throws ParseException {	// 언어추출
 //		String temp = songService.translate(kolyric);
 //	System.out.println(temp);
 
@@ -47,12 +51,12 @@ public class CommentService {
 	    JSONObject obj =  (JSONObject)jsonParse.parse(text);
 	    String langcode = obj.get("langCode").toString();
 		
-//		System.out.println(enlyric2);
+		System.out.println(langcode);
 		
 		return langcode;
 	}
 	
-	public String convertToData(String text) throws ParseException {
+	public String convertToData(String text) throws ParseException {	// 번역된거 추출
 //		String temp = songService.translate(kolyric);
 //	System.out.println(temp);
 
@@ -146,7 +150,7 @@ public class CommentService {
 
         String responseBody = Detectpost(apiURL, requestHeaders, query);
 
-        System.out.println(responseBody);
+//        System.out.println(convertToData2(responseBody));
         
         return convertToData2(responseBody);
     }

@@ -18,12 +18,16 @@
 		comments(scode,ucode,ccom,cdate)
 		values(#{scode}, #{ucode},#{ccom},sysdate)
 	</insert>
-	
+
 	<select id="getCommentList" parameterType="java.lang.Integer" resultMap="comment_resultMap">
 		select u.uname, c.ccom , c.cdate, c.ccode
 		from comments c
 		left join users u
 		on c.ucode = u.ucode 
 		where c.scode = #{scode}
+	</select>
+	
+	<select id="getComment" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select ccom from comments where ccode = #{ccode}
 	</select>
 </mapper>

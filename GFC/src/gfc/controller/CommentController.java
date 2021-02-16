@@ -48,19 +48,26 @@ public class CommentController {
 		System.out.println(commentlist);
 		
 		return commentlist;
-//		model.addAttribute("commentList", commentlist);
 	}
 	
-	@GetMapping("/commentTranslate")
-	public String commentTranslate(String ccom) throws ParseException {
+	@GetMapping(value = "/commentTranslate", produces = "application/text; charset=utf-8")
+	public String commentTranslate(int ccode) throws ParseException {
+		String ccom = commentService.getComment(ccode);
+		System.out.println(ccom);
+		
+		System.out.println("댓글 번역 시작");
 		String slang = commentService.langDetection(ccom);
 		String temp = "";
 		
-		if(slang == "ko") {
+		if(slang.equals("ko")) {
+			System.out.println("koko");
 			temp = commentService.translate(ccom, slang, "en");
-		}else if(slang == "en") {
+		}else if(slang.equals("en")) {
+			System.out.println("enen");
 			temp = commentService.translate(ccom, slang, "ko");
 		}
+		
+		System.out.println(commentService.convertToData(temp));
 		
 		return commentService.convertToData(temp);
 	}

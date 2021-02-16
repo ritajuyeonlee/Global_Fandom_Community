@@ -14,41 +14,41 @@
 
 <script type="text/javascript">
 	$(function() {
-		
 		let scode1 = "${song.scode}";
-		let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	// ********* 수정 해야함 (로그인안해도 가능하게) *********
-		
-		console.log(ucode1);
 		getCommentList(scode1);
 		
-		$('.translate').click(function(){
-			alert("주연최고");
-			let ccom = $(this).parent().parent().find('#ccom').val();
-			console.log(ccom);
+		console.log(${user.ucode});
+		<%-- <% if(session != null){%> --%>
+			let ucode1 = "<%=(int)session.getAttribute("ucode") %>";	// ********* 수정 해야함 (로그인안해도 가능하게) *********
+			//console.log(ucode1);
+
+			/* $(document).on("click",".translate",function(){
+				alert("주연최고");
+				//let ccom = $(this).parent().parent().find('#ccom').val();
+				let ccom = $(this).parent().parent().tagName;
+				alert(ccom);
+				//console.log(ccom);
+				
+				commentTranslate(ccom);
+				alert("주연짱짱");
+			}); */
 			
-			commentTranslate(ccom);
-			alert("주연짱짱");
-		});
-		
-		$('#clear').click(function(){
-			$("#Comment").val("");		// 작성한 댓글 지우기.
-		});
-		
-		$("#addComment").click(function() {
-			let comment1 = $('#Comment').val();
+			$('#clear').click(function(){
+				$("#Comment").val("");		// 작성한 댓글 지우기.
+			});
 			
-			if (comment1.length > 0){
-				addComment(scode1,ucode1,comment1);
-			}
-			else
-				alert("내용을 입력해 주세요 ");
-		});
+			$("#addComment").click(function() {
+				let comment1 = $('#Comment').val();
+				
+				if (comment1.length > 0){
+					addComment(scode1,ucode1,comment1);
+				}
+				else
+					alert("내용을 입력해 주세요 ");
+			});
+		<%-- <%}%> --%>
 	});
 	
-	function list(scode1) {
-		
-	}
-
 	function addComment(scode1,ucode1,comment1) {
 		$.ajax({
 			type : "GET",
@@ -96,11 +96,14 @@
 	            
 	            if(data.length > 0){
 	                for(i=0; i<data.length; i++){
+	                	let ccode = data[i].ccode;
+	                	console.log(ccode);
+	                	
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
-	                    html += "<tr><td id='ccom'>"+ data[i].ccom +"</td>";
-	                    //html += "<td><input type='button' class='translate' value='번역'></td>";
-	                    html += "<td><span id='tcomment'>번역된거</span></td></tr>";	//여기부터
+	                    html += "<tr><td id='ccom"+ ccode +"'>"+ data[i].ccom +"</td>";
+	                    html += "<td><input type='button' id='translate"+ ccode +"' value='번역' onclick='commentTranslate1("+ ccode +")'></td>";
+	                    html += "<td><span id='tcomment" + ccode + "'>번역된거</span></td></tr>";	//여기부터
 	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
 	                    html += "</table></div>";
 	                    html += "</div>";
@@ -113,6 +116,29 @@
 	            }
 	            $("#cCnt").html(cCnt);
 	            $("#commentList").html(html);
+	        },
+	        error:function(request,status,error){
+	       }
+	    });
+	}
+	function commentTranslate1(ccode1){
+		$.ajax({
+	        type:'GET',
+	        url : "${pageContext.request.contextPath}/song/songDetail/commentTranslate",
+	        data:{
+	        	ccode : ccode1
+	        },
+	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+	        success : function(data){
+	        	alert('번역성공,,');
+	        	alert(data);
+	        	console.log(data);
+	        	
+	        	let cc = 'tcomment' + ccode1;
+	        	
+	        	//$("#cCnt").html(data);
+	        	console.log(document.querySelector('#'+cc).innerHTML)
+	        	document.querySelector('#'+cc).innerHTML = data;
 	        },
 	        error:function(request,status,error){
 	       }

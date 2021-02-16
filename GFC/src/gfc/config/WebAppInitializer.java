@@ -28,6 +28,4 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		encodingFilter.setEncoding("utf-8");
 		return new Filter[] {encodingFilter};
 	}
-
-
 }
