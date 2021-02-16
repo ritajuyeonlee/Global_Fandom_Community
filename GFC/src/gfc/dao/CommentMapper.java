@@ -10,6 +10,6 @@ import gfc.dto.Comment;
 public interface CommentMapper {
 
 	public int addComment(Comment comment);
-//	public String getComment(int ccode);
+	public String getComment(int ccode);
 	public List<Comment> getCommentList(int scode);
 }
