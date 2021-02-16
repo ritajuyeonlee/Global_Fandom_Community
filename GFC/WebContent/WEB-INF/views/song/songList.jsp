@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
+
+<link rel="stylesheet" href="list.css">
+
 <title>Song List</title>
 </head>
 <body>
