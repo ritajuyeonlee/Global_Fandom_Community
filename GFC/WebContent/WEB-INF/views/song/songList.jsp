@@ -33,6 +33,7 @@
 			<div id="top" class="col-xs-12" style="border: 1px solid #ccc;">
 			<table class="table table-striped table-sm" border="1px solid black">
 				<tr>
+
 					
 					<td>제목</td>
 					<td>가수명</td>

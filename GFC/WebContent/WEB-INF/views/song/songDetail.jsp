@@ -212,9 +212,6 @@ var $j351 = jQuery.noConflict();
 				<span><strong>댓글 수</strong></span> <span id="cCnt"></span>
 					<div id="commentList"></div>
 			</div>
-
-
-			
 		</div>
 	</div>
 
