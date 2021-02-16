@@ -38,4 +38,11 @@ public class UserService {
 	public List<User> getUserList() {
 		return userMapper.getUserList();
 	}
+	
+	public int checkUser(int check, String id) {
+		if (check == 1) {
+			return userMapper.checkUserID(id);
+		}
+		return userMapper.checkUserNAME(id);
+	}
 }
