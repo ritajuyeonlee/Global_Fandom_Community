@@ -40,8 +40,8 @@
 	
 	<select id="mainList" resultMap="song">
 		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
-		from artists a
-		left join songs s
+		from songs s
+		left join artists a
 		on a.acode=s.acode
 		order by s.sviews DESC
 		<!-- 가사뺌 klyric -->
