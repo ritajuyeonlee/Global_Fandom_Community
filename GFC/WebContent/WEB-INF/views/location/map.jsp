@@ -41,20 +41,13 @@ Dev dev = new Dev();
 			$('#filter').click(function(){
 				filterAcode($('#acode').val());
 			});
-			
-
 		});
-				
-		function popInfoWindow(t, map){
-					
-					infowindow.setContent(contentString);
-					infowindow.open(map, marker);
-		}
 		
 		function filterAcode(acode) {		
 			$.ajax({ // ajax 통신 {}
 				url:'mapData',
 				type:'GET',
+		    //dataType : "json",
 				data :{
 					acode : acode
 				},
@@ -69,14 +62,19 @@ Dev dev = new Dev();
 		}
 
 		function display(data) {
+			//마커 이미지
+      //var customicon = 'http://drive.google.com/uc?export=view&id=1tZgPtboj4mwBYT6cZlcY36kYaQDR2bRM'
+			var infowindow = new google.maps.InfoWindow();
+			let center = {lat: 37.56154517066801 , lng: 126.9930503906448 }
 			let map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 14,
-				center : {lat: 37.56154517066801 , lng: 126.9930503906448 }
+				zoom : 8,
+				center : center
 			});
 			
 			let marker = new google.maps.Marker({
-				position : {lat: 37.56154517066801 , lng: 126.9930503906448 },
+				position : center,
 				map : map,
+		    //icon: customicon, //마커 아이콘
 				label : '서울 시청',
 				desc : '서울의 중심'
 				})
@@ -87,17 +85,8 @@ Dev dev = new Dev();
 					'</b></td></tr><tr><td>설명 :</td><td><b>'+this.desc+
 					'</b></td></tr></table></div>';
       	infowindow.setContent(contentString);
-          
-      	//인포윈도우가 표시될 위치
-      	infowindow.open(map, marker);
+      	infowindow.open(map, marker); //인포윈도우가 표시될 위치
 			});
-			//마커 이미지
-      var customicon = 'http://drive.google.com/uc?export=view&id=1tZgPtboj4mwBYT6cZlcY36kYaQDR2bRM'
- 
-			// infoWindow 출력
-			var infowindow = new google.maps.InfoWindow({
-				  content:"Hello World!"
-		  });
 			
 			for (let d of data) {
 				if (d.lconfirm == 1){
@@ -106,21 +95,18 @@ Dev dev = new Dev();
 	          //icon: customicon, //마커 아이콘
 						map : map, //마커를 표시할 지도
 						label : d.lname
-						//url : d.url
 					});
 
 					google.maps.event.addListener(marker,'click',function(){
 						var contentString =
 							'<div id="content">'+
-							'<table><tr><td>장소이름 :</td><td><b>'+d.lname+
-							'</b></td></tr><tr><td>회원코드 :</td><td><b>'+d.ucode+
-							'</b></td></tr><tr><td>가수 :</td><td><b>'+d.acode+
+							'<table><tr><td>장소명 :</td><td><b>'+d.lname+
+							'</b></td></tr><tr><td>회원닉네임 :</td><td><b>'+d.user.uname+
+							'</b></td></tr><tr><td>가수 :</td><td><b>'+d.artist.aname+
 							'</b></td></tr><tr><td>주소 :</td><td><b>'+d.laddress+
 							'</b></td></tr><tr><td>설명 :</td><td><b>'+d.ldesc+
 							'</b></td></tr></table></div>';
 	          infowindow.setContent(contentString);
-	              
-	          //인포윈도우가 표시될 위치
 	          infowindow.open(map, marker);
 					});
 				}
@@ -131,7 +117,6 @@ Dev dev = new Dev();
 <body>
 
 	<h3>Map</h3>
-	<div id="map"></div>
 	<c:choose>
 		<c:when test="${not empty user.userid}">
 			<a href="addLocationForm"> 장소 추가 </a>
@@ -145,6 +130,7 @@ Dev dev = new Dev();
 	</select>
 	<button id="filter">적용</button>
 
+	<div id="map" style:width="500px"></div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>

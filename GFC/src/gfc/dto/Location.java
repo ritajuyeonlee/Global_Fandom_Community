@@ -10,12 +10,32 @@ public class Location {
 	private String ldesc;
 	private int ucode;
 	private char lconfirm;
-	
-	public Location() {
+
+	private User user; // 추가됨
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
-	public Location(int lcode, int acode, String lname, String laddress, double llat, double llong, String ldesc, char lconfirm,
-			int ucode) {
+	private Artist artist; // 추가됨
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+
+	public Location() {
+	}
+
+	public Location(int lcode, int acode, String lname, String laddress, double llat, double llong, String ldesc,
+			char lconfirm, int ucode) {
 		this.lcode = lcode;
 		this.acode = acode;
 		this.lname = lname;
@@ -24,10 +44,9 @@ public class Location {
 		this.llong = llong;
 		this.ldesc = ldesc;
 		this.ucode = ucode;
-		this.lconfirm=lconfirm;
+		this.lconfirm = lconfirm;
 	}
-	
-	
+
 	public char getLconfirm() {
 		return lconfirm;
 	}
@@ -39,48 +58,63 @@ public class Location {
 	public int getLcode() {
 		return lcode;
 	}
+
 	public void setLcode(int lcode) {
 		this.lcode = lcode;
 	}
+
 	public int getAcode() {
 		return acode;
 	}
+
 	public void setAcode(int acode) {
 		this.acode = acode;
 	}
+
 	public String getLname() {
 		return lname;
 	}
+
 	public void setLname(String lname) {
 		this.lname = lname;
 	}
+
 	public String getLaddress() {
 		return laddress;
 	}
+
 	public void setLaddress(String laddress) {
 		this.laddress = laddress;
 	}
+
 	public double getLlat() {
 		return llat;
 	}
+
 	public void setLlat(double llat) {
 		this.llat = llat;
 	}
+
 	public double getLlong() {
 		return llong;
 	}
+
 	public void setLlong(double llong) {
 		this.llong = llong;
 	}
+
 	public String getLdesc() {
 		return ldesc;
 	}
+
 	public void setLdesc(String ldesc) {
 		this.ldesc = ldesc;
 	}
+
 	public int getUcode() {
 		return ucode;
 	}
+
 	public void setUcode(int ucode) {
 		this.ucode = ucode;
 	}
@@ -89,8 +123,9 @@ public class Location {
 	public String toString() {
 		return "Location [lcode=" + lcode + ", acode=" + acode + ", lname=" + lname + ", laddress=" + laddress
 				+ ", llat=" + llat + ", llong=" + llong + ", ldesc=" + ldesc + ", ucode=" + ucode + ", lconfirm="
-				+ lconfirm + "]";
+				+ lconfirm + ", user=" + user + ", artist=" + artist + "]";
 	}
 	
 	
+
 }

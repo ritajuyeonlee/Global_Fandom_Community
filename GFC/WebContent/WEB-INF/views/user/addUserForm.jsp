@@ -36,10 +36,10 @@
 
 			<tr>
 				<td>키워드 (3개) :</td>
-				<td><input type="checkbox" name="ukeyword" value="1">봄
-					<input type="checkbox" name="ukeyword" value="2">여름 <input
-					type="checkbox" name="ukeyword" value="3">가을 <input
-					type="checkbox" name="ukeyword" value="4">겨울</td>
+				<td><input type="checkbox" name="kcode" value="1">봄
+					<input type="checkbox" name="kcode" value="2">여름 <input
+					type="checkbox" name="kcode" value="3">가을 <input
+					type="checkbox" name="kcode" value="4">겨울</td>
 			</tr>
 		</table>
 		<input type="submit" value="Submit">
