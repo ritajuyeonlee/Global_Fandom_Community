@@ -20,14 +20,13 @@ Dev dev = new Dev();
 <script type="text/javascript">
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
 	//document.domain = "abc.go.kr";
-
 	function goPopup() {
 		// 주소검색을 수행할 팝업 페이지를 호출합니다.
 		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
 		// GFC/addLocationForm으로 들어갈 땐 ./ 으로 시작해야 함. location/은 ../으로
 		var pop = window.open("./popup/jusoPopup.jsp", "pop",
 				"width=570,height=420, scrollbars=yes, resizable=yes");
-
+		
 		// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
 		//var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
 	}
@@ -48,19 +47,34 @@ Dev dev = new Dev();
       }
     }); 
 	}
-
+	
+	function err() {
+		if (form.lname.value == "") {
+				alert("장소이름을 입력하세요.");
+	    	return false;
+		}
+		if (form.laddress.value == "") {
+			alert("주소를 입력하세요.");
+    	return false;
+	}
+		if (form.ldesc.value == "") {
+			alert("해당 장소에 대한 설명을 입력하세요.");
+    	return false;
+	}
+	return true;
+	}
 </script>
 <body>
-	<form name="form" action="addLocation" method="post">
+	<h3>장소 추가</h3>
+	<button class="searchButton" onclick="goPopup()">주소 검색</button>
+	<form name="form" action="addLocation" method="post"
+		onsubmit="return err()">
 		<table border="1px solid black">
 			<tr>
 				<td>회원닉네임 :</td>
-				<td><input type="text" name="uname" value="${user.uname}" required
-					readonly></td>
-			</tr>
-			<tr>
-				<td>회원코드 :</td>
-				<td><input type="hidden" name="ucode" value="${user.ucode}" required readonly></td>
+				<td><input type="text" name="uname" value="${user.uname}"
+					required readonly><input type="hidden" name="ucode"
+					value="${user.ucode}" required readonly></td>
 			</tr>
 			<tr>
 				<td>가수 :</td>
@@ -78,7 +92,7 @@ Dev dev = new Dev();
 			<tr>
 				<td>주소 :</td>
 				<td><input type="text" id="laddress" name="laddress"
-					placeholder="주소검색을 눌러 주소를 입력해주세요" required readonly /> <input
+					placeholder="주소검색을 눌러 주소를 입력해주세요." required readonly /> <input
 					type="hidden" id="llat" name="llat" /> <input type="hidden"
 					id="llong" name="llong" /></td>
 			</tr>
@@ -92,7 +106,6 @@ Dev dev = new Dev();
 			</tr>
 		</table>
 	</form>
-	<button class="searchButton" onclick="goPopup()">주소 검색</button>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
