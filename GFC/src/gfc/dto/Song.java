@@ -15,6 +15,7 @@ public class Song {
 	private String klyric;
 	private String flyric;
 	private String youtubelink;
+	private int sviews;
 	
 	private Artist artist;
 
@@ -22,7 +23,7 @@ public class Song {
 	}
 
 	public Song(int scode, String stitle, int acode, String swriter, String slyricist, Date sdate, String salbum,
-			String simage, String klyric, String flyric, String youtubelink) {
+			String simage, String klyric, String flyric, String youtubelink,int sviews) {
 		this.scode = scode;
 		this.stitle = stitle;
 		this.acode = acode;
@@ -34,6 +35,7 @@ public class Song {
 		this.klyric = klyric;
 		this.flyric = flyric;
 		this.youtubelink = youtubelink;
+		this.sviews = sviews;
 	}
 
 	public int getScode() {
@@ -140,6 +142,14 @@ public class Song {
 
 	public void setArtist(Artist artist) {
 		this.artist = artist;
+	}
+
+	public int getSviews() {
+		return sviews;
+	}
+
+	public void setSviews(int sviews) {
+		this.sviews = sviews;
 	}
 	
 
