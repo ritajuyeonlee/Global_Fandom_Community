@@ -97,7 +97,7 @@
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
 	                    html += "<tr><td id='ccom"+ ccode +"'>"+ data[i].ccom +"</td>";
-	                    html += "<td><input type='button' id='translate"+ ccode +"' value='번역' onclick='commentTranslate1("+ ccode +")'></td>";
+	                    html += "<td><input type='button' id='translate"+ ccode +"' value='번역' onclick='commentTranslate("+ ccode +")'></td>";
 	                    html += "<td><span id='tcomment" + ccode + "'>번역된거</span></td></tr>";	//여기부터
 	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
 	                    html += "</table></div>";
