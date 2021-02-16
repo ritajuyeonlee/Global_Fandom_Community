@@ -2,7 +2,6 @@ package gfc.dto;
 
 import java.sql.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class Song {
 	private int scode;
@@ -17,19 +16,7 @@ public class Song {
 	private String flyric;
 	private String youtubelink;
 	
-	
 	private Artist artist;
-	
-	
-
-	public Artist getArtist() {
-	
-		return artist;
-	}
-
-	public void setArtist(Artist artist) {
-		this.artist = artist;
-	}
 
 	public Song() {
 	}
@@ -138,12 +125,21 @@ public class Song {
 	}
 
 
+	
 	@Override
 	public String toString() {
 		return "Song [scode=" + scode + ", stitle=" + stitle + ", acode=" + acode + ", swriter=" + swriter
 				+ ", slyricist=" + slyricist + ", sdate=" + sdate + ", salbum=" + salbum + ", simage=" + simage
-				+ ", klyric=" + klyric + ", flyric=" + flyric + ", youtubelink=" + youtubelink 
-				+ artist+"]";
+				+ ", klyric=" + klyric + ", flyric=" + flyric + ", youtubelink=" + youtubelink + ", artist=" + artist
+				+ "]";
+	}
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
 	}
 	
 

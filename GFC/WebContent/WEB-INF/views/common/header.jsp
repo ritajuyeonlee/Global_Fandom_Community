@@ -30,7 +30,7 @@ body{
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="songList">노래리스트</a>
+          <a class="nav-link" href="songList">누구나노래리스트</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="songMain">노래메인</a>
@@ -43,6 +43,9 @@ body{
 		    <li class="nav-item active">
 		    	<a class="nav-link" href="adminConfirmLocation">장소컨펌</a>
 		    </li>
+		    <li class="nav-item active">
+          <a class="nav-link" href="adminSongList">admin노래리스트</a>
+        </li>
     	</c:when>
     	</c:choose>
         <li class="nav-item">
