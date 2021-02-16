@@ -34,7 +34,6 @@ public class UsersMapperTest {
 		user.setUname("블핑");
 		user.setUserpw("jj");
 		user.setAcode(2);
-		user.setKcode(1);
 		System.out.println(user);
 		int ret = usersMapper.addUser(user);
 		assertEquals(1, ret);

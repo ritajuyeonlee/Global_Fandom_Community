@@ -18,15 +18,9 @@
 		
 		let scode1 = "${song.scode}";
 		let ucode1 = '<%=session.getAttribute("ucode")%>';
-
 		console.log(ucode1);
 		getCommentList(scode1);
-		$(document).on("click","#translate",function(){
-			let ccom = $(this).parent().parent().find('#ccom').value;
-			console.log(ccom);
-			
-			//commentTranslate(ccom);
-		});
+		
 		
 		$('#clear').click(function(){
 			$("#Comment").val("");		// 작성한 댓글 지우기.
@@ -47,7 +41,6 @@
 			
 		});
 	});
-
 	
 	function addComment(scode1,ucode1,comment1) {
 		$.ajax({
@@ -102,7 +95,7 @@
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].user.uname+"</strong></h6>";
 	                    html += "<tr><td id='ccom"+ ccode +"'>"+ data[i].ccom +"</td>";
-	                    html += "<td><input type='button' id='translate"+ ccode +"' value='번역' onclick='commentTranslate1("+ ccode +")'></td>";
+	                    html += "<td><input type='button' id='translate"+ ccode +"' value='번역' onclick='commentTranslate("+ ccode +")'></td>";
 	                    html += "<td><span id='tcomment" + ccode + "'>번역된거</span></td></tr>";	//여기부터
 	                    html += "<tr><td>"+ data[i].cdate +"</td></tr>";
 	                    html += "</table></div>";
@@ -121,7 +114,7 @@
 	       }
 	    });
 	}
-	function commentTranslate1(ccode1){
+	function commentTranslate(ccode1){
 		$.ajax({
 	        type:'GET',
 	        url : "${pageContext.request.contextPath}/song/songDetail/commentTranslate",
@@ -145,21 +138,7 @@
 	    });
 	}
 	
-	function commentTranslate(ccom1){
-		$.ajax({
-	        type:'GET',
-	        url : "${pageContext.request.contextPath}/song/songDetail/commentTranslate",
-	        data:{
-	        	ccom : ccom1
-	        },
-	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-	        success : function(data){
-	        	$('tcomment').html(data);
-	        },
-	        error:function(request,status,error){
-	       }
-	    });
-	}
+	
 </script>
 
 </head>
@@ -182,7 +161,6 @@
 		<tr>
 			<td>한글가사</td>
 			<td>영어가사</td>
-			<td>키워드</td>
 		</tr>
 		<tr>
 			<td>${song.stitle}</td>
@@ -200,7 +178,6 @@
 			<td>${song.klyric}</td>
 			<td>${song.flyric}</td>
 
-			<td>${song.kcode}</td>
 		</tr>
 	</table>
 	<c:choose>

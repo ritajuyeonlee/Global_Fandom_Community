@@ -19,7 +19,6 @@
 			<td>비밀번호</td>
 			<td>이름</td>
 			<td>최애</td>
-			<td>키워드</td>
 		</tr>
 		<c:forEach var="user" items="${userList}">
 		<tr>
@@ -28,7 +27,6 @@
 			<td>${user.userpw}</td>
 			<td>${user.uname}</td>
 			<td>${user.acode}</td>
-			<td>${user.kcode}</td>
 		</tr>
 		</c:forEach>
 	</table>

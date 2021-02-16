@@ -6,28 +6,19 @@ public class User {
 	private String userpw;
 	private String uname;
 	private int acode;
-	private int kcode;
 	
 	public User() {
 		
 	}
 
-	public User(int ucode, String userid, String userpw, String uname, int acode, int kcode) {
+	public User(int ucode, String userid, String userpw, String uname, int acode) {
 		this.ucode = ucode;
 		this.userid = userid;
 		this.userpw = userpw;
 		this.uname = uname;
 		this.acode = acode;
-		this.kcode = kcode;
 	}
 	
-	public int getKcode() {
-		return kcode;
-	}
-
-	public void setKcode(int kcode) {
-		this.kcode = kcode;
-	}
 
 	public int getUcode() {
 		return ucode;
@@ -63,7 +54,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [ucode=" + ucode + ", userid=" + userid + ", userpw=" + userpw + ", uname=" + uname + ", acode="
-				+ acode + ", kcode=" + kcode + "]";
+				+ acode +  "]";
 	}
 
 	
