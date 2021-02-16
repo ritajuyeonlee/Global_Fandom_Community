@@ -21,12 +21,7 @@
 
 		console.log(ucode1);
 		getCommentList(scode1);
-		$(document).on("click","#translate",function(){
-			let ccom = $(this).parent().parent().find('#ccom').value;
-			console.log(ccom);
-			
-			//commentTranslate(ccom);
-		});
+		
 		
 		$('#clear').click(function(){
 			$("#Comment").val("");		// 작성한 댓글 지우기.
@@ -121,7 +116,7 @@
 	       }
 	    });
 	}
-	function commentTranslate1(ccode1){
+	function commentTranslate(ccode1){
 		$.ajax({
 	        type:'GET',
 	        url : "${pageContext.request.contextPath}/song/songDetail/commentTranslate",
@@ -145,21 +140,7 @@
 	    });
 	}
 	
-	function commentTranslate(ccom1){
-		$.ajax({
-	        type:'GET',
-	        url : "${pageContext.request.contextPath}/song/songDetail/commentTranslate",
-	        data:{
-	        	ccom : ccom1
-	        },
-	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-	        success : function(data){
-	        	$('tcomment').html(data);
-	        },
-	        error:function(request,status,error){
-	       }
-	    });
-	}
+	
 </script>
 
 </head>
