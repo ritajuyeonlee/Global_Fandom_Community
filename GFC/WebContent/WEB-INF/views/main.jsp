@@ -36,13 +36,13 @@
 			<div class="col-md-4" style="border: 1px solid #ccc;">
 			<div>☆인기차트★</div>
 			<table>
-		<c:forEach var="song" items="${songList}">
+		<c:forEach var="song" items="${songList}" varStatus="status">
 			<tr>
+				<td>${status.count}</td>
 				<td><img alt="" src="${song.simage}" width="50px"></td>
-				<td><a href="/GFC/songDetail?scode=${song.scode}">${song.scode}</a></td>
-				<td><a href="${song.stitle}">${song.stitle}</a></td>
+				<td><a href="/GFC/songDetail?scode=${song.scode}">${song.stitle}</a></td>
 				<td>${song.artist.aname}</td>
-
+				<td>${song.sviews}</td>
 			</tr>
 		</c:forEach>
 	</table>
