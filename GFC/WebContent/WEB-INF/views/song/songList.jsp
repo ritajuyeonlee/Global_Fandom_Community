@@ -27,7 +27,6 @@
 			<td>한글가사</td>
 			<td>영어가사</td>
 			<td>유튜브링크</td>
-			<td>키워드</td>
 		</tr>
 		<c:forEach var="song" items="${songList}">
 			<tr>
@@ -43,7 +42,6 @@
 				<td>${song.klyric}</td>
 				<td>${song.flyric}</td>
 				<td>${song.youtubelink}</td>
-				<td>${song.kcode}</td>
 			</tr>
 		</c:forEach>
 	</table>

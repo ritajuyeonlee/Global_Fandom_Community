@@ -18,7 +18,6 @@
 		
 		let scode1 = "${song.scode}";
 		let ucode1 = '<%=session.getAttribute("ucode")%>';
-
 		console.log(ucode1);
 		getCommentList(scode1);
 		
@@ -42,7 +41,6 @@
 			
 		});
 	});
-
 	
 	function addComment(scode1,ucode1,comment1) {
 		$.ajax({
@@ -163,7 +161,6 @@
 		<tr>
 			<td>한글가사</td>
 			<td>영어가사</td>
-			<td>키워드</td>
 		</tr>
 		<tr>
 			<td>${song.stitle}</td>
@@ -181,7 +178,6 @@
 			<td>${song.klyric}</td>
 			<td>${song.flyric}</td>
 
-			<td>${song.kcode}</td>
 		</tr>
 	</table>
 	<c:choose>
