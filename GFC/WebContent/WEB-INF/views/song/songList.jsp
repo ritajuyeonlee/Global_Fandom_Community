@@ -27,9 +27,15 @@
 			<p>No Song</p>
 		</c:when>
 		<c:otherwise>
+		
+		<div class="container"id ="grid">
+		<div class="row" >
+			<div id="top" class="col-xs-12" style="border: 1px solid #ccc;">
 			<table class="table table-striped table-sm" border="1px solid black">
 				<tr>
-          <td>제목</td>
+
+					
+					<td>제목</td>
 					<td>가수명</td>
 					<td>발매일</td>
 					<td>앨범이미지</td>
@@ -47,6 +53,12 @@
 					</tr>
 				</c:forEach>
 			</table>
+			</div>
+		</div>
+		
+	</div>
+		
+			
 		</c:otherwise>
 	</c:choose>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

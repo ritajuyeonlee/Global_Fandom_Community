@@ -49,18 +49,18 @@
 	
 	<select id="getSongList" resultMap="song">
 		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
-		from artists a
-		left join songs s
+		from songs s
+		left join artists a
 		on a.acode=s.acode
 	</select>
 
 	<select id="getSong" parameterType="java.lang.Integer"
-		resultMap="song_resultMap">
+		resultMap="song">
 		select
 		a.aname, s.scode,s.stitle,s.swriter,s.slyricist,s.sdate,s.salbum,
-		s.simage, s.klyric, s.flyric ,s.youtubelink
-		from artists a
-		left join songs s
+		s.simage, s.klyric, s.flyric ,s.youtubelink, s.sviews
+		from songs s
+		left join artists a
 		on a.acode=s.acode
 		where
 		s.scode = #{scode}

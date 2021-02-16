@@ -27,7 +27,7 @@ public class SongsMapperTest {
 	
 	@Test
 	public void getSong() throws Exception {
-		Song song = songsMapper.getSong(3);
+		Song song = songsMapper.getSong(5);
 		System.out.println(song);
 		assertNotNull(song);
 //		assertEquals("Celebrity", song.getStitle());
