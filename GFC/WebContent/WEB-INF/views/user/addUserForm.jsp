@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>add User Form</title>
+<link href="css/loginForm.css" rel="stylesheet">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -118,39 +120,45 @@ function err() {
 </script>
 </head>
 <body>
-	<form action="addUser" method="post" onsubmit="return err()">
-		<table>
-			<tr>
-				<td>아이디 :</td>
-				<td><input type="text" id="userid" name="userid" value=""><input
-					type="button" id="id_check" name="id_check" value="ID 중복체크" /><br>
-					<span id="msg_id" class="error"></span><input type="hidden"
-					id="id_confirm" name="id_confirm" value="사용하기" /></td>
-			</tr>
 
-			<tr>
-				<td>닉네임 :</td>
-				<td><input type="text" id="uname" name="uname" value=""><input
-					type="button" id="name_check" name="name_check" value="NAME 중복체크" /><br>
-					<span id="msg_name" class="error"></span><input type="hidden"
-					id="name_confirm" name="name_confirm" value="사용하기" /></td>
-			</tr>
-			<tr>
-				<td>비밀번호 :</td>
-				<td><input type="password" id = "userpw" name="userpw" value=""></td>
-			</tr>
-			<tr>
-				<td>최애 :</td>
-				<td><select name="acode">
+<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<form class="box" action="addUser" method="post" onsubmit="return err()">
+						<h1>회원가입</h1>
+						<p class="text-muted">케이팝 팬 방가방가~~</p>
+						<input type="text" name="userid" placeholder="아이디를 입력하세요" id="userid" value="" required="required"> 
+						<input
+					type="button" id="id_check" name="id_check" value="ID 중복체크" />
+						<span id="msg_id" class="error"></span>
+						<input type="hidden" id="id_confirm" name="id_confirm" value="사용하기" />
+						
+						<input type="text" name="uname" placeholder="닉네임을 입력하세요" id="uname" value="" required="required"> 
+						<input
+					type="button" id="name_check" name="name_check" value="NAME 중복체크" />
+						<span id="msg_name" class="error"></span>
+						<input type="hidden" id="name_confirm" name="name_confirm" value="사용하기" />
+						
+						<input type="password" id="userpw" name="userpw" value="" required="required" placeholder="비밀번호를 입력하세요"> 
+							
+							<select name="acode">
 						<!-- db에서 가져오기 -->
 						<option value="1">아이유</option>
 						<option value="2">블랙핑크</option>
 						<option value="3">방탄소년단</option>
-				</select></td>
-			</tr>
-		</table>
-		<input type="submit" value="회원가입">
-	</form>
+				</select>
+							
+							<input type="submit"  value="회원가입">
+							
+							
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
