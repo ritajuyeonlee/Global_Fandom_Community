@@ -2,13 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gfc.dao.SongsMapper">
+	
+	<resultMap type="gfc.dto.Artist" id="artist">
+		<result column="acode" property="acode"/>
+		<result column="aname" property="aname"/>
+		
+	</resultMap>
+	<resultMap type="gfc.dto.Song" id="song">
+		<result column="scode" property="scode"/>
+		<result column="stitle" property="stitle"/>
+		<result column="swriter" property="swriter"/>
+		<result column="slyricist" property="slyricist"/>
+		<result column="sdate" property="sdate"/>
+		<result column="salbum" property="salbum"/>
+		<result column="simage" property="simage"/>
+		<result column="klyric" property="klyric"/>
+		<result column="flyric" property="flyric"/>
+		<result column="youtubelink" property="youtubelink"/>
+		<result column="sviews" property="sviews"/>
+		<collection property="artist" resultMap="artist"/>
+	</resultMap>
+	
+	
+	
+<!-- 위에 있는 애는 서치용 result map -->
+
 	<resultMap type="gfc.dto.Song" id="song_resultMap">
 	</resultMap>
 
-	<select id="getSongList" resultMap="song_resultMap">
+	<!-- 기존꺼<select id="getSongList" resultMap="song_resultMap">
 		select
-		scode,stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric from
+		scode,stitle,acode,swriter,slyricist,sdate,salbum,simage from
 		songs
+		가사뺌 klyric
+	</select> 
+	밑은 가수쪼인-->
+	
+	<select id="getSongList" resultMap="song">
+		select s.scode,s.stitle,s.swriter,a.acode,a.aname,
+		s.slyricist,s.sdate,s.salbum,s.simage, s.klyric
+		from artists a
+		left join songs s
+		on a.acode=s.acode
+		<!-- 가사뺌 klyric -->
 	</select>
 
 	<select id="getSong" parameterType="java.lang.Integer"
@@ -27,20 +63,14 @@
 		#{salbum}, #{simage}, #{klyric} )
 	</insert>
 	
-	<select id="searchSong" parameterType="hashmap" resultMap="song_resultMap">
-		select s.scode,s.stitle,s.acode,s.swriter,a.aname,
+	<select id="searchSong" parameterType="hashmap" resultMap="song">
+		select s.scode,s.stitle,s.acode,s.swriter,a.acode,a.aname,
 		s.slyricist,s.sdate,s.salbum,s.simage, s.klyric
 		from artists a
 		left join songs s
 		on a.acode=s.acode
-		<!-- <if test="condition == aname">
-			where s.acode=a.acode and 
-			${condition}=#{keyword}
-			
-		</if>
-		<if test="condition == stitle">
-		where s.acode=a.acode and  -->
-			where ${condition}=#{keyword}
-		<!-- </if> -->
+	
+			where upper(${condition}) like '%'||upper(#{keyword})||'%'
+		
 	</select> 
 </mapper>

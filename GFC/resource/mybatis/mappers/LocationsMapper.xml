@@ -55,6 +55,7 @@
 		where
 		lcode = #{lcode}
 	</select>
+	
 	<insert id="addLocation" parameterType="gfc.dto.Location">
 		insert into
 		location(acode,lname,laddress,llat,llong,ldesc,ucode, lconfirm)
@@ -62,6 +63,13 @@
 		#{laddress}, #{llat}, #{llong}, #{ldesc},
 		#{ucode}, 0 )
 	</insert>
+	
+	<select id="getLocationConfirmList" resultMap="location_resultMap">
+		select
+		lcode,acode,lname,laddress,llat,llong,ldesc,ucode,lconfirm from location
+	</select>
+	
+	
 </mapper>
 
 

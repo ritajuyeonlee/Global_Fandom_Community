@@ -46,6 +46,13 @@ public class SongController {
 		model.addAttribute("songList", songs);
 		return "song/songList";
 	}
+	
+	@GetMapping("/adminSongList")
+	public String adminSongList(Model model) {
+		List<Song> songs=songService.getSongList();
+		model.addAttribute("songList",songs);
+		return "admin/adminSongList";
+	}
 
 	@GetMapping("/songDetail")
 	public String songDetail(Model model, int scode) {

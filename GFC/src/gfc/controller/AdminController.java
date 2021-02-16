@@ -27,7 +27,7 @@ public class AdminController {
 
 	@GetMapping("/adminConfirmLocation")
 	public String adminlocationlist(Model model) {
-		List<Location> locations =locationService.getLocationList();
+		List<Location> locations =locationService.getLocationConfirmList();
 		model.addAttribute("locationList", locations);
 		return "admin/adminConfirmLocation";
 	}
