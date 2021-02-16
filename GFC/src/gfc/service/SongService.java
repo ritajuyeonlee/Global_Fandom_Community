@@ -48,6 +48,15 @@ public class SongService {
 		return songmapper.getSongList();
 	}
 	
+	public List<Song> searchSong(String keyword, String condition){
+		HashMap<String, String> map=new HashMap<String, String>();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		return songmapper.searchSong(map);
+	}
+	
+	
+	
 	public String convertToData(String text) throws ParseException {
 //		String temp = songService.translate(kolyric);
 //	System.out.println(temp);

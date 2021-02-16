@@ -40,7 +40,7 @@ public class UserController {
 			session.setAttribute("user", null);
 			session.setAttribute("ucode", null);
 			rttr.addFlashAttribute("msg",false);
-			return "redirect:/user/loginForm";
+			return "redirect:/loginForm";
 		}else {
 			int ucode=login.getUcode();
 			session.setAttribute("user", login);

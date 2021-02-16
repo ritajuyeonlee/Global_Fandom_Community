@@ -18,6 +18,18 @@ public class Song {
 	private String youtubelink;
 	private int kcode;
 	
+	private Artist artist;
+	
+	
+
+	public Artist getArtist() {
+	
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
 
 	public Song() {
 	}
@@ -142,7 +154,7 @@ public class Song {
 		return "Song [scode=" + scode + ", stitle=" + stitle + ", acode=" + acode + ", swriter=" + swriter
 				+ ", slyricist=" + slyricist + ", sdate=" + sdate + ", salbum=" + salbum + ", simage=" + simage
 				+ ", klyric=" + klyric + ", flyric=" + flyric + ", youtubelink=" + youtubelink + ", kcode=" + kcode
-				+ "]";
+				+ artist+"]";
 	}
 	
 
