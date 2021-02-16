@@ -21,7 +21,7 @@ public class MainController {
 	private LocationService locationService;
 	@GetMapping("/main")
 	public String addlocationForm(Model model) throws Exception{
-		List<Song> songs = songService.getSongList();
+		List<Song> songs = songService.mainList();
 		model.addAttribute("songList", songs);
 		List<Location> locations = locationService.getLocationList();
 		model.addAttribute("location",locations);
