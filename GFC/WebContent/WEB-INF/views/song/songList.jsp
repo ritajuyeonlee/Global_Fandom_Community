@@ -27,35 +27,37 @@
 			<p>No Song</p>
 		</c:when>
 		<c:otherwise>
+		
+		<div class="container"id ="grid">
+		<div class="row" >
+			<div id="top" class="col-xs-12" style="border: 1px solid #ccc;">
 			<table class="table table-striped table-sm" border="1px solid black">
 				<tr>
-					<td >노래코드</td>
+					
 					<td>제목</td>
 					<td>가수명</td>
-					<td class=writer>작곡가</td>
-					<td class=writer>작사가</td>
 					<td>발매일</td>
-					<td>앨범</td>
 					<td>앨범이미지</td>
-
+					<td>조회수</td>
 				</tr>
-
-
 
 				<c:forEach var="song" items="${songList}">
 					<tr>
-						<td><a href="/GFC/songDetail?scode=${song.scode}">${song.scode}</a></td>
-						<td><a href="${song.stitle}">${song.stitle}</a></td>
+						<td><a href="/GFC/songDetail?scode=${song.scode}">${song.stitle}</a></td>
 						<td>${song.artist.aname}</td>
-						<td>${song.swriter}</td>
-						<td>${song.slyricist}</td>
 						<td>${song.sdate}</td>
-						<td>${song.salbum}</td>
 						<td><img alt="" src="${song.simage}"></td>
+						<td>${song.sviews}</td>
 
 					</tr>
 				</c:forEach>
 			</table>
+			</div>
+		</div>
+		
+	</div>
+		
+			
 		</c:otherwise>
 	</c:choose>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gfc.dao.ArtistsMapper">
+	<resultMap type="gfc.dto.Artist" id="artist_resultMap">
+	</resultMap>
+	<select id="getArtistList" resultMap="artist_resultMap">
+		select acode, aname
+		from artists
+	</select>
+
+	<select id="getArtist" parameterType="java.lang.Integer"
+		resultMap="artist_resultMap">
+		select acode, aname
+		from artists
+		where acode = #{acode}
+	</select>
+
+	<insert id="addArtist" parameterType="gfc.dto.Artist">
+		insert into
+		artists(aname)
+		values(#{aname})
+	</insert>
+</mapper>

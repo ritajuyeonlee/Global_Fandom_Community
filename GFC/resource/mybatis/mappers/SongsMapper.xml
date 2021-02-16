@@ -38,29 +38,45 @@
 	</select> 
 	밑은 가수쪼인-->
 	
-	<select id="getSongList" resultMap="song">
-		select s.scode,s.stitle,s.swriter,a.acode,a.aname,
-		s.slyricist,s.sdate,s.salbum,s.simage, s.klyric
+	<select id="mainList" resultMap="song">
+		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
 		from artists a
 		left join songs s
 		on a.acode=s.acode
+		order by s.sviews DESC
 		<!-- 가사뺌 klyric -->
+	</select>
+	
+	<select id="getSongList" resultMap="song">
+		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
+		from songs s
+		left join artists a
+		on a.acode=s.acode
 	</select>
 
 	<select id="getSong" parameterType="java.lang.Integer"
-		resultMap="song_resultMap">
+		resultMap="song">
 		select
-		scode,stitle,acode,swriter,slyricist,sdate,salbum,
-		simage, klyric from songs
+		a.aname, s.scode,s.stitle,s.swriter,s.slyricist,s.sdate,s.salbum,
+		s.simage, s.klyric, s.flyric ,s.youtubelink, s.sviews
+		from songs s
+		left join artists a
+		on a.acode=s.acode
 		where
-		scode = #{scode}
+		s.scode = #{scode}
 	</select>
+	
+	<update id="updateViewCnt" parameterType="java.lang.Integer">
+		update songs
+		set sviews = sviews + 1
+		where scode = #{scode}
+	</update>
 
 	<insert id="addSong" parameterType="gfc.dto.Song">
 		insert into
-		songs(stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric)
+		songs(stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric,flyric)
 		values(#{stitle}, #{acode}, #{swriter}, #{slyricist}, #{sdate},
-		#{salbum}, #{simage}, #{klyric} )
+		#{salbum}, #{simage}, #{klyric} #{flyric})
 	</insert>
 	
 	<select id="searchSong" parameterType="hashmap" resultMap="song">

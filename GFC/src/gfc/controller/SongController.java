@@ -57,8 +57,9 @@ public class SongController {
 	@GetMapping("/songDetail")
 	public String songDetail(Model model, int scode) {
 //		System.out.println(scode);
-
-		Song song = songService.getSong(scode);
+		songService.updateViewCnt(scode);		// 조회수 증가
+		
+		Song song = songService.getSong(scode);	// 해당하는 곡 정보 가져오기
 		model.addAttribute("song", song);
 //		System.out.println(song);
 		return "song/songDetail";

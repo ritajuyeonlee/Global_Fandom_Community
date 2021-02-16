@@ -20,6 +20,15 @@
 		users (userid, userpw, uname, acode) values(#{userid}, #{userpw},
 		#{uname}, #{acode})
 	</insert>
+	
+	<select id="checkUserID" resultType="java.lang.Integer">
+		select count(userid) from users where userid=#{id}
+	</select>
+	
+	<select id="checkUserNAME" resultType="java.lang.Integer">
+		select count(uname) from users where uname=#{id}
+	</select>
+	
 	<select id="loginUser" resultType="gfc.dto.User">
 		select ucode, userid, userpw, uname, acode from users where userid=#{userid} and userpw = #{userpw}
 	</select>

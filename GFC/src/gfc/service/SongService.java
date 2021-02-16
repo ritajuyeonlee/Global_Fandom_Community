@@ -39,6 +39,10 @@ public class SongService {
 			return 0;
 		}
 	}
+	
+	public void updateViewCnt(int scode) {
+		songmapper.updateViewCnt(scode);
+	}
 
 	public Song getSong(int scode) {
 		return songmapper.getSong(scode);
@@ -46,6 +50,10 @@ public class SongService {
 
 	public List<Song> getSongList() {
 		return songmapper.getSongList();
+	}
+	
+	public List<Song> mainList(){
+		return songmapper.mainList();
 	}
 	
 	public List<Song> searchSong(String keyword, String condition){
