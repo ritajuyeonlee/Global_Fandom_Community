@@ -9,7 +9,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 
-<link rel="stylesheet" href="list.css">
+<link rel="stylesheet" href="list">
 
 <title>Song List</title>
 </head>
