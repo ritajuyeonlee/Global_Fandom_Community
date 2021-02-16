@@ -7,8 +7,8 @@
 
 	<select id="getSongList" resultMap="song_resultMap">
 		select
-		scode,stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric from
-		songs, kcode
+		scode,stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric, kcode from
+		songs
 	</select>
 
 	<select id="getSong" parameterType="java.lang.Integer"

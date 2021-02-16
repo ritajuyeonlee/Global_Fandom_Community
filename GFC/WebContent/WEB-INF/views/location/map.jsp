@@ -130,7 +130,7 @@ Dev dev = new Dev();
 	</select>
 	<button id="filter">적용</button>
 
-	<div id="map" style:width="500px"></div>
+	<div id="map" style="width:1000px; height:500px"></div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
