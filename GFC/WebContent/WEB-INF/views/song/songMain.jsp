@@ -54,8 +54,10 @@ form {
 
 </head>
 <body>
+
 	<h1>main</h1>
 	<div class="container">
+
 		<div class="row">
 			<form action="searchSong" method="post" class="search">
 				<select name="condition">
@@ -69,6 +71,7 @@ form {
 
 		<c:choose>
 			<c:when test="${user.userid eq 'admin'}">
+
 				<div class="row">
 					<div class="col-md-12" id="grid" style="border: 1px solid #ccc;">
 						<br>
