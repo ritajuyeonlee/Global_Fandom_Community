@@ -7,6 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<style type="text/css">
+tr.r:hover {
+	cursor: pointer;
+	background-color: #ece3f4;
+}
+
+table, th, tr, td, h1 {
+	text-align: center;
+}
+</style>
+
+<link rel="stylesheet" href="css/list.css">
+
 <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -42,7 +55,7 @@
 			alert("선택된 장소가 없어요")
 		}
 		else{
-			var ch=confirm("정말 든록하실겁니꺼?");
+			var ch=confirm("정말 등록하실겁니까?");
 			if(ch == true){
 			$.ajax({
 				url:url,
@@ -66,6 +79,8 @@
 
 
 </script>
+
+
 </head>
 <body>
 <h1>관리자의 장소컨펌할 페이지!</h1>

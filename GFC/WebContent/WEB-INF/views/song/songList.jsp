@@ -8,11 +8,27 @@
 <html>
 <head>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+
+
+<style type="text/css">
+tr.r:hover {
+	cursor: pointer;
+	background-color: #ece3f4;
+}
+
+table, th, tr, td, h1 {
+	text-align: center;
+}
+</style>
+
 
 <link rel="stylesheet" href="css/list.css">
 
@@ -20,11 +36,14 @@
 </head>
 <body>
 	<h1>Songs</h1>
+	<br>
+	<br>
 	<c:choose>
 		<c:when test="${empty songList}">
 			<p>No Song</p>
 		</c:when>
 		<c:otherwise>
+
 		
 		<div class="container"id ="grid">
 		<div class="row" >
@@ -56,6 +75,7 @@
 		<% }%>
 		
 	</div>
+
 		</c:otherwise>
 	</c:choose>
 	

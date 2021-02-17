@@ -137,7 +137,7 @@ function err() {
 						<br><br>
 						<input type="text" name="uname" placeholder="Enter Nickname" id="uname" value="" required="required"> 
 						<input
-					type="button" id="name_check" name="name_check" value="NAME double check" />
+					type="button" id="name_check" name="name_check" value="Nickname double check" />
 						<span id="msg_name" class="error"></span>
 						<input type="hidden" id="name_confirm" name="name_confirm" value="Use" />
 						<br><br>
