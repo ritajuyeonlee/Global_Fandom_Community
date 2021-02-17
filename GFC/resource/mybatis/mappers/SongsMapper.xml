@@ -56,7 +56,7 @@
 		SELECT ss.* 
 		FROM (select rownum rn, f.* from 
 			(select
-            s.scode,s.stitle,a.aname,s.simage, s.sviews
+            s.scode,s.stitle,a.aname,s.simage, s.salbum, s.swriter, s.slyricist, s.sdate
             from songs s
             left join artists a
             on a.acode=s.acode) f) ss

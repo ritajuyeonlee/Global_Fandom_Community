@@ -92,7 +92,7 @@ public class SongsMapperTest {
 	
 	@Test
 	public void recommendSong() throws Exception{
-		Song song = songsMapper.recommendSong(5);
+		Song song = songsMapper.recommendSong(6);
 		System.out.println(song);
 		assertNotNull(song);
 	}

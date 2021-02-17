@@ -30,15 +30,24 @@ public class SongController {
 	}
 
 	@PostMapping("/addSong")
-	public String AddSong(Song song) throws ParseException {
+	public String AddSong(Model model,Song song,int page) throws ParseException {
 
 		String temp = songService.translate(song.getKlyric()); // 번역
 		song.setFlyric(songService.convertToData(temp)); // 번역된거 추출
-		System.out.println(song);
+//		System.out.println(song);
 		int result = songService.addSong(song);
 
-		if (result == 1)
-			return "redirect:/songList";
+		if (result == 1) {
+			List<Song> songs = songService.getSongList(page);
+			model.addAttribute("songList", songs);
+			
+			int songCnt = songService.getSongCnt();
+			model.addAttribute("songCnt", songCnt);
+			
+			String msg = "노래 추가 완료";
+			model.addAttribute("msg", msg);
+			return "song/songList";
+		}
 		// return "redirect:/song/songList";
 		else
 			return "redirect:/addSongForm";

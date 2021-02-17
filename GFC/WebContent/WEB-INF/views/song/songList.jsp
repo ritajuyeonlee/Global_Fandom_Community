@@ -29,6 +29,15 @@ table, th, tr, td, h1 {
 }
 </style>
 
+<script type="text/javascript">
+$(function() {
+	<c:if test="${not empty msg}">
+    	alert("${msg}");
+	</c:if>
+
+});
+</script>
+
 
 <link rel="stylesheet" href="css/list.css">
 
@@ -58,7 +67,7 @@ table, th, tr, td, h1 {
 				</tr>
 				<c:forEach var="song" items="${songList}">
 					<tr>
-						<td>${song.stitle}</td>
+						<td><a href="song/songDetail?scode=${song.scode}">${song.stitle}</a></td>
 						<td>${song.artist.aname}</td>
 						<td>${song.sdate}</td>
 						<td><img alt="" src="${song.simage}"></td>

@@ -43,12 +43,18 @@ public class LocationController {
 	}
 
 	@PostMapping("/addLocation")
-	public String addlocation(Location location) {
-		//System.out.println(location);
+	public String addlocation(Model model,Location location) {
+		System.out.println(location);
 		int result = locationService.addLocation(location);
-		if (result == 1)
-			return "redirect:/map";
-			
+		System.out.println(result);
+		
+		if (result == 1) {
+			System.out.println("??");
+			String msg = "장소추가 성공";
+			model.addAttribute("msg", msg);
+			return "location/map";
+//			return "redirect:/map";
+		}
 		else
 			return "redirect:/addLocationForm";
 	}
