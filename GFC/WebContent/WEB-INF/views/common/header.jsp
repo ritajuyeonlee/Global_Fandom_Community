@@ -53,6 +53,9 @@ body{
 		    <li class="nav-item active">
           <a class="nav-link" href="adminSongList">admin노래리스트</a>
         </li>
+		    <li class="nav-item active">
+          <a class="nav-link" href="userList">admin회원리스트</a>
+        </li>
     	</c:when>
     	</c:choose>
         <li class="nav-item">
@@ -80,13 +83,12 @@ body{
         </c:choose>
       </ul>
       <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        
       </form>
       
     </div>
   </nav>
-
+<div style="margin-bottom:40px;"></div>
 
 
 
