@@ -88,7 +88,8 @@ body{
 
 		</div>
 	</nav>
-<div style="margin-bottom:100px; "></div>
+<div style="margin-bottom:100px;">
+</div>
 </body>
 </html>
 
