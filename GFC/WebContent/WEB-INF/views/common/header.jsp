@@ -19,6 +19,9 @@
 body{
 	padding-top:70px;
 }
+#plutobrand{
+	font-size: 1.2em;
+}
 </style>
 </head>
 <body>
@@ -26,7 +29,7 @@ body{
 	<!-- <span class="sr-only">(current)</span> -->
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	<img  onclick="location.href='main'" alt = "pluto" src="img/planet.png" width ="100" height = "100" style="padding: 15px;cursor: pointer">
-		<a class="navbar-brand" href="main">PLUTO</a>
+		<a class="navbar-brand" href="main" id="plutobrand">PLUTO</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarCollapse" aria-controls="navbarCollapse"
 			aria-expanded="false" aria-label="Toggle navigation">

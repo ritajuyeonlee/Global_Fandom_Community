@@ -183,7 +183,6 @@ function err() {
 <div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="card">
 					<form class="box" action="addUser" method="post" onsubmit="return err()">
 						<h1>Join</h1>
 						<p class="text-muted">Hello K-pop fan!</p>
@@ -212,7 +211,6 @@ function err() {
 				</select>
 							<input type="submit"  value="JOIN">						
 					</form>
-				</div>
 			</div>
 		</div>
 	</div>

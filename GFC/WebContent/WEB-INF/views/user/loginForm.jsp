@@ -26,7 +26,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="card">
 					<form class="box" action="loginUser" method="post">
 						<h1>Login</h1>
 						<p class="text-muted">Hello K-pop fan</p><br>
@@ -34,10 +33,10 @@
 						<input type="password" id="userpw" name="userpw" value="" required="required" placeholder="Enter Password"><br> 
 						<input type="submit" value="Login"> <a class="forgot text-muted" href="addUserForm">JOIN HERE</a>
 					</form>
-				</div>
 			</div>
 		</div>
 	</div>
+	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
