@@ -81,7 +81,7 @@ public class UserController {
 		System.out.println(user);
 		int result = userService.addUser(user);
 		if (result == 1)
-			return "redirect:/userList";
+			return "redirect:/loginForm";
 		else
 			return "redirect:/addUserForm";
 	}
