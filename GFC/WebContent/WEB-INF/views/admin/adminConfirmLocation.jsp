@@ -5,8 +5,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<style type="text/css">
+.but{
+	vertical-align:middle; 
+	background-color: #400080;
+	border: medium;
+	color: white;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius:10px;
+	
+	bottom: 10px;
+}
+
+table, th, tr, td, h1 {
+	text-align: center;
+}
+
+
+</style>
+
+<link rel="stylesheet" href="css/list.css">
+
 <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -42,7 +76,7 @@
 			alert("선택된 장소가 없어요")
 		}
 		else{
-			var ch=confirm("정말 든록하실겁니꺼?");
+			var ch=confirm("정말 등록하실겁니까?");
 			if(ch == true){
 			$.ajax({
 				url:url,
@@ -66,9 +100,14 @@
 
 
 </script>
+
+
 </head>
 <body>
-<h1>관리자의 장소컨펌할 페이지!</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+<br><h1>관리자의 장소컨펌 페이지</h1><hr>
 	<table border="1px solid black">
 		<tr>
 			<td>장소코드</td>
@@ -103,8 +142,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="button" value="등록" class="btn btn-outline-info" onclick="confirmLoc();">
-	
+	<input type="button" value="등록" class="but" onclick="confirmLoc();">
+	</div>
+    </div>
+</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 

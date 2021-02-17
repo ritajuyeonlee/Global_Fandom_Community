@@ -13,7 +13,12 @@
 </style>
 <!-- Custom styles for this template -->
 <link href="css/loginForm.css" rel="stylesheet">
-
+<script>
+	var msg = '${msg}';
+	if (msg === "fail") {
+		alert("Login Fail. Check your ID or PASSWORD.")
+	}
+</script>
 <title>MyWeb Home</title>
 </head>
 <body class="text-center">
@@ -24,20 +29,19 @@
 					<form class="box" action="loginUser" method="post">
 						<h1>Login</h1>
 						<p class="text-muted">Hello K-pop fan</p>
-						<input type="text" name="userid" placeholder="Enter ID" id="userid" value="" required="required"> 
-						<input type="password" id="userpw" name="userpw" value=""
-							required="required" placeholder="Enter Password"> 
-							<input type="submit"  value="Login">
-							<a class="forgot text-muted" href="addUserForm">JOIN HERE</a> 
-							
-
+						<input type="text" name="userid" placeholder="Enter ID"
+							id="userid" value="" required="required"> <input
+							type="password" id="userpw" name="userpw" value=""
+							required="required" placeholder="Enter Password"> <input
+							type="submit" value="Login"> <a class="forgot text-muted"
+							href="addUserForm">JOIN HERE</a>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	
+
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
