@@ -10,6 +10,10 @@
 		select ucode, userid, userpw, uname, acode from users
 	</select>
 	
+	<select id="getAcode" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select acode from users where ucode = #{ucode}
+	</select>
+	
 	<select id="getUser" parameterType="java.lang.String"
 		resultMap="user_resultMap">
 		select ucode, userid, userpw, uname, acode from users where

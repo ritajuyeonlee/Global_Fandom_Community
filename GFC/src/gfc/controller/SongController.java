@@ -2,6 +2,9 @@ package gfc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import gfc.dto.Song;
+import gfc.dto.User;
 import gfc.service.SongService;
 
 @Controller
@@ -66,8 +70,22 @@ public class SongController {
 	}
 
 	@GetMapping("/songMain")
-	public String songMain(Model model) {
+	public String songMain(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int ucode = (int)session.getAttribute("ucode");
+		System.out.println(ucode);
+		
+		int acode = songService.getAcode(ucode);
+		
+		System.out.println(acode);
 
+		List<Song> songs = songService.favoriteList(acode);
+		System.out.println(songs);
+		model.addAttribute("favoriteList", songs);
+		
+		Song favoriteSong = songService.favoriteSong(acode);
+		model.addAttribute("favoriteSong", favoriteSong);
+		
 		return "song/songMain";
 	}
 

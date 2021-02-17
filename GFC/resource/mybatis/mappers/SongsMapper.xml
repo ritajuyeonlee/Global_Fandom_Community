@@ -2,73 +2,109 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gfc.dao.SongsMapper">
-	
+
 	<resultMap type="gfc.dto.Artist" id="artist">
-		<result column="acode" property="acode"/>
-		<result column="aname" property="aname"/>
-		
+		<result column="acode" property="acode" />
+		<result column="aname" property="aname" />
+
 	</resultMap>
 	<resultMap type="gfc.dto.Song" id="song">
-		<result column="scode" property="scode"/>
-		<result column="stitle" property="stitle"/>
-		<result column="swriter" property="swriter"/>
-		<result column="slyricist" property="slyricist"/>
-		<result column="sdate" property="sdate"/>
-		<result column="salbum" property="salbum"/>
-		<result column="simage" property="simage"/>
-		<result column="klyric" property="klyric"/>
-		<result column="flyric" property="flyric"/>
-		<result column="youtubelink" property="youtubelink"/>
-		<result column="sviews" property="sviews"/>
-		<collection property="artist" resultMap="artist"/>
+		<result column="scode" property="scode" />
+		<result column="stitle" property="stitle" />
+		<result column="swriter" property="swriter" />
+		<result column="slyricist" property="slyricist" />
+		<result column="sdate" property="sdate" />
+		<result column="salbum" property="salbum" />
+		<result column="simage" property="simage" />
+		<result column="klyric" property="klyric" />
+		<result column="flyric" property="flyric" />
+		<result column="youtubelink" property="youtubelink" />
+		<result column="sviews" property="sviews" />
+		<collection property="artist" resultMap="artist" />
 	</resultMap>
-	
-	
-	
-<!-- 위에 있는 애는 서치용 result map -->
+
+
+
+	<!-- 위에 있는 애는 서치용 result map -->
 
 	<resultMap type="gfc.dto.Song" id="song_resultMap">
 	</resultMap>
 
-	<!-- 기존꺼<select id="getSongList" resultMap="song_resultMap">
-		select
-		scode,stitle,acode,swriter,slyricist,sdate,salbum,simage from
-		songs
-		가사뺌 klyric
-	</select> 
-	밑은 가수쪼인-->
-	
-	<select id="mainList" resultMap="song">
-		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
-		from artists a
-		left join songs s
-		on a.acode=s.acode
-		order by s.sviews DESC
-		<!-- 가사뺌 klyric -->
+	<!-- 기존꺼<select id="getSongList" resultMap="song_resultMap"> select scode,stitle,acode,swriter,slyricist,sdate,salbum,simage 
+		from songs 가사뺌 klyric </select> 밑은 가수쪼인 -->
+
+	<select id="mainList" parameterType="java.lang.Integer" resultMap="song">
+		select ff.scode, ff.stitle, ff.aname, ff.simage, ff.sviews
+      from
+         (select rownum rn , f.scode, f.stitle, f.aname, f.simage, f.sviews
+         from
+            (select
+            s.scode,s.stitle,a.aname,s.simage, s.sviews
+            from songs s
+            left join artists a
+            on a.acode=s.acode
+            order by s.sviews desc) f) ff
+      <![CDATA[where ff.rn<= #{rownum}]]> 
+      
+	</select>
+
+	<select id="favoriteSong" parameterType="java.lang.Integer"
+		resultType="gfc.dto.Song">
+		select ff.scode ,ff.stitle, ff.aname, ff.sdate, ff.simage,
+			ff.sviews, ff.swriter, ff.slyricist, ff.salbum
+		from
+			(select rownum rn ,f.scode ,f.stitle, f.aname, f.sdate, f.simage, f.sviews,
+			f.swriter, f.slyricist, f.salbum
+			from
+				(select
+					s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews,
+					s.swriter,s.slyricist, s.salbum
+				from songs s
+				left join artists a
+				on a.acode=s.acode
+				where s.acode = #{acode}
+				order by s.sviews desc) f) ff
+		where ff.rn = 1
 	</select>
 	
 	<select id="getSongList" resultMap="song">
 		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
-		from artists a
-		left join songs s
+		from songs s
+		left join artists a
 		on a.acode=s.acode
+		where s.scode > 0
 	</select>
 
+	<select id="favoriteList" parameterType="java.lang.Integer"
+		resultMap="song">
+		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
+		from songs s
+		left join artists a
+		on a.acode=s.acode
+		where s.acode = #{acode}
+		order by s.scode
+	</select>
+
+
 	<select id="getSong" parameterType="java.lang.Integer"
-		resultMap="song_resultMap">
+		resultMap="song">
 		select
-		a.aname, s.scode,s.stitle,s.swriter,s.slyricist,s.sdate,s.salbum,
-		s.simage, s.klyric, s.flyric ,s.youtubelink
+		a.aname,
+		s.scode,s.stitle,s.swriter,s.slyricist,s.sdate,s.salbum,
+		s.simage,
+		s.klyric, s.flyric ,s.youtubelink
 		from artists a
 		left join songs s
-		on a.acode=s.acode
+		on
+		a.acode=s.acode
 		where
 		s.scode = #{scode}
 	</select>
-	
+
 	<update id="updateViewCnt" parameterType="java.lang.Integer">
 		update songs
-		set sviews = sviews + 1
+		set sviews
+		= sviews + 1
 		where scode = #{scode}
 	</update>
 
@@ -76,17 +112,18 @@
 		insert into
 		songs(stitle,acode,swriter,slyricist,sdate,salbum,simage,klyric,flyric)
 		values(#{stitle}, #{acode}, #{swriter}, #{slyricist}, #{sdate},
-		#{salbum}, #{simage}, #{klyric} #{flyric})
+		#{salbum}, #{simage}, #{klyric}, #{flyric})
 	</insert>
-	
+
 	<select id="searchSong" parameterType="hashmap" resultMap="song">
 		select s.scode,s.stitle,s.acode,s.swriter,a.acode,a.aname,
 		s.slyricist,s.sdate,s.salbum,s.simage, s.klyric
 		from artists a
-		left join songs s
+		left join
+		songs s
 		on a.acode=s.acode
-	
-			where upper(${condition}) like '%'||upper(#{keyword})||'%'
-		
-	</select> 
+
+		where upper(${condition}) like '%'||upper(#{keyword})||'%'
+
+	</select>
 </mapper>
