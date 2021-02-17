@@ -33,9 +33,20 @@ tr.r:hover {
 	background-color: #ece3f4;
 }
 
-table, th, tr, td, h1 {
+
+table, th, tr, td, h1,div {
 	text-align: center;
 }
+.page{
+	text-decoration: none;
+	color : #800040;
+}
+.page:hover{
+	text-decoration: overline;
+	color : #ff80c0;
+}
+
+
 </style>
 
 
@@ -84,7 +95,6 @@ table, th, tr, td, h1 {
 		for(int i=1;i<=cnt;i++){%>
 			<a href ="songList?page=<%=i%>"><%=i%></a>
 		<% }%>
-		
 	</div>
 
 		</c:otherwise>
