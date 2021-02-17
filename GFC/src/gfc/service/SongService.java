@@ -51,8 +51,8 @@ public class SongService {
 		return songmapper.getSong(scode);
 	}
 
-	public List<Song> getSongList() {
-		return songmapper.getSongList();
+	public List<Song> getSongList(int page) {
+		return songmapper.getSongList(page);
 	}
 	
 	public List<Song> mainList(int rownum){

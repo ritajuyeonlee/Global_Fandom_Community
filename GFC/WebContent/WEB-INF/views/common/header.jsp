@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,17 +8,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <title>Pluto</title>
 <style type="text/css">
-body {
-	padding-top: 70px;
+body{
+	padding-top:70px;
 }
+
+
 </style>
 </head>
 <body>
+
 	<!-- <span class="sr-only">(current)</span> -->
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	<img  onclick="location.href='main'" alt = "pluto" src="img/planet.png" width ="100" height = "100" style="padding: 15px;cursor: pointer">
@@ -30,9 +35,21 @@ body {
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="songList">누구나노래리스트</a>
+				<li class="nav-item active"><a class="nav-link" href="songList?page=1">누구나노래리스트</a>
+
 				</li>
-				<li class="nav-item active"><a class="nav-link" href="songMain">노래메인</a>
+				<li class="nav-item active">
+				
+				
+				<c:choose>
+        	<c:when test="${not empty ucode}">
+          <a class="nav-link" href="songMain?ucode=${ucode}&page=1">노래메인</a>	<!-- 로그인 되어있을 때-->
+          	</c:when>
+          	<c:otherwise>
+          <a class="nav-link" href="songMain?ucode=-1&page=1">노래메인</a>	<!-- 로그인 안했을 때 -->
+          </c:otherwise>
+        </c:choose>
+
 				</li>
 				<c:choose>
 					<c:when test="${user.userid eq 'admin'}">
@@ -74,6 +91,9 @@ body {
 
 		</div>
 	</nav>
+
+
+
 
 
 

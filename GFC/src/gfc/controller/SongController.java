@@ -31,9 +31,9 @@ public class SongController {
 
 	@PostMapping("/addSong")
 	public String AddSong(Song song) throws ParseException {
-		
-		String temp = songService.translate(song.getKlyric());	// 번역
-		song.setFlyric(songService.convertToData(temp));		// 번역된거 추출
+
+		String temp = songService.translate(song.getKlyric()); // 번역
+		song.setFlyric(songService.convertToData(temp)); // 번역된거 추출
 		System.out.println(song);
 		int result = songService.addSong(song);
 
@@ -46,15 +46,20 @@ public class SongController {
 	}
 
 	@GetMapping("/songList")
-	public String list(Model model) {
-		List<Song> songs = songService.getSongList();
+	public String list(Model model,int page) {
+		List<Song> songs = songService.getSongList(page);
 		model.addAttribute("songList", songs);
+		
+		int songCnt = songService.getSongCnt();
+//		System.out.println(songCnt);
+		model.addAttribute("songCnt", songCnt);
+		
 		return "song/songList";
 	}
 
 	@GetMapping("/adminSongList")
-	public String adminSongList(Model model) {
-		List<Song> songs = songService.getSongList();
+	public String adminSongList(Model model,int page) {
+		List<Song> songs = songService.getSongList(page);
 		model.addAttribute("songList", songs);
 		return "admin/adminSongList";
 	}
@@ -70,29 +75,33 @@ public class SongController {
 		return "song/songDetail";
 	}
 
-//	************************************* 로그인 안했을 때 페이지가 안뜸 **************************************
 	@GetMapping("/songMain")
-	public String songMain(Model model, HttpServletRequest request) {
-		if (request.getSession(false) != null) {
-			HttpSession session = request.getSession();
-			int ucode = (int) session.getAttribute("ucode");
+	public String songMain(Model model, int ucode,int page) {
+		if(ucode == -1 || ucode == 1) {
+			List<Song> mainList = songService.mainList(5); // 갯수 정해 놓을건지
+//			List<Song> songs =songService.getSongList();	// 그냥 있는거 다 출력할건지
+			System.out.println(mainList);
+			model.addAttribute("mainList", mainList);
+		}else {
+			System.out.println("유저코드!");
 			System.out.println(ucode);
 
 			int acode = songService.getAcode(ucode);
 			System.out.println(acode);
 
-			List<Song> songs = songService.favoriteList(acode);
-			System.out.println(songs);
-			model.addAttribute("favoriteList", songs);
+			List<Song> favoriteList = songService.favoriteList(acode);
+			System.out.println(favoriteList);
+			model.addAttribute("favoriteList", favoriteList);
 
 			Song favoriteSong = songService.favoriteSong(acode);
 			model.addAttribute("favoriteSong", favoriteSong);
-		} else {
-			List<Song> songs = songService.mainList(5); // 갯수 정해 놓을건지
-//			List<Song> songs =songService.getSongList();	// 그냥 있는거 다 출력할건지
-			System.out.println(songs);
-			model.addAttribute("mainList", songs);
 		}
+		List<Song> songList = songService.getSongList(page);
+		model.addAttribute("songList", songList);
+		
+		int songCnt = songService.getSongCnt();
+//		System.out.println(songCnt);
+		model.addAttribute("songCnt", songCnt);
 
 		return "song/songMain";
 	}
@@ -106,5 +115,4 @@ public class SongController {
 
 		return "song/songList";
 	}
-
 }
