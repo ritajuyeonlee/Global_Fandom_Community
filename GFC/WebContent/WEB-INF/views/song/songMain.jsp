@@ -59,7 +59,7 @@ form {
 	<div class="container">
 
 		<div class="row">
-			<form action="searchSong" method="post" class="search">
+			<form action="searchSong" method="get" class="search">
 				<select name="condition">
 					<option value="stitle">Title</option>
 					<option value="aname">Artist</option>
@@ -91,7 +91,7 @@ form {
 						</table>
 					</div>
 				</div>
-	</div>
+	
 	</c:when>
 	<c:when test="${empty ucode}">
 		<div class="container">
@@ -167,9 +167,9 @@ form {
 				</div>
 			</div>
 		</div>
-	</div>
 	</c:otherwise>
 	</c:choose>
+	</div>
 
 	<br>
 	<div class="container" id="grid" style="border: 1px solid #ccc;">
@@ -224,10 +224,10 @@ form {
 		</c:choose>
 
 			
-	</div>
+	
 	</c:otherwise>
 	</c:choose>
-
+</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>

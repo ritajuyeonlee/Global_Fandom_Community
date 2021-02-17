@@ -16,18 +16,20 @@
 	 background:black;
 	 color: white;
  	 position:fixed;
- 	 bottom:0;
+  	 bottom:0;
 	 height:50px;
 	 text-align:center;  
 	 line-height:50px;
 	 margin-top:30px;
+	 
+	 
 }
 #ig{
 	margin-bottom:50px;
 }
 </style>
 </head>
-<br><br><br>
+
 <div id="footer" class="w-100">
 <div class="container">
 <span class="text muted">FOR ALL THE K-POP FANS</span>
