@@ -39,8 +39,6 @@ body{
 
 				</li>
 				<li class="nav-item active">
-				
-				
 				<c:choose>
         	<c:when test="${not empty ucode}">
           <a class="nav-link" href="songMain?ucode=${ucode}&page=1">노래메인</a>	<!-- 로그인 되어있을 때-->
