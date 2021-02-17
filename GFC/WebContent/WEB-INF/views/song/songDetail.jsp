@@ -147,7 +147,6 @@ var $j351 = jQuery.noConflict();
 
 </head>
 <body>
-	<h1>노래목록</h1>
 
 	<div class="container">
 		<div class="row">
@@ -159,11 +158,11 @@ var $j351 = jQuery.noConflict();
 			<div class="song info col-md-7  col-mb-3">
 				<h3>${song.stitle}</h3>
 				<h3>${song.artist.aname}</h3>
-				<h5>작곡가 : ${song.swriter}</h5>
-				<h5>작사가 : ${song.slyricist}</h5>
-				<h5>발매일 : ${song.sdate}</h5>
-				<h5>앨범명 : ${song.salbum}</h5>
-				<h5>조회수 : ${song.sviews}</h5>
+				<h5>Songwriter : ${song.swriter}</h5>
+				<h5>Lyricist : ${song.slyricist}</h5>
+				<h5>Released Date : ${song.sdate}</h5>
+				<h5>Album : ${song.salbum}</h5>
+				<h5>Views : ${song.sviews}</h5>
 			</div>
 			<br> <br>
 
@@ -183,16 +182,16 @@ var $j351 = jQuery.noConflict();
 			<br><br>
 				<c:choose>
 					<c:when test="${not empty user.userid}">
-						<li>${user.uname}님</li>
+						<li>${user.uname}</li>
 					</c:when>
 					<c:otherwise>
-						<li>로그인하세요.</li>
+						<li>Please Login</li>
 					</c:otherwise>
 				</c:choose>
 				
 				<textarea id="Comment" name="Comment"></textarea>
-				<input type="button" id="clear" value="취소" /> <input type="button"
-					id="addComment" value="댓글" /> <br>
+				<input type="button" id="clear" value="Cancel" /> <input type="button"
+					id="addComment" value="Add" /> <br>
 					
 				<br><br>
 				<div style="float: right;">
