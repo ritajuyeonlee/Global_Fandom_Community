@@ -8,26 +8,9 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/list.css">
-<style type="text/css">
-
-table, th, tr, td, h1,div {
-	text-align: center;
-}
-
-</style>
 <title>Artist List</title>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
 	<h1>가수목록보기</h1>
 
 	<table border="1px solid black">
@@ -44,8 +27,5 @@ table, th, tr, td, h1,div {
 	</table>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-	</div>
-    </div>
-</div>
 </body>
 </html>

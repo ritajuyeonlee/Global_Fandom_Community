@@ -24,7 +24,7 @@
 	</resultMap>
 
 	<select id="getLocationList" resultMap="location_ua_resultMap">
-		select 
+		select
 		l.lname,l.laddress,l.llat,l.llong,l.ldesc,l.lconfirm,
 		u.uname, a.aname
 		from location l

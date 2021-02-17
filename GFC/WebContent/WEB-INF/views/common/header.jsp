@@ -19,6 +19,8 @@
 body{
 	padding-top:70px;
 }
+
+
 </style>
 </head>
 <body>
@@ -89,9 +91,8 @@ body{
 		</div>
 	</nav>
 
-
 <div style="margin-bottom:100px;"></div>
-
 
 </body>
 </html>
+

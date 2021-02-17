@@ -29,9 +29,7 @@ public class LocationController {
 	}
 
 	@GetMapping("/map")
-	public String map(Model model) {
-		List<Location> locations = locationService.getLocationList();
-		model.addAttribute("locationList", locations);
+	public String map() {
 		return "location/map";
 	}
 	
