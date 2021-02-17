@@ -35,9 +35,18 @@ body{
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="songList">누구나노래리스트</a>
+				<li class="nav-item active"><a class="nav-link" href="songList?page=1">누구나노래리스트</a>
 				</li>
-				<li class="nav-item active"><a class="nav-link" href="songMain">노래메인</a>
+				<li class="nav-item active">
+				<c:choose>
+        	<c:when test="${not empty ucode}">
+          <a class="nav-link" href="songMain?ucode=${ucode}&page=1">노래메인</a>	<!-- 로그인 되어있을 때-->
+          	</c:when>
+          	<c:otherwise>
+          <a class="nav-link" href="songMain?ucode=-1&page=1">노래메인</a>	<!-- 로그인 안했을 때 -->
+          </c:otherwise>
+        </c:choose>
+				
 				</li>
 				<c:choose>
 					<c:when test="${user.userid eq 'admin'}">
