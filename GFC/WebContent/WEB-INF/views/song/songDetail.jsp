@@ -175,8 +175,8 @@
 			<td><img alt="" src="${song.simage}"> </td>
 		</tr>
 		<tr>
-			<td>${song.klyric}</td>
-			<td>${song.flyric}</td>
+			<td><pre>${song.klyric}</pre></td>
+			<td><pre>${song.flyric}</pre></td>
 
 		</tr>
 	</table>

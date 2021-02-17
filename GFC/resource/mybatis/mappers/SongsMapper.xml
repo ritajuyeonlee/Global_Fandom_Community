@@ -47,6 +47,22 @@
       <![CDATA[where ff.rn<= #{rownum}]]> 
       
 	</select>
+	
+	<select id="getSongCnt" resultType="java.lang.Integer">
+		select count(*) from songs
+	</select>
+	
+	<select id="recommendSong" parameterType="java.lang.Integer" resultMap="song">
+		SELECT ss.* 
+		FROM (select rownum rn, f.* from 
+			(select
+            s.scode,s.stitle,a.aname,s.simage, s.sviews
+            from songs s
+            left join artists a
+            on a.acode=s.acode) f) ss
+		WHERE ss.rn = (SELECT (ROUND(DBMS_RANDOM.VALUE() * (#{songCnt}-1)))+1 FROM DUAL)
+	
+	</select>
 
 	<select id="favoriteSong" parameterType="java.lang.Integer"
 		resultType="gfc.dto.Song">

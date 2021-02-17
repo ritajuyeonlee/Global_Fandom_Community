@@ -59,6 +59,14 @@ public class SongService {
 		return songmapper.mainList(rownum);
 	}
 	
+	public int getSongCnt() {
+		return songmapper.getSongCnt();
+	}
+	
+	public Song recommendSong(int songCnt) {
+		return songmapper.recommendSong(songCnt);
+	}
+	
 	public List<Song> favoriteList(int acode){
 		return songmapper.favoriteList(acode);
 	}

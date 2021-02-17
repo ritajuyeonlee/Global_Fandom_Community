@@ -78,15 +78,28 @@ public class SongsMapperTest {
 	
 	@Test
 	public void mainList() throws Exception{
-		List<Song> list = songsMapper.mainList(5);
+		List<Song> list = songsMapper.mainList(3);
 		System.out.println(list);
 		assertNotNull(list);
+	}
+	
+	@Test
+	public void getSongCnt() throws Exception{
+		int songCnt = songsMapper.getSongCnt();
+		System.out.println(songCnt);
+		assertNotNull(songCnt);
+	}
+	
+	@Test
+	public void recommendSong() throws Exception{
+		Song song = songsMapper.recommendSong(5);
+		System.out.println(song);
+		assertNotNull(song);
 	}
 	
 	@Test 
 	public void updateViewCnt() throws Exception{
 		songsMapper.updateViewCnt(1);
-		
 	}
 	
 }

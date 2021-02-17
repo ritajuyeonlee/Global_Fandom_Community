@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<td>한글가사 :</td>
-				<td><input type="text" name="klyric"></td>
+				<td><textarea name="klyric" rows="4" cols="50"></textarea></td>
 			</tr>
 			<tr>
 				<td>유튜브링크 :</td>

@@ -48,12 +48,15 @@
 				</table>
 			</div>
 			<div class="col-md-4" style="border: 1px solid #ccc;">
-				<img src="img/fan.png" width="200px">
-				<div>장소</div>
-			</div>
-			<div class="col-md-4" style="border: 1px solid #ccc;">
-				<img src="img/fan.png" width="200px">
-				<div>추천곡</div>
+				<div>☆추천곡★</div>
+				<table>
+						<tr>
+							<td><img alt="" src="${recommendSong.simage}" width="50px"></td>
+							<td><a href="/GFC/songDetail?scode=${recommendSong.scode}">${recommendSong.stitle}</a></td>
+							<td>${recommendSong.artist.aname}</td>
+							<td>${recommendSong.sviews}</td>
+						</tr>
+				</table>
 			</div>
 		</div>
 	</div>
