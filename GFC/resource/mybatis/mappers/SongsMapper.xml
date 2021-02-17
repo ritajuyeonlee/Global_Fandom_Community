@@ -66,7 +66,7 @@
 	</select>
 
 	<select id="favoriteSong" parameterType="java.lang.Integer"
-		resultType="gfc.dto.Song">
+		resultMap="song">
 		select ff.scode ,ff.stitle, ff.aname, ff.sdate, ff.simage,
 			ff.sviews, ff.swriter, ff.slyricist, ff.salbum
 		from
@@ -84,12 +84,17 @@
 		where ff.rn = 1
 	</select>
 	
-	
-	<select id="getSongList" resultMap="song">
-		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
-		from songs s
-		left join artists a
-		on a.acode=s.acode
+	<select id="getSongList" parameterType="java.lang.Integer" resultMap="song">
+		select ff.*
+		from
+			(select rownum rn, f.*
+			from
+				(select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
+				from songs s
+				left join artists a
+				on a.acode=s.acode
+				order by s.scode desc) f) ff
+		<![CDATA[where ff.rn>(#{page}*4)-4 and ff.rn<= #{page}*4]]>
 	</select>
 
 	<select id="favoriteList" parameterType="java.lang.Integer"
@@ -111,14 +116,12 @@
 		from songs s
 		left join artists a
 		on a.acode=s.acode
-		where
-		s.scode = #{scode}
+		where s.scode = #{scode}
 	</select>
 
 	<update id="updateViewCnt" parameterType="java.lang.Integer">
 		update songs
-		set sviews
-		= sviews + 1
+		set sviews = sviews + 1
 		where scode = #{scode}
 	</update>
 
@@ -136,7 +139,6 @@
 		left join
 		songs s
 		on a.acode=s.acode
-
 		where upper(${condition}) like '%'||upper(#{keyword})||'%'
 
 	</select>

@@ -89,7 +89,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4" style="border: 1px solid #ccc;">
-						<div>☆최애 곡 리스트★</div>
+						<div>☆그냥 곡 리스트★</div>
 						<table>
 							<c:forEach var="song" items="${mainList}" varStatus="status">
 								<tr>
