@@ -8,19 +8,11 @@
 <html>
 <head>
 
-<style type="text/css">
-h2,a{
-	text-align: center;
-}
-</style>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-
-
 
 <link rel="stylesheet" href="css/list.css">
 

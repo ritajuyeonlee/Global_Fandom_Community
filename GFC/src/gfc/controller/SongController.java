@@ -75,29 +75,33 @@ public class SongController {
 		return "song/songDetail";
 	}
 
-//	************************************* 로그인 안했을 때 페이지가 안뜸 **************************************
 	@GetMapping("/songMain")
-	public String songMain(Model model, int ucode) {
-		if (ucode != -1) {
+	public String songMain(Model model, int ucode,int page) {
+		if(ucode == -1 || ucode == 1) {
+			List<Song> mainList = songService.mainList(5); // 갯수 정해 놓을건지
+//			List<Song> songs =songService.getSongList();	// 그냥 있는거 다 출력할건지
+			System.out.println(mainList);
+			model.addAttribute("mainList", mainList);
+		}else {
 			System.out.println("유저코드!");
 			System.out.println(ucode);
 
 			int acode = songService.getAcode(ucode);
 			System.out.println(acode);
 
-			List<Song> songs = songService.favoriteList(acode);
-			System.out.println(songs);
-			model.addAttribute("favoriteList", songs);
+			List<Song> favoriteList = songService.favoriteList(acode);
+			System.out.println(favoriteList);
+			model.addAttribute("favoriteList", favoriteList);
 
 			Song favoriteSong = songService.favoriteSong(acode);
 			model.addAttribute("favoriteSong", favoriteSong);
 		}
-		else {
-			List<Song> songs1 = songService.mainList(5); // 갯수 정해 놓을건지
-//			List<Song> songs =songService.getSongList();	// 그냥 있는거 다 출력할건지
-			System.out.println(songs1);
-			model.addAttribute("mainList", songs1);
-		}
+		List<Song> songList = songService.getSongList(page);
+		model.addAttribute("songList", songList);
+		
+		int songCnt = songService.getSongCnt();
+//		System.out.println(songCnt);
+		model.addAttribute("songCnt", songCnt);
 
 		return "song/songMain";
 	}
