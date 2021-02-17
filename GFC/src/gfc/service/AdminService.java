@@ -11,8 +11,6 @@ import gfc.dao.LocationsMapper;
 @Transactional
 public class AdminService {
 	@Autowired
-	private LocationsMapper locationMapper;
-	@Autowired
 	private AdminMapper adminMapper;
 
 	public int confirmLocation(int lcode) {

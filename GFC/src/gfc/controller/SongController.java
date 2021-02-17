@@ -31,9 +31,9 @@ public class SongController {
 
 	@PostMapping("/addSong")
 	public String AddSong(Song song) throws ParseException {
-		
-		String temp = songService.translate(song.getKlyric());	// 번역
-		song.setFlyric(songService.convertToData(temp));		// 번역된거 추출
+
+		String temp = songService.translate(song.getKlyric()); // 번역
+		song.setFlyric(songService.convertToData(temp)); // 번역된거 추출
 		System.out.println(song);
 		int result = songService.addSong(song);
 
@@ -46,15 +46,20 @@ public class SongController {
 	}
 
 	@GetMapping("/songList")
-	public String list(Model model) {
-		List<Song> songs = songService.getSongList();
+	public String list(Model model,int page) {
+		List<Song> songs = songService.getSongList(page);
 		model.addAttribute("songList", songs);
+		
+		int songCnt = songService.getSongCnt();
+//		System.out.println(songCnt);
+		model.addAttribute("songCnt", songCnt);
+		
 		return "song/songList";
 	}
 
 	@GetMapping("/adminSongList")
-	public String adminSongList(Model model) {
-		List<Song> songs = songService.getSongList();
+	public String adminSongList(Model model,int page) {
+		List<Song> songs = songService.getSongList(page);
 		model.addAttribute("songList", songs);
 		return "admin/adminSongList";
 	}
@@ -72,10 +77,9 @@ public class SongController {
 
 //	************************************* 로그인 안했을 때 페이지가 안뜸 **************************************
 	@GetMapping("/songMain")
-	public String songMain(Model model, HttpServletRequest request) {
-		if (request.getSession(false) != null) {
-			HttpSession session = request.getSession();
-			int ucode = (int) session.getAttribute("ucode");
+	public String songMain(Model model, int ucode) {
+		if (ucode != -1) {
+			System.out.println("유저코드!");
 			System.out.println(ucode);
 
 			int acode = songService.getAcode(ucode);
@@ -87,11 +91,12 @@ public class SongController {
 
 			Song favoriteSong = songService.favoriteSong(acode);
 			model.addAttribute("favoriteSong", favoriteSong);
-		} else {
-			List<Song> songs = songService.mainList(5); // 갯수 정해 놓을건지
+		}
+		else {
+			List<Song> songs1 = songService.mainList(5); // 갯수 정해 놓을건지
 //			List<Song> songs =songService.getSongList();	// 그냥 있는거 다 출력할건지
-			System.out.println(songs);
-			model.addAttribute("mainList", songs);
+			System.out.println(songs1);
+			model.addAttribute("mainList", songs1);
 		}
 
 		return "song/songMain";
