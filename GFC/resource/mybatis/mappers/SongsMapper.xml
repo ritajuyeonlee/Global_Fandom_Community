@@ -82,7 +82,7 @@
 				where s.acode = #{acode}
 				order by s.sviews desc) f) ff
 		where ff.rn = 1
-
+	</select>
 	<select id="mainList" resultMap="song">
 		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
 		from songs s
