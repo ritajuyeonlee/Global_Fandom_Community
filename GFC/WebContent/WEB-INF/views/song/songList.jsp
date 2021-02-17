@@ -64,10 +64,10 @@ table, th, tr, td, h1,div {
 			<div id="top" class="col-xs-12" >
 			<table >
 				<tr>
+					<td>Album</td>
 					<td>Title</td>
 					<td>Artist</td>
 					<td>Release date</td>
-					<td>Album</td>
 					<td>Views</td>
 				</tr>
 				<c:forEach var="song" items="${songList}">
