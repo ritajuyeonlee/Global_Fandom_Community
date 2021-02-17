@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import gfc.config.ApplicationConfig;
@@ -61,10 +62,44 @@ public class SongsMapperTest {
 //		Assert.assertEquals(8, list.size());
 	}
 	
+	@Test
+	public void favoriteList() throws Exception{
+		List<Song> list = songsMapper.favoriteList(1);
+		System.out.println(list);
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void favoriteSong() throws Exception{
+		Song song = songsMapper.favoriteSong(1);
+		System.out.println(song);
+		assertNotNull(song);
+	}
+	
+	@Test
+	public void mainList() throws Exception{
+		List<Song> list = songsMapper.mainList(3);
+		System.out.println(list);
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void getSongCnt() throws Exception{
+		int songCnt = songsMapper.getSongCnt();
+		System.out.println(songCnt);
+		assertNotNull(songCnt);
+	}
+	
+	@Test
+	public void recommendSong() throws Exception{
+		Song song = songsMapper.recommendSong(5);
+		System.out.println(song);
+		assertNotNull(song);
+	}
+	
 	@Test 
 	public void updateViewCnt() throws Exception{
 		songsMapper.updateViewCnt(1);
-		
 	}
 	
 }

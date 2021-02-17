@@ -21,10 +21,16 @@ public class MainController {
 	private LocationService locationService;
 	@GetMapping("/main")
 	public String addlocationForm(Model model) throws Exception{
-		List<Song> songs = songService.mainList();
+		List<Song> songs = songService.mainList(5);
 		model.addAttribute("songList", songs);
+		
+		int songCnt = songService.getSongCnt();
+		Song recommendSong = songService.recommendSong(songCnt);
+		model.addAttribute("recommendSong", recommendSong);
+		
 		List<Location> locations = locationService.getLocationList();
 		model.addAttribute("location",locations);
+		
 		return "main";
 	}
 }

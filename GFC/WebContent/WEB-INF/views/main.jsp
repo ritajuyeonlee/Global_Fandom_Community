@@ -29,8 +29,6 @@ background-size: 100%;
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%-- <%@ include file="/WEB-INF/views/common/jsp/footer.jsp" %> --%>
 <body>
-
-	
 	<main class="container">
   <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark hi">
     <div class="col-md-6 px-0">
@@ -67,6 +65,15 @@ background-size: 100%;
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">오늘의 추천곡</strong>
+				<table>
+						<tr>
+							<td><img alt="" src="${recommendSong.simage}" width="50px"></td>
+							<td><a href="/GFC/songDetail?scode=${recommendSong.scode}">${recommendSong.stitle}</a></td>
+							<td>${recommendSong.artist.aname}</td>
+							<td>${recommendSong.sviews}</td>
+						</tr>
+				</table>
+          
           <h3 class="mb-0">Post title</h3>
           <div class="mb-1 text-muted">Nov 11</div>
           <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
@@ -79,8 +86,6 @@ background-size: 100%;
       </div>
     </div>
   </div>
-
-  
 
 </main>
     

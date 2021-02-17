@@ -2,6 +2,9 @@ package gfc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import gfc.dto.Song;
+import gfc.dto.User;
 import gfc.service.SongService;
 
 @Controller
@@ -27,8 +31,9 @@ public class SongController {
 
 	@PostMapping("/addSong")
 	public String AddSong(Song song) throws ParseException {
-		String temp = songService.translate(song.getKlyric());
-		song.setFlyric(songService.convertToData(temp));
+		
+		String temp = songService.translate(song.getKlyric());	// 번역
+		song.setFlyric(songService.convertToData(temp));		// 번역된거 추출
 		System.out.println(song);
 		int result = songService.addSong(song);
 
@@ -46,36 +51,56 @@ public class SongController {
 		model.addAttribute("songList", songs);
 		return "song/songList";
 	}
-	
+
 	@GetMapping("/adminSongList")
 	public String adminSongList(Model model) {
-		List<Song> songs=songService.getSongList();
-		model.addAttribute("songList",songs);
+		List<Song> songs = songService.getSongList();
+		model.addAttribute("songList", songs);
 		return "admin/adminSongList";
 	}
 
 	@GetMapping("/songDetail")
 	public String songDetail(Model model, int scode) {
 //		System.out.println(scode);
-		songService.updateViewCnt(scode);		// 조회수 증가
-		
-		Song song = songService.getSong(scode);	// 해당하는 곡 정보 가져오기
+		songService.updateViewCnt(scode); // 조회수 증가
+
+		Song song = songService.getSong(scode); // 해당하는 곡 정보 가져오기
 		model.addAttribute("song", song);
 //		System.out.println(song);
 		return "song/songDetail";
 	}
 
+//	************************************* 로그인 안했을 때 페이지가 안뜸 **************************************
 	@GetMapping("/songMain")
-	public String songMain(Model model) {
+	public String songMain(Model model, HttpServletRequest request) {
+		if (request.getSession(false) != null) {
+			HttpSession session = request.getSession();
+			int ucode = (int) session.getAttribute("ucode");
+			System.out.println(ucode);
+
+			int acode = songService.getAcode(ucode);
+			System.out.println(acode);
+
+			List<Song> songs = songService.favoriteList(acode);
+			System.out.println(songs);
+			model.addAttribute("favoriteList", songs);
+
+			Song favoriteSong = songService.favoriteSong(acode);
+			model.addAttribute("favoriteSong", favoriteSong);
+		} else {
+			List<Song> songs = songService.mainList(5); // 갯수 정해 놓을건지
+//			List<Song> songs =songService.getSongList();	// 그냥 있는거 다 출력할건지
+			System.out.println(songs);
+			model.addAttribute("mainList", songs);
+		}
 
 		return "song/songMain";
 	}
 
 	@PostMapping("/searchSong")
-	public String searchSong(Model model, 
-			@RequestParam(value = "keyword") String keyword,
+	public String searchSong(Model model, @RequestParam(value = "keyword") String keyword,
 			@RequestParam(value = "condition") String condition) {
-		List<Song> songs = songService.searchSong(keyword,condition);
+		List<Song> songs = songService.searchSong(keyword, condition);
 		System.out.println(songs);
 		model.addAttribute("songList", songs);
 

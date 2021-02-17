@@ -33,14 +33,11 @@ var $j351 = jQuery.noConflict();
 		let ucode1 = '<%=session.getAttribute("ucode")%>';
 		console.log(ucode1);
 		getCommentList(scode1);
-
 		$j351('#clear').click(function() {
 			$j351("#Comment").val(""); // 작성한 댓글 지우기.
 		});
-
 		$j351("#addComment").click(function() {
 			let comment1 = $j351('#Comment').val();
-
 			if (ucode1 != "null") {
 				if (comment1.length > 0) {
 					addComment(scode1, ucode1, comment1);
@@ -49,10 +46,8 @@ var $j351 = jQuery.noConflict();
 			} else {
 				alert("Please Login");
 			}
-
 		});
 	});
-
 	function addComment(scode1, ucode1, comment1) {
 		$j351.ajax({
 			type : "GET",
@@ -80,7 +75,6 @@ var $j351 = jQuery.noConflict();
 		});
 		console.log($j351.ajax.url);
 	}
-
 	function getCommentList(scode1) {
 		$j351.ajax({
 					type : 'GET',
@@ -91,15 +85,12 @@ var $j351 = jQuery.noConflict();
 					},
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data) {
-
 						let html = "";
 						let cCnt = data.length;
-
 						if (data.length > 0) {
 							for (i = 0; i < data.length; i++) {
 								let ccode = data[i].ccode;
 								console.log(ccode);
-
 								html += "<div class='table'><div><div><strong><span id='uname'>"
 										+ data[i].user.uname + "</strong>&nbsp;&nbsp;&nbsp;</span><span>" 
 										+ data[i].cdate+ "<div></span>";
@@ -133,9 +124,7 @@ var $j351 = jQuery.noConflict();
 					},
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data) {
-
 						let cc = 'tcomment' + ccode1;
-
 						console.log(document.querySelector('#' + cc).innerHTML)
 						document.querySelector('#' + cc).innerHTML = data;
 					},

@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import gfc.config.Dev;
 import gfc.dao.SongsMapper;
+import gfc.dao.UsersMapper;
 import gfc.dto.Song;
 
 @Service
@@ -30,6 +31,8 @@ import gfc.dto.Song;
 public class SongService {
 	@Autowired
 	private SongsMapper songmapper;
+	@Autowired
+	private UsersMapper usersMapper;
 	
 	public int addSong(Song song) {
 		try {
@@ -52,8 +55,28 @@ public class SongService {
 		return songmapper.getSongList();
 	}
 	
-	public List<Song> mainList(){
-		return songmapper.mainList();
+	public List<Song> mainList(int rownum){
+		return songmapper.mainList(rownum);
+	}
+	
+	public int getSongCnt() {
+		return songmapper.getSongCnt();
+	}
+	
+	public Song recommendSong(int songCnt) {
+		return songmapper.recommendSong(songCnt);
+	}
+	
+	public List<Song> favoriteList(int acode){
+		return songmapper.favoriteList(acode);
+	}
+	
+	public Song favoriteSong(int acode) {
+		return songmapper.favoriteSong(acode);
+	}
+	
+	public int getAcode(int ucode) {
+		return usersMapper.getAcode(ucode);
 	}
 	
 	public List<Song> searchSong(String keyword, String condition){
