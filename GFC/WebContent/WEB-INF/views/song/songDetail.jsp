@@ -100,7 +100,7 @@ var $j351 = jQuery.noConflict();
 										+ "' value='Translate' onclick='commentTranslate("+ ccode + ")'></span>";
 								html += "&nbsp;&nbsp;&nbsp;<span id='tcomment" + ccode + "'></div>"; 
 								
-								html += "</div>";
+								html += "</div><hr>";
 							}
 						} else {
 							html += "<div>";
@@ -151,7 +151,7 @@ var $j351 = jQuery.noConflict();
 				<h5>Lyricist : ${song.slyricist}</h5>
 				<h5>Released Date : ${song.sdate}</h5>
 				<h5>Album : ${song.salbum}</h5>
-				<h5>Views : ${song.sviews}</h5>
+				<h6>Views : ${song.sviews}</h6>
 			</div>
 			<br> <br>
 
@@ -159,16 +159,17 @@ var $j351 = jQuery.noConflict();
 				${song.youtubelink}</div>
 
 		</div>
-		<div class="row">
-			<div class="K lyric col-md-6">${song.klyric}</div>
-			<div class="F lyric col-md-6">${song.flyric}</div>
+		<div class="row" >
+			<div class="K lyric col-md-6" id="kl"><br><div id="bottom" style="margin-bottom: 20px;">${song.klyric}</div></div>
+			<div class="F lyric col-md-6" id="fl"><br><div id="bottom" style="margin-bottom: 20px;">${song.flyric}</div></div>
 		</div>
 		
-		
+		<br><br>
 		
 		<div class="row">
 			<div class="col-md-12">
-			<br><br>
+			<h4><strong>Comments&nbsp;</strong>(<span id="cCnt"></span>)</h4>
+			<hr>
 				<c:choose>
 					<c:when test="${not empty user.userid}">
 						<li>${user.uname}</li>
@@ -177,17 +178,14 @@ var $j351 = jQuery.noConflict();
 						<li>Please Login</li>
 					</c:otherwise>
 				</c:choose>
-				
-				<textarea id="Comment" name="Comment"></textarea>
-				<input type="button" id="clear" value="Cancel" /> <input type="button"
-					id="addComment" value="Add" /> <br>
-					
-				<br><br>
-				<div style="float: right;">
-					<strong><span id="cCnt"></span></strong>
-					<span>comments</span> 
-				</div>
 				<br>
+				<div>
+				<textarea id="Comment" name="Comment"></textarea>
+				<div>
+				<input type="button" id="clear" value="Cancel" /> <input
+					type="button" id="addComment" value="Add" /> <br> <br><br>
+				</div>
+				
 				
 			</div>
 		</div>

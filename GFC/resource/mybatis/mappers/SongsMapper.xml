@@ -66,7 +66,7 @@
 	</select>
 
 	<select id="favoriteSong" parameterType="java.lang.Integer"
-		resultType="gfc.dto.Song">
+		resultMap="song">
 		select ff.scode ,ff.stitle, ff.aname, ff.sdate, ff.simage,
 			ff.sviews, ff.swriter, ff.slyricist, ff.salbum
 		from
@@ -83,15 +83,7 @@
 				order by s.sviews desc) f) ff
 		where ff.rn = 1
 	</select>
-	<select id="mainList" resultMap="song">
-		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
-		from songs s
-		left join artists a
-		on a.acode=s.acode
-		order by s.sviews DESC
-		<!-- 가사뺌 klyric -->
-
-	</select>
+	
 	
 	<select id="getSongList" resultMap="song">
 		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
