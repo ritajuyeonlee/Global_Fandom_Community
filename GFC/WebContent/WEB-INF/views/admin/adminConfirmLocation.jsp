@@ -5,17 +5,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <style type="text/css">
-tr.r:hover {
+.but{
+	vertical-align:middle; 
+	background-color: #400080;
+	border: medium;
+	color: white;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	
+	font-size: 16px;
+	margin: 4px 2px;
 	cursor: pointer;
-	background-color: #ece3f4;
+	border-radius:10px;
+	
+	bottom: 10px;
 }
 
 table, th, tr, td, h1 {
 	text-align: center;
 }
+
+
 </style>
 
 <link rel="stylesheet" href="css/list.css">
@@ -83,7 +104,10 @@ table, th, tr, td, h1 {
 
 </head>
 <body>
-<h1>관리자의 장소컨펌할 페이지!</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+<br><h1>관리자의 장소컨펌 페이지</h1><hr>
 	<table border="1px solid black">
 		<tr>
 			<td>장소코드</td>
@@ -118,8 +142,10 @@ table, th, tr, td, h1 {
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="button" value="등록" class="btn btn-outline-info" onclick="confirmLoc();">
-	
+	<input type="button" value="등록" class="but" onclick="confirmLoc();">
+	</div>
+    </div>
+</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
