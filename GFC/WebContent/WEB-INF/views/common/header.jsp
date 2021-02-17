@@ -20,7 +20,7 @@ body {
 <body>
 	<!-- <span class="sr-only">(current)</span> -->
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-		<a class="navbar-brand" href="main">Pluto</a>
+		<a class="navbar-brand" href="main">PLUTO</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarCollapse" aria-controls="navbarCollapse"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -52,14 +52,14 @@ body {
 
 				<c:choose>
 					<c:when test="${not empty user.userid}">
-						<li class="nav-item active"><a class="nav-link">${user.uname}
-								님 방가방가</a></li>
+						<li class="nav-item active"><a class="nav-link">Welcome ${user.uname}
+								</a></li>
 						<li class="nav-item active"><a class="nav-link"
-							href="logoutUser">로그아웃</a></li>
+							href="logoutUser">Logout</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item active"><a class="nav-link"
-							href="loginForm">로그인</a></li>
+							href="loginForm">Login</a></li>
 
 					</c:otherwise>
 				</c:choose>

@@ -1,11 +1,15 @@
 @charset "UTF-8";
-#youtube{
-	padding:20px;
-}
 img{
-	max-width :90%;
-	float :left; 
+	max-width: 100%;	
 }
-h3{
+textarea{
+	max-width: 100%;	
+}
 
+#youtube{
+	padding: 20px;
+}
+#Comment{
+	width: 600px; 
+	height:200px;
 }

@@ -23,12 +23,12 @@
 				<div class="card">
 					<form class="box" action="loginUser" method="post">
 						<h1>Login</h1>
-						<p class="text-muted">케이팝 팬 방가방가~~</p>
-						<input type="text" name="userid" placeholder="아이디를 입력하세요" id="userid" value="" required="required"> 
+						<p class="text-muted">Hello K-pop fan</p>
+						<input type="text" name="userid" placeholder="Enter ID" id="userid" value="" required="required"> 
 						<input type="password" id="userpw" name="userpw" value=""
-							required="required" placeholder="비밀번호를 입력하세요"> 
+							required="required" placeholder="Enter Password"> 
 							<input type="submit"  value="Login">
-							<a class="forgot text-muted" href="addUserForm">플루토의 회원이 아니신가요?</a> 
+							<a class="forgot text-muted" href="addUserForm">JOIN HERE</a> 
 							
 
 					</form>

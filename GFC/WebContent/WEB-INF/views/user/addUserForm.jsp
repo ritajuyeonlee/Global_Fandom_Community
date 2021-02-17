@@ -23,7 +23,7 @@ $(() => {
 		if (cid.length > 0)
 			idcheck(cid);
 		else
-			$("#msg_id").html("아이디를 입력해주세요.");
+			$("#msg_id").html("Insert ID");
 	});
 	
 	$("#name_check").click(function() {	// name_check에 이벤트처리
@@ -32,11 +32,11 @@ $(() => {
 		if (cname.length > 0)
 			namecheck(cname);
 		else
-			$("#msg_name").html("닉네임을 입력해주세요.");
+			$("#msg_name").html("Insert Nickname");
 	});
 	
 	$("#id_confirm").click(function() {	// id_confirm에 이벤트처리
-		var con_test = confirm("확인을 누르면 변경이 불가합니다. 사용하시겠습니까?");
+		var con_test = confirm("You can't change it after you confirm");
 		if(con_test == true){
 			document.getElementById("userid").readOnly = true;;
 			$("#msg_id").html("");
@@ -46,7 +46,7 @@ $(() => {
 	});
 	
 	$("#name_confirm").click(function() {	// name_confirm에 이벤트처리
-		var con_test = confirm("확인을 누르면 변경이 불가합니다. 사용하시겠습니까?");
+		var con_test = confirm("You can't change it after you confirm");
 		if(con_test == true){
 			document.getElementById("uname").readOnly = true;
 			$("#msg_name").html("");
@@ -67,11 +67,11 @@ function idcheck(cid) {
 		success:function(data) {
 			if (data == "success") {
 				document.getElementById("msg_id").type = "text";
-				$("#msg_id").html("사용 가능한 아이디입니다.");
+				$("#msg_id").html("Available ID");
 				document.getElementById("id_confirm").type = "button";
 			}
 			else
-				$("#msg_id").html("사용중인 아이디입니다.");
+				$("#msg_id").html("Already used ID");
 		},
 		error:function(request, error) {
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -92,11 +92,11 @@ function namecheck(cname) {
 		success:function(data) {
 			if (data == "success") {
 				document.getElementById("msg_name").type = "text";
-				$("#msg_name").html("사용 가능한 닉네임입니다.");
+				$("#msg_name").html("Available Nickname");
 				document.getElementById("name_confirm").type = "button";
 			}
 			else
-				$("#msg_name").html("사용중인 닉네임입니다.");
+				$("#msg_name").html("Already used Nickname");
 		},
 		error:function(request, error) {
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -107,11 +107,11 @@ function namecheck(cname) {
 
 function err() {
 	if (submit_check != 2) {
-			alert("아이디 및 닉네임 중복체크 후 사용하기 버튼을 눌러주세요.");
+			alert("Please double check the ID and nickname and press the 'Use' button.");
     	return false;
 	}
 	if (document.getElementById("userpw").value.length == 0) {
-      alert("비밀번호를 입력해주세요");
+      alert("Insert Password");
       document.getElementById("userpw").focus();
       return false;
   }
@@ -126,30 +126,32 @@ function err() {
 			<div class="col-md-6">
 				<div class="card">
 					<form class="box" action="addUser" method="post" onsubmit="return err()">
-						<h1>회원가입</h1>
-						<p class="text-muted">케이팝 팬 방가방가~~</p>
-						<input type="text" name="userid" placeholder="아이디를 입력하세요" id="userid" value="" required="required"> 
+						<h1>Join</h1>
+						<p class="text-muted">Hello K-pop fan!</p>
+						<br><br>
+						<input type="text" name="userid" placeholder="Enter ID" id="userid" value="" required="required"> 
 						<input
-					type="button" id="id_check" name="id_check" value="ID 중복체크" />
+					type="button" id="id_check" name="id_check" value="ID double check" />
 						<span id="msg_id" class="error"></span>
-						<input type="hidden" id="id_confirm" name="id_confirm" value="사용하기" />
-						
-						<input type="text" name="uname" placeholder="닉네임을 입력하세요" id="uname" value="" required="required"> 
+						<input type="hidden" id="id_confirm" name="id_confirm" value="Use" />
+						<br><br>
+						<input type="text" name="uname" placeholder="Enter Nickname" id="uname" value="" required="required"> 
 						<input
-					type="button" id="name_check" name="name_check" value="NAME 중복체크" />
+					type="button" id="name_check" name="name_check" value="NAME double check" />
 						<span id="msg_name" class="error"></span>
-						<input type="hidden" id="name_confirm" name="name_confirm" value="사용하기" />
-						
-						<input type="password" id="userpw" name="userpw" value="" required="required" placeholder="비밀번호를 입력하세요"> 
-							
+						<input type="hidden" id="name_confirm" name="name_confirm" value="Use" />
+						<br><br>
+						<input type="password" id="userpw" name="userpw" value="" required="required" placeholder="Enter Password"> 
+							<br><br>
+						<p class="text-muted">Pick Your One and Only Bias</p>
 							<select name="acode">
 						<!-- db에서 가져오기 -->
-						<option value="1">아이유</option>
-						<option value="2">블랙핑크</option>
-						<option value="3">방탄소년단</option>
+						<option value="1">아이유 IU</option>
+						<option value="2">블랙핑크 BLACKPINK</option>
+						<option value="3">방탄소년단 BTS</option>
 				</select>
 							
-							<input type="submit"  value="회원가입">
+							<input type="submit"  value="JOIN">
 							
 							
 

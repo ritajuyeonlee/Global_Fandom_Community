@@ -45,9 +45,9 @@ var $j351 = jQuery.noConflict();
 				if (comment1.length > 0) {
 					addComment(scode1, ucode1, comment1);
 				} else
-					alert("내용을 입력해 주세요 ");
+					alert("Enter Comments");
 			} else {
-				alert("로그인 후 댓글 달기 가능");
+				alert("Please Login");
 			}
 
 		});
@@ -57,24 +57,21 @@ var $j351 = jQuery.noConflict();
 		$j351.ajax({
 			type : "GET",
 			url : "${pageContext.request.contextPath}/song/songDetail/comment", //${pageContext.request.contextPath} : 프로젝트명 (여기서는 GFC)
-			//url : "/song/songDetail/comment",	// 이거 경로 어떻게해야대대대대대대대대ㅐ
-			/*dataType : 'json',*/
 			data : {
 				scode : scode1,
 				ucode : ucode1,
 				ccom : comment1
-			// 이거도 실수 했음..
 			},
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			success : function(args) {
 				if (args == "success") {
 					$j351("#Comment").val(""); // 작성한 댓글 지우기.
-					alert('댓글 등록 성공!');
+					alert('Success');
 					getCommentList(scode1); // 댓글 리스트 출력
 				}
 				//let data = JSON.parse(args);	// String -> JSON
 				else {
-					alert('댓글 등록 실패');
+					alert('Fail');
 				}
 			},
 			error : function(e) {
@@ -84,7 +81,6 @@ var $j351 = jQuery.noConflict();
 		console.log($j351.ajax.url);
 	}
 
-	/*날짜 수정 필요*/
 	function getCommentList(scode1) {
 		$j351.ajax({
 					type : 'GET',
@@ -104,24 +100,20 @@ var $j351 = jQuery.noConflict();
 								let ccode = data[i].ccode;
 								console.log(ccode);
 
-								html += "<div>";
-								html += "<div><table class='table'><h6><strong>"
-										+ data[i].user.uname + "</strong></h6>";
-								html += "<tr><td id='ccom"+ ccode +"'>"
-										+ data[i].ccom + "</td>";
-								html += "<td><input type='button' id='translate"
-										+ ccode
-										+ "' value='번역' onclick='commentTranslate("
-										+ ccode + ")'></td>";
-								html += "<td><span id='tcomment" + ccode + "'>번역된거</span></td></tr>"; //여기부터
-								html += "<tr><td>" + data[i].cdate
-										+ "</td></tr>";
-								html += "</table></div>";
+								html += "<div class='table'><div><div><strong><span id='uname'>"
+										+ data[i].user.uname + "</strong>&nbsp;&nbsp;&nbsp;</span><span>" 
+										+ data[i].cdate+ "<div></span>";
+								html += "<span id='ccom"+ ccode +"'>"
+										+ data[i].ccom + "&nbsp;&nbsp;&nbsp;</span>";
+								html += "<span><input type='button' id='translate"+ ccode
+										+ "' value='Translate' onclick='commentTranslate("+ ccode + ")'></span>";
+								html += "&nbsp;&nbsp;&nbsp;<span id='tcomment" + ccode + "'></div>"; 
+								
 								html += "</div>";
 							}
 						} else {
 							html += "<div>";
-							html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+							html += "<div><table class='table'><h6><strong>No comments</strong></h6>";
 							html += "</table></div>";
 							html += "</div>";
 						}
@@ -141,13 +133,9 @@ var $j351 = jQuery.noConflict();
 					},
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data) {
-						alert('번역성공,,');
-						alert(data);
-						console.log(data);
 
 						let cc = 'tcomment' + ccode1;
 
-						//$("#cCnt").html(data);
 						console.log(document.querySelector('#' + cc).innerHTML)
 						document.querySelector('#' + cc).innerHTML = data;
 					},
@@ -191,7 +179,7 @@ var $j351 = jQuery.noConflict();
 		
 		
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-md-12">
 			<br><br>
 				<c:choose>
 					<c:when test="${not empty user.userid}">
@@ -201,17 +189,24 @@ var $j351 = jQuery.noConflict();
 						<li>로그인하세요.</li>
 					</c:otherwise>
 				</c:choose>
-				<!-- 로그인 상태일때만 댓글 기능 사용가능하게 하기 => 나중에 세션 객체 활용해서 로그인 정보 알아내기-->
-				<%-- <p><%=uname%></p> --%>
-				<!-- 이 부분 로그인 정보에서 이름 가져오기 -->
+				
 				<textarea id="Comment" name="Comment"></textarea>
 				<input type="button" id="clear" value="취소" /> <input type="button"
 					id="addComment" value="댓글" /> <br>
 					
-					<br><br><br>
-				<span><strong>댓글 수</strong></span> <span id="cCnt"></span>
-					<div id="commentList"></div>
+				<br><br>
+				<div style="float: right;">
+					<strong><span id="cCnt"></span></strong>
+					<span>comments</span> 
+				</div>
+				<br>
+				
 			</div>
+		</div>
+		<div class="row">
+		<div class="col-md-12">
+					<div id="commentList"></div>
+		</div>
 		</div>
 	</div>
 

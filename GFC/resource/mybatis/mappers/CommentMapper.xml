@@ -25,6 +25,8 @@
 		left join users u
 		on c.ucode = u.ucode 
 		where c.scode = #{scode}
+		order by c.ccode desc
+		
 	</select>
 	
 	<select id="getComment" parameterType="java.lang.Integer" resultType="java.lang.String">

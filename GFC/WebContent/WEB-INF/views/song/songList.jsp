@@ -21,7 +21,7 @@
 <title>Song List</title>
 </head>
 <body>
-	<h1>노래목록보기</h1>
+	<h1>Songs</h1>
 	<c:choose>
 		<c:when test="${empty songList}">
 			<p>No Song</p>
@@ -35,11 +35,11 @@
 				<tr>
 
 					
-					<td>제목</td>
-					<td>가수명</td>
-					<td>발매일</td>
-					<td>앨범이미지</td>
-					<td>조회수</td>
+					<td>Title</td>
+					<td>Artist</td>
+					<td>Release date</td>
+					<td>Album</td>
+					<td>Views</td>
 				</tr>
 
 				<c:forEach var="song" items="${songList}">
