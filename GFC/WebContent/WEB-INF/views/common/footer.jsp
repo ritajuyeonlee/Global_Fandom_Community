@@ -30,7 +30,7 @@
 <br><br><br>
 <div id="footer" class="w-100">
 <div class="container">
-<span class="text muted">푸터임니다 뭐쓸지이야기해보아요</span>
+<span class="text muted">FOR ALL THE K-POP FANS</span>
 <span class="text muted">Copyright © 2021 HeroJoongJae. All Rights Reserved.</span>
 </div>
 </div>

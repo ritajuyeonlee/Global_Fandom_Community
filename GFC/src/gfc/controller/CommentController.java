@@ -29,8 +29,6 @@ public class CommentController {
 	@GetMapping("/comment")
 	public String addComment(Comment comment) {
 		
-//		System.out.println("들어오기 성공 추카추카추카");
-//		System.out.println(comment);
 		
 		int result = commentMapper.addComment(comment);
 		if(result == 1) {
@@ -43,9 +41,7 @@ public class CommentController {
 	
 	@GetMapping("/commentList")
 	public List<Comment> getCommentList(int scode){
-		System.out.println("HI");
 		List<Comment> commentlist =  commentMapper.getCommentList(scode);
-		System.out.println(commentlist);
 		
 		return commentlist;
 	}
