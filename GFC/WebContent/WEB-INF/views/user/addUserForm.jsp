@@ -38,7 +38,7 @@ $(() => {
 	$("#id_confirm").click(function() {	// id_confirm에 이벤트처리
 		var con_test = confirm("You can't change it after you confirm");
 		if(con_test == true){
-			document.getElementById("userid").readOnly = true;;
+			document.getElementById("userid").readOnly = true;
 			$("#msg_id").html("");
 			document.getElementById("id_confirm").type = "hidden";
 			submit_check += 1;
@@ -70,8 +70,10 @@ function idcheck(cid) {
 				$("#msg_id").html("Available ID");
 				document.getElementById("id_confirm").type = "button";
 			}
-			else
+			else {
 				$("#msg_id").html("Already used ID");
+				document.getElementById("id_confirm").type = "hidden";
+			}
 		},
 		error:function(request, error) {
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -95,8 +97,10 @@ function namecheck(cname) {
 				$("#msg_name").html("Available Nickname");
 				document.getElementById("name_confirm").type = "button";
 			}
-			else
+			else {
 				$("#msg_name").html("Already used Nickname");
+				document.getElementById("name_confirm").type = "hidden";
+			}
 		},
 		error:function(request, error) {
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -137,7 +141,7 @@ function err() {
 						<br><br>
 						<input type="text" name="uname" placeholder="Enter Nickname" id="uname" value="" required="required"> 
 						<input
-					type="button" id="name_check" name="name_check" value="NAME double check" />
+					type="button" id="name_check" name="name_check" value="Nickname double check" />
 						<span id="msg_name" class="error"></span>
 						<input type="hidden" id="name_confirm" name="name_confirm" value="Use" />
 						<br><br>

@@ -31,7 +31,9 @@ public class UserController {
 	
 	@PostMapping("/loginUser")
 	public String loginUser(String userid, String userpw, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+
 		System.out.println("login");
+
 		HttpSession session=req.getSession();
 		session.setMaxInactiveInterval(30*60);
 		User login=userService.loginUser(userid, userpw);
@@ -39,12 +41,15 @@ public class UserController {
 		if(login==null) {
 			session.setAttribute("user", null);
 			session.setAttribute("ucode", null);
-			rttr.addFlashAttribute("msg",false);
+			rttr.addFlashAttribute("msg","fail");
+			System.out.println("post login fail");
+			//rttr.addAttribute("msg", "false");
 			return "redirect:/loginForm";
 		}else {
 			int ucode=login.getUcode();
 			session.setAttribute("user", login);
 			session.setAttribute("ucode", ucode);
+			System.out.println("post login success");
 			return "redirect:/main";
 		}
 			

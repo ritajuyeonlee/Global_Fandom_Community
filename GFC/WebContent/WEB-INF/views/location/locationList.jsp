@@ -7,7 +7,18 @@
 <meta charset="UTF-8">
 <title>Location List</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<style type="text/css">
+tr.r:hover {
+	cursor: pointer;
+	background-color: #ece3f4;
+}
 
+table, th, tr, td, h1 {
+	text-align: center;
+}
+</style>
+
+<link rel="stylesheet" href="css/list.css">
 </head>
 <body>
 	<h1>장소목록보기</h1>
