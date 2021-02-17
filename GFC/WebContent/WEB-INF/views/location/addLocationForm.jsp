@@ -15,6 +15,32 @@ Dev dev = new Dev();
 	async defer></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/list.css">
+<style type="text/css">
+.searchButton,#addbutton,#resetbutton {
+	vertical-align:middle; 
+	background-color: #400080;
+	border: medium;
+	color: white;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius:10px;
+	
+	bottom: 10px;
+}
+
+</style>
 </head>
 
 <script type="text/javascript">
@@ -65,19 +91,23 @@ Dev dev = new Dev();
 	}
 </script>
 <body>
-	<h3>장소 추가</h3>
-	<button class="searchButton" onclick="goPopup()">주소 검색</button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+	<br><h3>Add K-Tour Spot</h3><hr>
+	
 	<form name="form" action="addLocation" method="post"
 		onsubmit="return err()">
 		<table border="1px solid black">
 			<tr>
-				<td>회원닉네임 :</td>
+				<td>Nickname :</td>
 				<td><input type="text" name="uname" value="${user.uname}"
 					required readonly><input type="hidden" name="ucode"
 					value="${user.ucode}" required readonly></td>
 			</tr>
 			<tr>
-				<td>가수 :</td>
+				<td>Related Artist :</td>
 				<td><select name="acode">
 						<!-- db에서 가져오기 -->
 						<option value="1">아이유</option>
@@ -86,27 +116,29 @@ Dev dev = new Dev();
 				</select></td>
 			</tr>
 			<tr>
-				<td>장소이름 :</td>
+				<td>Place Name :</td>
 				<td><input type="text" name="lname"></td>
 			</tr>
 			<tr>
-				<td>주소 :</td>
-				<td><input type="text" id="laddress" name="laddress"
-					placeholder="주소검색을 눌러 주소를 입력해주세요." required readonly /> <input
-					type="hidden" id="llat" name="llat" /> <input type="hidden"
-					id="llong" name="llong" /></td>
+				<td>Address :</td>
+				<td><input type="text" id="laddress" name="laddress"placeholder="Click Search Address" required readonly /> 
+					<input type="hidden" id="llat" name="llat" /> <input type="hidden"id="llong" name="llong" />
+					<button class="searchButton" onclick="goPopup()">Search Address</button>
+					</td>
 			</tr>
 			<tr>
-				<td>설명 :</td>
+				<td>Explanation :</td>
 				<td><input type="text" name="ldesc"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="등록" id="addbutton">
-					<input type="reset" value="초기화" id="resetbutton"></td>
+				<td colspan="2"><input type="submit" value="Submit" id="addbutton">
+					<input type="reset" value="Reset" id="resetbutton"></td>
 			</tr>
 		</table>
 	</form>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-
+	</div>
+    </div>
+</div>
 </body>
 </html>

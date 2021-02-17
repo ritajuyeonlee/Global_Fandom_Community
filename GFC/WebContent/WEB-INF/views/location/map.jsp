@@ -78,6 +78,7 @@ h3 {
 }
 </style>
 <script type="text/javascript">
+
 		$(function() {
 			//navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
 			
@@ -163,26 +164,57 @@ h3 {
 			}
 		}
 	</script>
+<link rel="stylesheet" href="css/list.css">
+
 </head>
 <body>
-	<div class="location_main">
-		<h3>Map</h3>
-		<select id="acode" name="acode">
-			<option value="0">전체보기</option>
-			<option value="1">아이유</option>
-			<option value="2">블랙핑크</option>
-			<option value="3">방탄소년단</option>
-		</select>
-		<button id="filter">적용</button>
-		<c:choose>
-			<c:when test="${not empty user.userid}">
-				<a id="addlocation" href="addLocationForm"> 장소 추가 </a>
-			</c:when>
-		</c:choose>
-		<div id="map"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="location_main">
+				<br>
+					<h3>Map</h3><hr>
+					
+					<select id="acode" name="acode">
+						<option value="0">전체보기</option>
+						<option value="1">아이유</option>
+						<option value="2">블랙핑크</option>
+						<option value="3">방탄소년단</option>
+					</select>
+					<button id="filter">적용</button>
+					<c:choose>
+						<c:when test="${not empty user.userid}">
+							<a id="addlocation" href="addLocationForm"> 장소 추가 </a>
+						</c:when>
+					</c:choose>
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		<div class="col-sm-12">
+		<br><br>
+		<table border="1px solid black">
+			<tr>
+				<td>가수</td>
+				<td>장소이름</td>
+				<td>주소</td>
+				<td>설명</td>
+				<td>회원코드</td>
+			</tr>
+			<c:forEach var="location" items="${locationList}">
+				<tr>
+					<td>${location.artist.aname}</td>
+					<td>${location.lname}</td>
+					<td>${location.laddress}</td>
+					<td>${location.ldesc}</td>
+					<td>${location.user.uname}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		</div>
+		</div>
 	</div>
-
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-
 </body>
 </html>
