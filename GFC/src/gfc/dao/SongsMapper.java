@@ -23,5 +23,5 @@ public interface SongsMapper {
 	public Song favoriteSong(int acode);	// 최애 조회수 1등
 	
 	public List<Song> searchSong(Map<String,String> map);
-	public void updateViewCnt(int scode);
+	public void updateViewCnt(int scode);	// 조회수 증가
 }
