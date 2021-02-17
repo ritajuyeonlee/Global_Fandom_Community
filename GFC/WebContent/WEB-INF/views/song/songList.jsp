@@ -15,14 +15,17 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <style type="text/css">
-h2,a{
+h2, a {
 	text-align: center;
 }
 </style>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
@@ -55,16 +58,7 @@ table, th, tr, td, h1,div {
 <title>Song List</title>
 </head>
 <body>
-	<h1>Songs</h1>
-	<br>
-	<br>
-	<c:choose>
-		<c:when test="${empty songList}">
-			<p>No Song</p>
-		</c:when>
-		<c:otherwise>
-
-		
+	<h1>Songs</h1>	
 		<div class="container"id ="grid">
 		<div class="row" >
 			<div id="top" class="col-xs-12" >
@@ -90,16 +84,32 @@ table, th, tr, td, h1,div {
 			</table>
 			</div>
 		</div>
-		<%
-		int cnt = ((int)request.getAttribute("songCnt")+3) / 4;
-		for(int i=1;i<=cnt;i++){%>
-			<a href ="songList?page=<%=i%>"><%=i%></a>
-		<% }%>
+		<c:set var="cnt" value="${songCnt}" />
+		<c:choose>
+			<c:when test="${empty songList}">
+				<p>No Song</p>
+			</c:when>
+			
+			<c:otherwise>
+				<c:choose>
+					<c:when test="${msg eq 'search'}">
+						
+							<c:forEach begin="1" end="${cnt}" varStatus="status">
+								<a href="searchSong?page=${status.index}&condition=${condition}&keyword=${keyword}">${status.index}</a>
+							</c:forEach>
+					</c:when>
+					<c:otherwise>
+							<c:forEach begin="1" end="${cnt}" varStatus="status">
+								<a href="songList?page=${status.index}">${status.index}</a>
+							</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
+      
 	</div>
 
-		</c:otherwise>
-	</c:choose>
-	
+
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>

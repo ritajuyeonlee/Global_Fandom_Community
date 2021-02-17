@@ -58,7 +58,9 @@ body{
 						<li class="nav-item active"><a class="nav-link"
 							href="adminConfirmLocation">장소컨펌</a></li>
 						<li class="nav-item active"><a class="nav-link"
-							href="adminSongList">admin노래리스트</a></li>
+
+							href="adminSongList?page=1">admin노래리스트</a></li>
+
 					</c:when>
 				</c:choose>
 				<li class="nav-item"><a class="nav-link" href="map">지도보기</a></li>
@@ -88,7 +90,9 @@ body{
 
 		</div>
 	</nav>
+
 <div style="margin-bottom:100px;"></div>
+
 </body>
 </html>
 

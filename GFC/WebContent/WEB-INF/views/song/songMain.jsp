@@ -49,10 +49,12 @@ padding-bottom: 30px;
 <link rel="stylesheet" href="css/list.css">
 </head>
 <body>
+
 	<h1>main</h1>
 	<div class="container">
 	<div class="row">
-	<form action="searchSong" method="post" class="search">
+	<form action="searchSong?page=1" method="get" class="search">
+
 		<select name="condition">
 			<!--<option value="bookno">bookno</option>-->
 			<option value="stitle">Title</option>
