@@ -62,6 +62,7 @@
             on a.acode=s.acode) f) ss
 		WHERE ss.rn = (SELECT (ROUND(DBMS_RANDOM.VALUE() * (#{songCnt}-1)))+1 FROM DUAL)
 	
+
 	</select>
 
 	<select id="favoriteSong" parameterType="java.lang.Integer"
@@ -81,6 +82,15 @@
 				where s.acode = #{acode}
 				order by s.sviews desc) f) ff
 		where ff.rn = 1
+
+	<select id="mainList" resultMap="song">
+		select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
+		from songs s
+		left join artists a
+		on a.acode=s.acode
+		order by s.sviews DESC
+		<!-- 가사뺌 klyric -->
+
 	</select>
 	
 	<select id="getSongList" resultMap="song">
@@ -88,7 +98,6 @@
 		from songs s
 		left join artists a
 		on a.acode=s.acode
-		where s.scode > 0
 	</select>
 
 	<select id="favoriteList" parameterType="java.lang.Integer"
@@ -105,14 +114,11 @@
 	<select id="getSong" parameterType="java.lang.Integer"
 		resultMap="song">
 		select
-		a.aname,
-		s.scode,s.stitle,s.swriter,s.slyricist,s.sdate,s.salbum,
-		s.simage,
-		s.klyric, s.flyric ,s.youtubelink
-		from artists a
-		left join songs s
-		on
-		a.acode=s.acode
+		a.aname, s.scode,s.stitle,s.swriter,s.slyricist,s.sdate,s.salbum,
+		s.simage, s.klyric, s.flyric ,s.youtubelink, s.sviews
+		from songs s
+		left join artists a
+		on a.acode=s.acode
 		where
 		s.scode = #{scode}
 	</select>

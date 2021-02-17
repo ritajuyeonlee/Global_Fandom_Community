@@ -7,9 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <%
@@ -21,10 +26,55 @@ Dev dev = new Dev();
 <title>Map</title>
 
 <style type="text/css">
+.location_main {
+	text-align: center;
+}
+
+h3 {
+	display: inline-block;
+	width: 100px;
+}
+
+#acode {
+	width: 200px;
+	height: 30px;
+	right: 10px;
+	text-decoration: none;
+	font-size: 15px;
+	border: solid 1px #707070;
+	border-radius: 5px;
+}
+
+#filter {
+	width: 150px;
+	height: 30px;
+	right: 10px;
+	font-size: 15px;
+	text-decoration: none;
+	border: solid 1px #707070;
+	border-radius: 5px;
+}
+
+#addlocation {
+	width: 150px;
+	height: 30px;
+	font-size: 15px;
+	text-decoration: none;
+	padding: 4px;
+	padding-left: 50px;
+	padding-right: 50px;
+	border: solid 1px #707070;
+	color: black;
+	border-radius: 5px;
+	border: solid 1px #707070;
+}
+
 #map {
-	width: 700px;
-	height: 400px;
+	top: 10px;
+	width: 1000px;
+	height: 500px;
 	background-color: gray;
+	margin: 0 auto;
 }
 </style>
 <script type="text/javascript">
@@ -67,7 +117,7 @@ Dev dev = new Dev();
 			var infowindow = new google.maps.InfoWindow();
 			let center = {lat: 37.56154517066801 , lng: 126.9930503906448 }
 			let map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 8,
+				zoom : 12,
 				center : center
 			});
 			
@@ -115,22 +165,23 @@ Dev dev = new Dev();
 	</script>
 </head>
 <body>
+	<div class="location_main">
+		<h3>Map</h3>
+		<select id="acode" name="acode">
+			<option value="0">전체보기</option>
+			<option value="1">아이유</option>
+			<option value="2">블랙핑크</option>
+			<option value="3">방탄소년단</option>
+		</select>
+		<button id="filter">적용</button>
+		<c:choose>
+			<c:when test="${not empty user.userid}">
+				<a id="addlocation" href="addLocationForm"> 장소 추가 </a>
+			</c:when>
+		</c:choose>
+		<div id="map"></div>
+	</div>
 
-	<h3>Map</h3>
-	<c:choose>
-		<c:when test="${not empty user.userid}">
-			<a href="addLocationForm"> 장소 추가 </a>
-		</c:when>
-	</c:choose>
-	<select id="acode" name="acode">
-		<option value="0">전체보기</option>
-		<option value="1">아이유</option>
-		<option value="2">블랙핑크</option>
-		<option value="3">방탄소년단</option>
-	</select>
-	<button id="filter">적용</button>
-
-	<div id="map" style:width="500px"></div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>

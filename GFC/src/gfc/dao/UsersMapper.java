@@ -14,5 +14,7 @@ public interface UsersMapper {
 	public int addUser(User user);
 	public List<User> getUserList();
 	public User loginUser(@Param("userid")String userid, @Param("userpw")String userpw);
+	public int checkUserID(String id);
+	public int checkUserNAME(String id);
 }
 

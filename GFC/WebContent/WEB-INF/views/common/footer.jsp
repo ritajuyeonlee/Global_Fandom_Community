@@ -11,27 +11,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style type="text/css">
-
-footer{
+#footer{
+	
 	 background:black;
 	 color: white;
-	 position:fixed;
-	 bottom:0;
+ 	 position:fixed;
+ 	 bottom:0;
 	 height:50px;
 	 text-align:center;  
 	 line-height:50px;
+	 margin-top:30px;
 }
-div{
-		
-	vertical-align:center;
+#ig{
+	margin-bottom:50px;
 }
 </style>
 </head>
-
-<footer class="footer w-100">
+<br><br><br>
+<div id="footer" class="w-100">
 <div class="container">
-<span class="text muted">푸터임니다 뭐쓸지이야기해보아요</span>
+<span class="text muted">FOR ALL THE K-POP FANS</span>
 <span class="text muted">Copyright © 2021 HeroJoongJae. All Rights Reserved.</span>
 </div>
-</footer>
+</div>
 </html>

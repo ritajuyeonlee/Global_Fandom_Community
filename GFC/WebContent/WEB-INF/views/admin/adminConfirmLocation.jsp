@@ -43,6 +43,7 @@
 		}
 		else{
 			var ch=confirm("정말 든록하실겁니꺼?");
+			if(ch == true){
 			$.ajax({
 				url:url,
 				type:'POST',
@@ -59,6 +60,7 @@
 					}
 				}
 			});
+			}
 		}
 	}
 

@@ -16,26 +16,36 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Pluto</title>
 <style type="text/css">
-#top {
-	height: 300px;
+.hi{
+background-image:URL(http://img.vogue.co.kr/vogue/2020/06/style_5efae99e1084e.png);
+background-position:0px 0px;
+background-size: 100%;
+ opacity:1.4!important;
+    filter:alpha(opacity=50);
 }
+
 </style>
 </head>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%-- <%@ include file="/WEB-INF/views/common/jsp/footer.jsp" %> --%>
 <body>
+	<main class="container">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark hi">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">케이팝: 이 세상 최강간지보스장르</h1>
+      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+    </div>
+  </div>
 
-
-	<div class="container">
-		<div class="row">
-			<div id="top" class="col-xs-12" style="border: 1px solid #ccc;">
-				<img src="img/fan.png" width="200px"> <span>쌉간지글월드와이드짱짱맨킹왕짱어후길게쓸말도없다어떡하냐암튼부트스트랩반응형글이드임줄이면그리드정렬바뀌고아래로내려감</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4" style="border: 1px solid #ccc;">
-				<div>☆인기차트★</div>
-				<table>
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">월드와이드케이팝</strong>
+          <h3 class="mb-0">☆인기차트★</h3>
+          <div class="mb-1 text-muted">두구두구두구</div>
+          <table>
 					<c:forEach var="song" items="${songList}" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
@@ -46,9 +56,15 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</div>
-			<div class="col-md-4" style="border: 1px solid #ccc;">
-				<div>☆추천곡★</div>
+          
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">오늘의 추천곡</strong>
 				<table>
 						<tr>
 							<td><img alt="" src="${recommendSong.simage}" width="50px"></td>
@@ -57,10 +73,23 @@
 							<td>${recommendSong.sviews}</td>
 						</tr>
 				</table>
-			</div>
-		</div>
-	</div>
+          
+          <h3 class="mb-0">Post title</h3>
+          <div class="mb-1 text-muted">Nov 11</div>
+          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+    
+    
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
 </html>
