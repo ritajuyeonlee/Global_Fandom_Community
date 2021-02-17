@@ -1,15 +1,51 @@
 @charset "UTF-8";
-img{
-	max-width: 100%;	
-}
-textarea{
-	max-width: 100%;	
+
+img {
+	max-width: 100%;
 }
 
-#youtube{
+#youtube {
 	padding: 20px;
 }
-#Comment{
-	width: 600px; 
-	height:200px;
+#fl{
+	text-align : center;
+	background-color: #ece3f4;
+	border-radius:10px;
+}
+#kl{
+	text-align : center;
+	background-color: #fcf8dc;
+	border-radius:10px;
+}
+
+#Comment {
+	width: 600px;
+	height: 100px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: solid 2px #000000;
+	border-radius: 5px;
+	font-size: 16px;
+	resize: both;
+}
+
+input {
+	vertical-align:middle; 
+	background-color: #400080;
+	border: medium;
+	color: white;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius:10px;
+	
+	bottom: 10px;
+}
+li{
+	text-decoration: blink;
+	
 }

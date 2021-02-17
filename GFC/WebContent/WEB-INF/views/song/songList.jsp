@@ -8,6 +8,12 @@
 <html>
 <head>
 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <style type="text/css">
 h2,a{
 	text-align: center;
@@ -21,6 +27,28 @@ h2,a{
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 
+<style type="text/css">
+tr.r:hover {
+	cursor: pointer;
+	background-color: #ece3f4;
+}
+
+
+table, th, tr, td, h1,div {
+	text-align: center;
+}
+.page{
+	text-decoration: none;
+	color : #800040;
+}
+.page:hover{
+	text-decoration: overline;
+	color : #ff80c0;
+}
+
+
+</style>
+
 
 <link rel="stylesheet" href="css/list.css">
 
@@ -28,16 +56,19 @@ h2,a{
 </head>
 <body>
 	<h1>Songs</h1>
+	<br>
+	<br>
 	<c:choose>
 		<c:when test="${empty songList}">
 			<p>No Song</p>
 		</c:when>
 		<c:otherwise>
+
 		
 		<div class="container"id ="grid">
 		<div class="row" >
-			<div id="top" class="col-xs-12" style="border: 1px solid #ccc;">
-			<table class="table table-striped table-sm" border="1px solid black">
+			<div id="top" class="col-xs-12" >
+			<table >
 				<tr>
 					<td>Title</td>
 					<td>Artist</td>
@@ -46,14 +77,16 @@ h2,a{
 					<td>Views</td>
 				</tr>
 				<c:forEach var="song" items="${songList}">
-					<tr>
-						<td>${song.stitle}</td>
-						<td>${song.artist.aname}</td>
-						<td>${song.sdate}</td>
-						<td><img alt="" src="${song.simage}"></td>
-						<td>${song.sviews}</td>
-					</tr>
-				</c:forEach>
+								<tr class="r"
+									onclick="location.href='/GFC/songDetail?scode=${song.scode}'">
+									<td><img alt="" src="${song.simage}"></td>
+									<td>${song.stitle}</td>
+									<td>${song.artist.aname}</td>
+									<td>${song.sdate}</td>
+									<td>${song.sviews}</td>
+
+								</tr>
+							</c:forEach>
 			</table>
 			</div>
 		</div>
@@ -62,8 +95,8 @@ h2,a{
 		for(int i=1;i<=cnt;i++){%>
 			<a href ="songList?page=<%=i%>"><%=i%></a>
 		<% }%>
-		
 	</div>
+
 		</c:otherwise>
 	</c:choose>
 	

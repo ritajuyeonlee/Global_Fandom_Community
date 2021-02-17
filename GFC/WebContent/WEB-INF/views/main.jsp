@@ -32,9 +32,13 @@ background-size: 100%;
 	<main class="container">
   <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark hi">
     <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">케이팝: 이 세상 최강간지보스장르</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+      <h1 class="display-4 fst-italic">PLUTO </h1>
+      <p class="lead my-3"><strong>Connect K-pop with fans all over the world</strong><br><br><br><br><br><br>
+      Wherever you are, Which language you speak,
+      <br> Pluto will always be the planet for your adventure to K-pop.  
+      <br> Get the best translation of K-pop lyrics.
+      
+      </p>
     </div>
   </div>
 

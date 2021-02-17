@@ -9,7 +9,7 @@
 <title>add Song Form</title>
 </head>
 <body>
-	<form action="addSong" method="post">
+	<form action="addSong" method="post" >
 		<table border="1px solid black">
 			<tr>
 				<td>제목 :</td>
