@@ -14,6 +14,15 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<style type="text/css">
+h2,a{
+	text-align: center;
+}
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
@@ -47,8 +56,8 @@ table, th, tr, td, h1 {
 		
 		<div class="container"id ="grid">
 		<div class="row" >
-			<div id="top" class="col-xs-12" style="border: 1px solid #ccc;">
-			<table class="table table-striped table-sm" border="1px solid black">
+			<div id="top" class="col-xs-12" >
+			<table >
 				<tr>
 					<td>Title</td>
 					<td>Artist</td>
@@ -57,14 +66,16 @@ table, th, tr, td, h1 {
 					<td>Views</td>
 				</tr>
 				<c:forEach var="song" items="${songList}">
-					<tr>
-						<td>${song.stitle}</td>
-						<td>${song.artist.aname}</td>
-						<td>${song.sdate}</td>
-						<td><img alt="" src="${song.simage}"></td>
-						<td>${song.sviews}</td>
-					</tr>
-				</c:forEach>
+								<tr class="r"
+									onclick="location.href='/GFC/songDetail?scode=${song.scode}'">
+									<td><img alt="" src="${song.simage}"></td>
+									<td>${song.stitle}</td>
+									<td>${song.artist.aname}</td>
+									<td>${song.sdate}</td>
+									<td>${song.sviews}</td>
+
+								</tr>
+							</c:forEach>
 			</table>
 			</div>
 		</div>
