@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import gfc.dao.AdminMapper;
-import gfc.dao.LocationsMapper;
+
 
 @Service
 @Transactional
