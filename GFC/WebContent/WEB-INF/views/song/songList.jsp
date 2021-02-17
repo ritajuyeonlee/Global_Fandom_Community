@@ -52,6 +52,15 @@ table, th, tr, td, h1,div {
 
 </style>
 
+<script type="text/javascript">
+$(function() {
+	<c:if test="${not empty msg}">
+    	alert("${msg}");
+	</c:if>
+
+});
+</script>
+
 
 <link rel="stylesheet" href="css/list.css">
 

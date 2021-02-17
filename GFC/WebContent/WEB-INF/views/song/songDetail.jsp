@@ -137,7 +137,7 @@ var $j351 = jQuery.noConflict();
 </head>
 <body>
 
-	<div class="container">
+	<div class="container">	<!-- 이거 닫는 부분 어딘지 모르겠음 -->
 		<div class="row">
 			<div class="album art col-sm-2 col-md-5">
 				<img alt="" src="${song.simage}">
@@ -160,8 +160,8 @@ var $j351 = jQuery.noConflict();
 
 		</div>
 		<div class="row" >
-			<div class="K lyric col-md-6" id="kl"><br><div id="bottom" style="margin-bottom: 20px;">${song.klyric}</div></div>
-			<div class="F lyric col-md-6" id="fl"><br><div id="bottom" style="margin-bottom: 20px;">${song.flyric}</div></div>
+			<div class="K lyric col-md-6" id="kl"><br><pre id="bottom" style="margin-bottom: 20px;">${song.klyric}</pre></div>
+			<div class="F lyric col-md-6" id="fl"><br><pre id="bottom" style="margin-bottom: 20px;">${song.flyric}</pre></div>
 		</div>
 		
 		<br><br>

@@ -81,6 +81,12 @@ h3 {
 
 		$(function() {
 			//navigator.geolocation.getCurrentPosition(initmap); // callback 메소드
+			/* if(${msg} != null){
+				alert(${msg});
+			}  */
+			<c:if test="${not empty msg}">
+	    		alert("${msg}");
+			</c:if>
 			
 			let user_acode = '<%=session.getAttribute("ucode")%>';
 			if (user_acode != "null") {
