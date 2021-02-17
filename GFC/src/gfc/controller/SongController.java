@@ -2,9 +2,6 @@ package gfc.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import gfc.dto.Song;
-import gfc.dto.User;
 import gfc.service.SongService;
 
 @Controller
@@ -34,6 +30,7 @@ public class SongController {
 
 		String temp = songService.translate(song.getKlyric()); // 번역
 		song.setFlyric(songService.convertToData(temp)); // 번역된거 추출
+		
 //		System.out.println(song);
 		int result = songService.addSong(song);
 
@@ -47,6 +44,7 @@ public class SongController {
 			String msg = "노래 추가 완료";
 			model.addAttribute("msg", msg);
 			return "song/songList";
+//			return "redirect:/songList?page=1";		//************ 이 부분 잘되는지 확인 ************//
 		}
 		// return "redirect:/song/songList";
 		else
@@ -58,18 +56,21 @@ public class SongController {
 	public String list(Model model,int page) {
 		List<Song> songs = songService.getSongList(page);
 		model.addAttribute("songList", songs);
-		
 		int songCnt = songService.getSongCnt();
-//		System.out.println(songCnt);
-		model.addAttribute("songCnt", songCnt);
+		model.addAttribute("msg","songlist");
+		model.addAttribute("songCnt", (songCnt+3)/4);
+		
 		
 		return "song/songList";
 	}
 
 	@GetMapping("/adminSongList")
-	public String adminSongList(Model model,int page) {
-		List<Song> songs = songService.getSongList(page);
+	public String adminSongList(Model model,@RequestParam(value = "page", defaultValue="1")String page) {
+		List<Song> songs = songService.getSongList(Integer.parseInt(page));
 		model.addAttribute("songList", songs);
+		int songCnt = songService.getSongCnt();
+		model.addAttribute("msg","songlist");
+		model.addAttribute("songCnt", (songCnt+3)/4);
 		return "admin/adminSongList";
 	}
 
@@ -85,6 +86,7 @@ public class SongController {
 	}
 
 	@GetMapping("/songMain")
+
 	public String songMain(Model model, int ucode,int page) {
 		if(ucode == -1 || ucode == 1) {
 			List<Song> mainList = songService.mainList(5); // 갯수 정해 놓을건지
@@ -95,16 +97,20 @@ public class SongController {
 			System.out.println("유저코드!");
 			System.out.println(ucode);
 
+
 			int acode = songService.getAcode(ucode);
-			System.out.println(acode);
+			
+
 
 			List<Song> favoriteList = songService.favoriteList(acode);
 			System.out.println(favoriteList);
 			model.addAttribute("favoriteList", favoriteList);
 
+
 			Song favoriteSong = songService.favoriteSong(acode);
 			model.addAttribute("favoriteSong", favoriteSong);
 		}
+
 		List<Song> songList = songService.getSongList(page);
 		model.addAttribute("songList", songList);
 		
@@ -115,13 +121,18 @@ public class SongController {
 		return "song/songMain";
 	}
 
-	@PostMapping("/searchSong")
-	public String searchSong(Model model, @RequestParam(value = "keyword") String keyword,
+	@GetMapping("/searchSong")
+	public String searchSong(Model model, @RequestParam(value = "page", defaultValue="1")String page, @RequestParam(value = "keyword") String keyword,
 			@RequestParam(value = "condition") String condition) {
-		List<Song> songs = songService.searchSong(keyword, condition);
-		System.out.println(songs);
+		List<Song> songs = songService.searchSong(keyword, condition, page);
 		model.addAttribute("songList", songs);
+		int songCnt=songService.getSearchSongCnt(keyword, condition);
+		model.addAttribute("songCnt", (songCnt+3)/4);
+		model.addAttribute("msg","search");
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("condition",condition);
 
 		return "song/songList";
 	}
 }
+

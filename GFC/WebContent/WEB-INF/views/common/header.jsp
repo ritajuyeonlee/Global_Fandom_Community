@@ -6,20 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <title>Pluto</title>
 <style type="text/css">
 body{
 	padding-top:70px;
 }
-
-
 </style>
 </head>
 <body>
@@ -36,6 +35,7 @@ body{
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="songList?page=1">누구나노래리스트</a>
+
 				</li>
 				<li class="nav-item active">
 				<c:choose>
@@ -46,7 +46,8 @@ body{
           <a class="nav-link" href="songMain?ucode=-1&page=1">노래메인</a>	<!-- 로그인 안했을 때 -->
           </c:otherwise>
         </c:choose>
-				
+
+
 				</li>
 				<c:choose>
 					<c:when test="${user.userid eq 'admin'}">
@@ -55,7 +56,9 @@ body{
 						<li class="nav-item active"><a class="nav-link"
 							href="adminConfirmLocation">장소컨펌</a></li>
 						<li class="nav-item active"><a class="nav-link"
-							href="adminSongList">admin노래리스트</a></li>
+
+							href="adminSongList?page=1">admin노래리스트</a></li>
+
 					</c:when>
 				</c:choose>
 				<li class="nav-item"><a class="nav-link" href="map">지도보기</a></li>
@@ -77,22 +80,18 @@ body{
 						<li class="nav-item active"><a class="nav-link"
 							href="loginForm">Login</a></li>
 
+
 					</c:otherwise>
 				</c:choose>
 			</ul>
-			<form class="form-inline mt-2 mt-md-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search"
-					aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+			
 
 		</div>
 	</nav>
 
 
-
+<div style="margin-bottom:100px;"></div>
 
 
 </body>
 </html>
-

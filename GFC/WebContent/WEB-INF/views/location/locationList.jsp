@@ -5,6 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Location List</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <style type="text/css">
@@ -21,7 +27,11 @@ table, th, tr, td, h1 {
 <link rel="stylesheet" href="css/list.css">
 </head>
 <body>
-	<h1>장소목록보기</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+	<br><h3>K-Tour spot list</h3><hr>
 
 	<table border="1px solid black">
 		<tr>
@@ -49,5 +59,8 @@ table, th, tr, td, h1 {
 	</table>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
+	</div>
+    </div>
+</div>
 </body>
 </html>
