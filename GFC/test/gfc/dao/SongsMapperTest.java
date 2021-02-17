@@ -54,7 +54,7 @@ public class SongsMapperTest {
 	
 	@Test
 	public void getSongList() throws Exception{
-		List<Song> list = songsMapper.getSongList();
+		List<Song> list = songsMapper.getSongList(1);
 		
 		System.out.println(list);
 		
