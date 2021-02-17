@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import gfc.dto.Song;
 
@@ -22,6 +21,8 @@ public interface SongsMapper {
 	public List<Song> favoriteList(int acode);	// songMain.jsp(로그인 O) => 최애 곡 리스트 
 	public Song favoriteSong(int acode);	// 최애 조회수 1등
 	
-	public List<Song> searchSong(Map<String,String> map);
+	public List<Song> searchSong(Map<String,Object> map);
+	public int getSearchSongCnt(Map<String,Object> map);
+	
 	public void updateViewCnt(int scode);
 }

@@ -25,7 +25,7 @@
 </head>
 <body>
 	<h1>나는찐메인노래창입니다.</h1>
-	<form action="searchSong" method="post" class="search">
+	<form action="searchSong?page=1" method="get" class="search">
 		<select name="condition">
 			<!--<option value="bookno">bookno</option>-->
 			<option value="stitle">노래제목</option>

@@ -52,6 +52,14 @@
 		select count(*) from songs
 	</select>
 	
+	<select id="getSearchSongCnt" parameterType="hashmap" resultType="java.lang.Integer">
+		select count(*) from songs s
+		left join
+				artists a
+				on a.acode=s.acode
+				where upper(${condition}) like '%'||upper(#{keyword})||'%'
+	</select>
+	
 	<select id="recommendSong" parameterType="java.lang.Integer" resultMap="song">
 		SELECT ss.* 
 		FROM (select rownum rn, f.* from 
@@ -89,7 +97,7 @@
 		from
 			(select rownum rn, f.*
 			from
-				(select s.scode,s.stitle,a.aname,s.sdate,s.simage, s.sviews
+				(select s.scode,s.stitle,a.acode,a.aname,s.sdate,s.simage, s.sviews,s.swriter,s.slyricist,s.salbum
 				from songs s
 				left join artists a
 				on a.acode=s.acode
@@ -131,15 +139,23 @@
 		values(#{stitle}, #{acode}, #{swriter}, #{slyricist}, #{sdate},
 		#{salbum}, #{simage}, #{klyric}, #{flyric})
 	</insert>
+		
 
 	<select id="searchSong" parameterType="hashmap" resultMap="song">
-		select s.scode,s.stitle,s.acode,s.swriter,a.acode,a.aname,
-		s.slyricist,s.sdate,s.salbum,s.simage, s.klyric
-		from artists a
-		left join
-		songs s
-		on a.acode=s.acode
-		where upper(${condition}) like '%'||upper(#{keyword})||'%'
-
+		
+		
+		select ff.*
+		from
+			(select rownum rn, f.*
+			from
+				(select s.scode,s.stitle,s.acode,s.swriter,a.aname,
+				s.slyricist,s.sdate,s.salbum,s.simage
+				from songs s
+				left join
+				artists a
+				on a.acode=s.acode
+				where upper(${condition}) like '%'||upper(#{keyword})||'%') f) ff
+		<![CDATA[where ff.rn>(#{page}*4)-4 and ff.rn<= #{page}*4]]>
 	</select>
+	
 </mapper>

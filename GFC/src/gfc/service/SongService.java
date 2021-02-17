@@ -52,6 +52,7 @@ public class SongService {
 	}
 
 	public List<Song> getSongList(int page) {
+		System.out.println("page : "+page);
 		return songmapper.getSongList(page);
 	}
 	
@@ -61,6 +62,12 @@ public class SongService {
 	
 	public int getSongCnt() {
 		return songmapper.getSongCnt();
+	}
+	public int getSearchSongCnt(String keyword, String condition) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("condition", (String)condition);
+		map.put("keyword", (String)keyword);
+		return songmapper.getSearchSongCnt(map);
 	}
 	
 	public Song recommendSong(int songCnt) {
@@ -79,10 +86,11 @@ public class SongService {
 		return usersMapper.getAcode(ucode);
 	}
 	
-	public List<Song> searchSong(String keyword, String condition){
-		HashMap<String, String> map=new HashMap<String, String>();
-		map.put("condition", condition);
-		map.put("keyword", keyword);
+	public List<Song> searchSong(String keyword, String condition, String page){
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("condition", (String)condition);
+		map.put("keyword", (String)keyword);
+		map.put("page", Integer.parseInt(page));
 		return songmapper.searchSong(map);
 	}
 	

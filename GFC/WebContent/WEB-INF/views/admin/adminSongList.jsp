@@ -21,12 +21,11 @@
 			<td>가수명</td>
 			<td>작곡가</td>
 			<td>작사가</td>
-			<td>한국가사</td>
+			
 			<td>발매일</td>
 			<td>앨범</td>
 			<td>앨범이미지</td>
 			
-			<td>유튜브링크</td>
 		</tr>
 		<c:forEach var="song" items="${songList}">
 			<tr>
@@ -36,16 +35,29 @@
 				<td>${song.artist.aname}</td>
 				<td>${song.swriter}</td>
 				<td>${song.slyricist}</td>
-				<td>${song.klyric}</td>
 				
 				<td>${song.sdate}</td>
 				<td>${song.salbum}</td>
 				<td><img alt="" src="${song.simage}"></td>
 				
-				<td>${song.youtubelink}</td>
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<c:set var="cnt" value="${songCnt}" />
+		<c:choose>
+			<c:when test="${empty songList}">
+				<p>No Song</p>
+			</c:when>
+			<%-- <c:when test="${not empty songList}"> --%>
+			<c:otherwise>
+				
+					<c:forEach begin="1" end="${cnt}" varStatus="status">
+								<a href="adminSongList?page=${status.index}">${status.index}</a>
+							</c:forEach>
+			
+			</c:otherwise>
+		</c:choose>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
